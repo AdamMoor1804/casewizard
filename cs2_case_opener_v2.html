@@ -1,0 +1,252 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  #app { padding: 1.5rem 1rem; max-width: 680px; font-family: var(--font-sans); }
+  h2 { font-size: 18px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+  .sub { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
+
+  .reel-wrap {
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    position: relative;
+    height: 120px;
+    background: var(--color-background-secondary);
+    margin-bottom: 1.5rem;
+  }
+  .reel-pointer {
+    position: absolute; left: 50%; top: 0; bottom: 0;
+    width: 2px; background: #f0c040;
+    transform: translateX(-50%); z-index: 10;
+  }
+  .reel-pointer::before, .reel-pointer::after {
+    content: ''; position: absolute; left: 50%;
+    transform: translateX(-50%);
+    border-left: 8px solid transparent; border-right: 8px solid transparent;
+  }
+  .reel-pointer::before { top: 0; border-top: 10px solid #f0c040; }
+  .reel-pointer::after  { bottom: 0; border-bottom: 10px solid #f0c040; }
+
+  .reel-track {
+    display: flex; align-items: center;
+    height: 120px; position: absolute; left: 0; top: 0;
+  }
+  .reel-item {
+    width: 100px; height: 100px; margin: 0 4px;
+    border-radius: 10px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    flex-shrink: 0; border: 2px solid rgba(255,255,255,0.15);
+  }
+  .reel-item .skin-icon { font-size: 32px; }
+  .reel-item .skin-name { font-size: 10px; font-weight: 500; text-align: center; margin-top: 4px; padding: 0 4px; line-height: 1.3; }
+
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 10px; margin-bottom: 1.5rem;
+  }
+  .stat-card {
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 10px 12px; text-align: center;
+  }
+  .stat-label { font-size: 11px; color: var(--color-text-secondary); margin-bottom: 4px; }
+  .stat-val { font-size: 20px; font-weight: 500; color: var(--color-text-primary); }
+
+  .open-btn {
+    display: block; width: 100%; padding: 14px;
+    background: #f0c040; color: #1a1200;
+    border: none; border-radius: var(--border-radius-md);
+    font-size: 16px; font-weight: 500; cursor: pointer;
+    transition: opacity 0.15s, transform 0.1s;
+    margin-bottom: 1.5rem;
+  }
+  .open-btn:hover { opacity: 0.9; }
+  .open-btn:active { transform: scale(0.98); }
+  .open-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  .result-panel {
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 1rem 1.25rem;
+    background: var(--color-background-primary);
+    margin-bottom: 1.5rem;
+    display: none; align-items: center; gap: 16px;
+  }
+  .result-swatch {
+    width: 64px; height: 64px; border-radius: 10px;
+    flex-shrink: 0; display: flex;
+    align-items: center; justify-content: center; font-size: 28px;
+  }
+  .result-info .result-name { font-size: 16px; font-weight: 500; color: var(--color-text-primary); }
+  .result-info .result-rarity { font-size: 13px; margin-top: 3px; font-weight: 500; }
+  .result-info .result-chance { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; }
+
+  .inventory-title { font-size: 14px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 10px; }
+  .inventory { display: flex; flex-wrap: wrap; gap: 8px; }
+  .inv-item {
+    width: 64px; height: 70px; border-radius: 8px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    border: 0.5px solid rgba(255,255,255,0.12);
+    font-size: 22px;
+  }
+  .inv-item .inv-label { font-size: 9px; font-weight: 500; margin-top: 3px; text-align: center; padding: 0 3px; line-height: 1.2; }
+  .inv-empty { font-size: 13px; color: var(--color-text-secondary); }
+</style>
+
+<div id="app">
+  <h2>Zylo Case</h2>
+  <p class="sub">Open a case to reveal a skin. Good luck.</p>
+
+  <div class="reel-wrap">
+    <div class="reel-pointer"></div>
+    <div class="reel-track" id="reelTrack"></div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card"><div class="stat-label">Cases opened</div><div class="stat-val" id="statOpened">0</div></div>
+    <div class="stat-card"><div class="stat-label">Best drop</div><div class="stat-val" id="statBest">—</div></div>
+    <div class="stat-card"><div class="stat-label">Gold drops</div><div class="stat-val" id="statGold">0</div></div>
+    <div class="stat-card"><div class="stat-label">Red drops</div><div class="stat-val" id="statRed">0</div></div>
+  </div>
+
+  <button class="open-btn" id="openBtn" onclick="openCase()">Open case</button>
+
+  <div class="result-panel" id="resultPanel">
+    <div class="result-swatch" id="resultSwatch"></div>
+    <div class="result-info">
+      <div class="result-name" id="resultName"></div>
+      <div class="result-rarity" id="resultRarity"></div>
+      <div class="result-chance" id="resultChance"></div>
+    </div>
+  </div>
+
+  <div class="inventory-title">Inventory</div>
+  <div class="inventory" id="inventory"><span class="inv-empty">No items yet</span></div>
+</div>
+
+<script>
+const SKINS = [
+  { rarity: "Blue",   color: "#4a9eff", bg: "#0a1a3a", icon: "🔧", weight: 7992, chance: "79.92%" },
+  { rarity: "Purple", color: "#b04dff", bg: "#1a0a30", icon: "⚡", weight: 1598, chance: "15.98%" },
+  { rarity: "Pink",   color: "#ff5ec4", bg: "#30081e", icon: "🌸", weight: 319,  chance: "3.19%"  },
+  { rarity: "Red",    color: "#ff3b3b", bg: "#2a0505", icon: "🔥", weight: 63,   chance: "0.63%"  },
+  { rarity: "Gold",   color: "#f0c040", bg: "#2a1800", icon: "💎", weight: 28,   chance: "0.28%"  },
+];
+
+const SKIN_NAMES = {
+  Blue:   ["Iron Barrel","Cold Finish","Steel Coat","Base Wrap","Grey Matter"],
+  Purple: ["Void Static","Amethyst Edge","Neural Arc","Phase Shift","Dark Pulse"],
+  Pink:   ["Sakura Storm","Neon Bloom","Rose Fade","Cherry Burst","Candy Wave"],
+  Red:    ["Crimson Web","Dragon Strike","Blood Tiger","Ember Coil","Inferno"],
+  Gold:   ["AWP | Gold Leaf","AK-47 | Gilded","Karambit | Aurum","M4 | Sovereign","Butterfly | Gold"],
+};
+
+const rarityOrder = ["Blue","Purple","Pink","Red","Gold"];
+let state = { opened: 0, goldDrops: 0, redDrops: 0, bestRarity: null };
+let spinning = false;
+
+function weightedRandom() {
+  const total = SKINS.reduce((s, x) => s + x.weight, 0);
+  let r = Math.random() * total;
+  for (const skin of SKINS) { r -= skin.weight; if (r <= 0) return skin; }
+  return SKINS[0];
+}
+
+function pickName(rarity) {
+  const arr = SKIN_NAMES[rarity];
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function buildReel(finalSkin) {
+  const track = document.getElementById("reelTrack");
+  track.innerHTML = "";
+  for (let i = 0; i < 50; i++) {
+    const skin = i === 42 ? finalSkin : weightedRandom();
+    const el = document.createElement("div");
+    el.className = "reel-item";
+    el.style.background = skin.bg;
+    el.style.borderColor = skin.color + "66";
+    const label = pickName(skin.rarity).split("|")[1] || skin.rarity;
+    el.innerHTML = `<div class="skin-icon">${skin.icon}</div><div class="skin-name" style="color:${skin.color}">${label.trim()}</div>`;
+    track.appendChild(el);
+  }
+}
+
+function openCase() {
+  if (spinning) return;
+  spinning = true;
+  const btn = document.getElementById("openBtn");
+  btn.disabled = true;
+  document.getElementById("resultPanel").style.display = "none";
+
+  const result = weightedRandom();
+  buildReel(result);
+
+  const track = document.getElementById("reelTrack");
+  const ITEM_W = 108;
+  const containerW = track.parentElement.offsetWidth;
+  const center = containerW / 2;
+  const targetX = 42 * ITEM_W + ITEM_W / 2;
+  const finalLeft = center - targetX + (Math.random() - 0.5) * 50;
+
+  track.style.transition = "none";
+  track.style.left = "0px";
+
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    const dur = 4200 + Math.random() * 800;
+    track.style.transition = `left ${dur}ms cubic-bezier(0.12, 1, 0.36, 1)`;
+    track.style.left = finalLeft + "px";
+  }));
+
+  setTimeout(() => {
+    showResult(result);
+    updateStats(result);
+    spinning = false;
+    btn.disabled = false;
+  }, 5400);
+}
+
+function showResult(skin) {
+  const panel = document.getElementById("resultPanel");
+  const swatch = document.getElementById("resultSwatch");
+  swatch.style.background = skin.bg;
+  swatch.style.border = `2px solid ${skin.color}`;
+  swatch.textContent = skin.icon;
+  const name = pickName(skin.rarity);
+  document.getElementById("resultName").textContent = name;
+  document.getElementById("resultRarity").textContent = skin.rarity;
+  document.getElementById("resultRarity").style.color = skin.color;
+  document.getElementById("resultChance").textContent = `Drop chance: ${skin.chance}`;
+  panel.style.display = "flex";
+  addToInventory(skin, name);
+}
+
+function updateStats(skin) {
+  state.opened++;
+  if (skin.rarity === "Gold") state.goldDrops++;
+  if (skin.rarity === "Red") state.redDrops++;
+  const cur = state.bestRarity;
+  if (!cur || rarityOrder.indexOf(skin.rarity) > rarityOrder.indexOf(cur)) state.bestRarity = skin.rarity;
+  document.getElementById("statOpened").textContent = state.opened;
+  document.getElementById("statBest").textContent = state.bestRarity || "—";
+  document.getElementById("statGold").textContent = state.goldDrops;
+  document.getElementById("statRed").textContent = state.redDrops;
+}
+
+function addToInventory(skin, skinName) {
+  const inv = document.getElementById("inventory");
+  if (inv.querySelector(".inv-empty")) inv.innerHTML = "";
+  const el = document.createElement("div");
+  el.className = "inv-item";
+  el.style.background = skin.bg;
+  el.style.borderColor = skin.color + "88";
+  const label = skinName.includes("|") ? skinName.split("|")[1].trim() : skinName;
+  el.innerHTML = `${skin.icon}<div class="inv-label" style="color:${skin.color}">${label}</div>`;
+  inv.insertBefore(el, inv.firstChild);
+}
+
+buildReel(SKINS[0]);
+const t = document.getElementById("reelTrack");
+t.style.left = (t.parentElement.offsetWidth / 2 - 54) + "px";
+</script>
