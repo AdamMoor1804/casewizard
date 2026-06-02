@@ -21,45 +21,23 @@
       padding: 2rem 1.5rem;
     }
 
-    h2 {
-      font-size: 22px;
-      font-weight: 600;
-      color: #f0c040;
-      margin-bottom: 4px;
-      letter-spacing: 0.5px;
-    }
-    .sub {
-      font-size: 13px;
-      color: #888;
-      margin-bottom: 1.5rem;
-    }
+    h2 { font-size: 22px; font-weight: 600; color: #f0c040; margin-bottom: 4px; letter-spacing: 0.5px; }
+    .sub { font-size: 13px; color: #888; margin-bottom: 1.5rem; }
 
     /* ── Wallet bar ── */
     .wallet-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #18181f;
-      border: 1px solid #2a2a38;
-      border-radius: 12px;
-      padding: 10px 18px;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-      gap: 8px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: #18181f; border: 1px solid #2a2a38;
+      border-radius: 12px; padding: 10px 18px;
+      margin-bottom: 1.5rem; flex-wrap: wrap; gap: 8px;
     }
     .wallet-balance { font-size: 18px; font-weight: 600; color: #f0c040; }
     .wallet-info { font-size: 12px; color: #888; }
     .wallet-info span { color: #aaa; }
     .claim-btn {
-      padding: 7px 16px;
-      background: #f0c040;
-      color: #1a1200;
-      border: none;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: opacity 0.15s;
+      padding: 7px 16px; background: #f0c040; color: #1a1200;
+      border: none; border-radius: 8px; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: opacity 0.15s;
     }
     .claim-btn:hover { opacity: 0.85; }
     .claim-btn:disabled { opacity: 0.4; cursor: not-allowed; }
@@ -67,14 +45,10 @@
     /* ── Case area ── */
     .case-area { display: flex; justify-content: center; margin-bottom: 1.2rem; }
     .case-box {
-      width: 90px; height: 90px;
-      border-radius: 14px;
-      background: #1a1200;
-      border: 2px solid #f0c04066;
+      width: 90px; height: 90px; border-radius: 14px;
+      background: #1a1200; border: 2px solid #f0c04066;
       display: flex; align-items: center; justify-content: center;
-      font-size: 44px;
-      cursor: pointer;
-      transition: transform 0.15s;
+      font-size: 44px; cursor: pointer; transition: transform 0.15s;
     }
     .case-box:hover { transform: scale(1.05); }
     .case-box.shake { animation: shake 0.45s ease; }
@@ -90,15 +64,8 @@
     }
 
     /* ── Particles ── */
-    .particles-wrap {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none; z-index: 999;
-    }
-    .particle {
-      position: absolute; border-radius: 50%;
-      animation: burst 0.9s ease-out forwards;
-    }
+    .particles-wrap { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; }
+    .particle { position: absolute; border-radius: 50%; animation: burst 0.9s ease-out forwards; }
     @keyframes burst {
       0%   { transform: translate(0,0) scale(1); opacity: 1; }
       100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
@@ -106,29 +73,21 @@
 
     /* ── Reel ── */
     .reel-wrap {
-      width: 100%;
-      border: 1px solid #2a2a38;
-      border-radius: 12px;
-      overflow: hidden;
-      position: relative;
-      height: 128px;
-      background: #13131a;
-      margin-bottom: 1.5rem;
+      width: 100%; border: 1px solid #2a2a38; border-radius: 12px;
+      overflow: hidden; position: relative; height: 128px;
+      background: #13131a; margin-bottom: 1.5rem;
     }
     .reel-fade-left, .reel-fade-right {
-      position: absolute; top: 0; bottom: 0; width: 80px;
-      z-index: 5; pointer-events: none;
+      position: absolute; top: 0; bottom: 0; width: 80px; z-index: 5; pointer-events: none;
     }
     .reel-fade-left  { left: 0;  background: linear-gradient(to right, #13131a, transparent); }
     .reel-fade-right { right: 0; background: linear-gradient(to left,  #13131a, transparent); }
     .reel-pointer {
       position: absolute; left: 50%; top: 0; bottom: 0;
-      width: 2px; background: #f0c040;
-      transform: translateX(-50%); z-index: 10;
+      width: 2px; background: #f0c040; transform: translateX(-50%); z-index: 10;
     }
     .reel-pointer::before, .reel-pointer::after {
-      content: ''; position: absolute; left: 50%;
-      transform: translateX(-50%);
+      content: ''; position: absolute; left: 50%; transform: translateX(-50%);
       border-left: 8px solid transparent; border-right: 8px solid transparent;
     }
     .reel-pointer::before { top: 0;    border-top:    10px solid #f0c040; }
@@ -138,39 +97,25 @@
       height: 128px; position: absolute; left: 0; top: 0;
     }
     .reel-item {
-      width: 108px; height: 108px; margin: 0 4px;
-      border-radius: 10px;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
+      width: 108px; height: 108px; margin: 0 4px; border-radius: 10px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
       flex-shrink: 0; border: 2px solid rgba(255,255,255,0.08);
     }
-    .reel-item .skin-icon { font-size: 32px; }
-    .reel-item .skin-name {
-      font-size: 10px; font-weight: 500;
-      text-align: center; margin-top: 5px;
-      padding: 0 4px; line-height: 1.3;
-    }
+    .reel-item .skin-icon { font-size: 28px; }
+    .reel-item .skin-name { font-size: 9px; font-weight: 500; text-align: center; margin-top: 4px; padding: 0 4px; line-height: 1.3; }
+    .reel-item .skin-wear { font-size: 8px; font-weight: 600; margin-top: 2px; opacity: 0.85; }
 
     /* ── Stats ── */
-    .stats {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 10px; margin-bottom: 1.5rem;
-    }
-    .stat-card {
-      background: #18181f; border: 1px solid #2a2a38;
-      border-radius: 10px; padding: 10px 12px; text-align: center;
-    }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 1.5rem; }
+    .stat-card { background: #18181f; border: 1px solid #2a2a38; border-radius: 10px; padding: 10px 12px; text-align: center; }
     .stat-label { font-size: 11px; color: #777; margin-bottom: 4px; }
     .stat-val   { font-size: 18px; font-weight: 600; color: #e8e8f0; }
 
     /* ── Open button ── */
     .open-btn {
-      display: block; width: 100%; padding: 15px;
-      background: #f0c040; color: #1a1200;
-      border: none; border-radius: 10px;
-      font-size: 16px; font-weight: 600; cursor: pointer;
-      transition: opacity 0.15s, transform 0.1s;
-      margin-bottom: 1.5rem;
+      display: block; width: 100%; padding: 15px; background: #f0c040; color: #1a1200;
+      border: none; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s; margin-bottom: 1.5rem;
     }
     .open-btn:hover { opacity: 0.9; }
     .open-btn:active { transform: scale(0.98); }
@@ -178,21 +123,17 @@
 
     /* ── Result panel ── */
     .result-panel {
-      border: 1px solid #2a2a38; border-radius: 12px;
-      padding: 1rem 1.25rem; background: #18181f;
-      margin-bottom: 1.5rem;
+      border: 1px solid #2a2a38; border-radius: 12px; padding: 1rem 1.25rem;
+      background: #18181f; margin-bottom: 1.5rem;
       display: none; align-items: center; gap: 16px;
     }
-    .result-panel.show {
-      display: flex;
-      animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
-    }
+    .result-panel.show { display: flex; animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1); }
     @keyframes popIn {
       0%   { transform: scale(0.7); opacity: 0; }
       100% { transform: scale(1);   opacity: 1; }
     }
     .result-swatch {
-      width: 68px; height: 68px; border-radius: 10px; flex-shrink: 0;
+      width: 72px; height: 72px; border-radius: 10px; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center; font-size: 30px;
       animation: spinIn 0.5s cubic-bezier(0.34,1.56,0.64,1);
     }
@@ -201,8 +142,9 @@
       100% { transform: rotateY(0deg)  scale(1);   opacity: 1; }
     }
     .result-name   { font-size: 17px; font-weight: 600; color: #e8e8f0; }
-    .result-rarity { font-size: 13px; margin-top: 3px; font-weight: 600; }
-    .result-chance { font-size: 12px; color: #777; margin-top: 2px; }
+    .result-wear   { font-size: 12px; font-weight: 700; margin-top: 2px; letter-spacing: 0.3px; }
+    .result-rarity { font-size: 12px; margin-top: 2px; font-weight: 600; }
+    .result-chance { font-size: 11px; color: #777; margin-top: 2px; }
     .result-price  {
       font-size: 15px; font-weight: 600; margin-top: 6px;
       display: inline-flex; align-items: center; gap: 5px;
@@ -213,76 +155,59 @@
       100% { transform: translateY(0);   opacity: 1; }
     }
 
-    /* ── Inventory ── */
-    .inventory-header {
-      display: flex; align-items: center;
-      justify-content: space-between; margin-bottom: 10px;
+    /* ── Wear bar ── */
+    .wear-bar-wrap { margin-top: 7px; width: 100%; max-width: 260px; }
+    .wear-bar-track {
+      height: 5px; border-radius: 3px; width: 100%;
+      background: linear-gradient(to right, #4caf50, #8bc34a, #ffeb3b, #ff9800, #f44336);
+      position: relative;
     }
-    .inventory-title { font-size: 14px; font-weight: 600; color: #888; }
+    .wear-bar-needle {
+      position: absolute; top: -4px;
+      width: 3px; height: 13px;
+      background: #fff; border-radius: 2px;
+      transform: translateX(-50%);
+      box-shadow: 0 0 4px #000a;
+      transition: left 0.6s cubic-bezier(0.34,1.2,0.64,1);
+    }
+    .wear-bar-labels {
+      display: flex; justify-content: space-between;
+      font-size: 8px; color: #666; margin-top: 3px;
+    }
+
+    /* ── Inventory ── */
+    .inventory-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .inventory-title  { font-size: 14px; font-weight: 600; color: #888; }
     .sell-all-btn {
-      padding: 5px 12px; background: transparent;
-      border: 1px solid #444; color: #aaa;
-      border-radius: 7px; font-size: 12px; font-weight: 500;
-      cursor: pointer; transition: border-color 0.15s, color 0.15s;
+      padding: 5px 12px; background: transparent; border: 1px solid #444; color: #aaa;
+      border-radius: 7px; font-size: 12px; font-weight: 500; cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
     }
     .sell-all-btn:hover { border-color: #f0c040; color: #f0c040; }
 
     .inventory { display: flex; flex-wrap: wrap; gap: 8px; }
 
-    /* ── Inventory item ── */
     .inv-item {
-      width: 84px; height: 108px; border-radius: 8px;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      border: 1px solid rgba(255,255,255,0.1);
-      font-size: 22px; position: relative;
-      animation: popIn 0.35s cubic-bezier(0.34,1.56,0.64,1);
-      transition: border-color 0.2s;
+      width: 88px; height: 116px; border-radius: 8px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      border: 1px solid rgba(255,255,255,0.1); font-size: 20px; position: relative;
+      animation: popIn 0.35s cubic-bezier(0.34,1.56,0.64,1); transition: border-color 0.2s;
     }
-    /* Locked state: golden border glow */
-    .inv-item.locked {
-      border-color: #f0c040aa !important;
-      box-shadow: 0 0 8px #f0c04033;
-    }
-    .inv-label { font-size: 9px; font-weight: 500; margin-top: 3px; text-align: center; padding: 0 3px; line-height: 1.2; }
-    .inv-price { font-size: 10px; margin-top: 1px; font-weight: 600; }
-
-    /* Bottom row: lock + sell */
-    .inv-actions {
-      display: flex; gap: 3px; margin-top: 5px;
-      width: calc(100% - 8px);
-    }
+    .inv-item.locked { border-color: #f0c040aa !important; box-shadow: 0 0 8px #f0c04033; }
+    .inv-label  { font-size: 8.5px; font-weight: 500; margin-top: 2px; text-align: center; padding: 0 3px; line-height: 1.2; }
+    .inv-wear   { font-size: 7.5px; font-weight: 700; margin-top: 1px; }
+    .inv-price  { font-size: 9.5px; margin-top: 1px; font-weight: 600; }
+    .inv-actions { display: flex; gap: 3px; margin-top: 4px; width: calc(100% - 8px); }
     .lock-btn, .sell-btn {
-      flex: 1; padding: 3px 0;
-      border-radius: 5px; font-size: 10px; font-weight: 600;
-      cursor: pointer; border: 1px solid; transition: background 0.15s, opacity 0.15s;
-      text-align: center;
+      flex: 1; padding: 3px 0; border-radius: 5px; font-size: 10px; font-weight: 600;
+      cursor: pointer; border: 1px solid; transition: background 0.15s, opacity 0.15s; text-align: center;
     }
-    .lock-btn {
-      background: rgba(255,255,255,0.05);
-      border-color: #ffffff33;
-      color: #aaa;
-    }
+    .lock-btn { background: rgba(255,255,255,0.05); border-color: #ffffff33; color: #aaa; }
     .lock-btn:hover { background: rgba(255,255,255,0.12); }
-    .lock-btn.is-locked {
-      background: #f0c04022;
-      border-color: #f0c040aa;
-      color: #f0c040;
-    }
-    .sell-btn {
-      background: #f0c04018;
-      border-color: #f0c04055;
-      color: #f0c040;
-    }
+    .lock-btn.is-locked { background: #f0c04022; border-color: #f0c040aa; color: #f0c040; }
+    .sell-btn { background: #f0c04018; border-color: #f0c04055; color: #f0c040; }
     .sell-btn:hover:not(:disabled) { background: #f0c04040; }
-    .sell-btn:disabled {
-      opacity: 0.3; cursor: not-allowed;
-    }
-
-    /* locked tooltip on sell btn */
-    .sell-btn[data-locked="true"] {
-      opacity: 0.3; cursor: not-allowed;
-    }
+    .sell-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
     @keyframes sellFlash {
       0%   { transform: scale(1); opacity: 1; }
@@ -290,7 +215,6 @@
       100% { transform: scale(0); opacity: 0; }
     }
     .inv-item.selling { animation: sellFlash 0.3s ease forwards; }
-
     .inv-empty { font-size: 13px; color: #666; }
 
     @media (max-width: 500px) {
@@ -304,7 +228,6 @@
   <h2>CaseWizard</h2>
   <p class="sub">Open a case to reveal a skin. Good luck.</p>
 
-  <!-- Wallet -->
   <div class="wallet-bar">
     <div>
       <div class="wallet-balance" id="walletDisplay">🪙 0.00</div>
@@ -316,12 +239,10 @@
     </div>
   </div>
 
-  <!-- Case chest -->
   <div class="case-area">
     <div class="case-box" id="caseBox">🎁</div>
   </div>
 
-  <!-- Reel -->
   <div class="reel-wrap">
     <div class="reel-fade-left"></div>
     <div class="reel-fade-right"></div>
@@ -329,7 +250,6 @@
     <div class="reel-track" id="reelTrack"></div>
   </div>
 
-  <!-- Stats -->
   <div class="stats">
     <div class="stat-card"><div class="stat-label">Cases opened</div><div class="stat-val" id="statOpened">0</div></div>
     <div class="stat-card"><div class="stat-label">Best drop</div><div class="stat-val" id="statBest">—</div></div>
@@ -339,13 +259,17 @@
 
   <button class="open-btn" id="openBtn" onclick="openCase()">Open case — 🪙 0.50</button>
 
-  <!-- Result -->
   <div class="result-panel" id="resultPanel">
     <div class="result-swatch" id="resultSwatch"></div>
     <div class="result-info">
       <div class="result-name"   id="resultName"></div>
+      <div class="result-wear"   id="resultWear"></div>
       <div class="result-rarity" id="resultRarity"></div>
       <div class="result-chance" id="resultChance"></div>
+      <div class="wear-bar-wrap">
+        <div class="wear-bar-track"><div class="wear-bar-needle" id="wearNeedle"></div></div>
+        <div class="wear-bar-labels"><span>FN</span><span>MW</span><span>FT</span><span>WW</span><span>BS</span></div>
+      </div>
       <div class="result-price"  id="resultPrice"></div>
     </div>
   </div>
@@ -360,12 +284,37 @@
 <div class="particles-wrap" id="particlesWrap"></div>
 
 <script>
+  // ── Wear tiers ─────────────────────────────────────────────
+  // weight = rarity weight (higher = more common)
+  // multiplier = price multiplier
+  // floatMin/Max = float value range (0=perfect, 1=destroyed)
+  const WEARS = [
+    { name: "Battle-Scarred", short: "BS", weight: 400, multiplier: 0.5,  floatMin: 0.45, floatMax: 1.00, color: "#f44336" },
+    { name: "Well-Worn",      short: "WW", weight: 280, multiplier: 0.75, floatMin: 0.38, floatMax: 0.45, color: "#ff9800" },
+    { name: "Field-Tested",   short: "FT", weight: 200, multiplier: 1.0,  floatMin: 0.15, floatMax: 0.38, color: "#ffeb3b" },
+    { name: "Minimal Wear",   short: "MW", weight: 90,  multiplier: 1.5,  floatMin: 0.07, floatMax: 0.15, color: "#8bc34a" },
+    { name: "Factory New",    short: "FN", weight: 30,  multiplier: 2.0,  floatMin: 0.00, floatMax: 0.07, color: "#4caf50" },
+  ];
+  const WEAR_TOTAL = WEARS.reduce((s,w) => s + w.weight, 0);
+
+  function randomWear() {
+    let r = Math.random() * WEAR_TOTAL;
+    for (const w of WEARS) { r -= w.weight; if (r <= 0) return w; }
+    return WEARS[0];
+  }
+
+  // Random float within the wear's range
+  function randomFloat(wear) {
+    return wear.floatMin + Math.random() * (wear.floatMax - wear.floatMin);
+  }
+
+  // ── Skin data ──────────────────────────────────────────────
   const SKINS = [
-    { rarity:"Blue",   color:"#4a9eff", bg:"#0a1a3a", icon:"🔧", weight:7992, chance:"79.92%", price:0.10  },
-    { rarity:"Purple", color:"#b04dff", bg:"#1a0a30", icon:"⚡", weight:1598, chance:"15.98%", price:1.00  },
-    { rarity:"Pink",   color:"#ff5ec4", bg:"#30081e", icon:"🌸", weight:319,  chance:"3.19%",  price:7.50  },
-    { rarity:"Red",    color:"#ff3b3b", bg:"#2a0505", icon:"🔥", weight:63,   chance:"0.63%",  price:50.00 },
-    { rarity:"Gold",   color:"#f0c040", bg:"#2a1800", icon:"💎", weight:28,   chance:"0.28%",  price:250.00},
+    { rarity:"Blue",   color:"#4a9eff", bg:"#0a1a3a", icon:"🔧", weight:7992, chance:"79.92%", basePrice:0.10   },
+    { rarity:"Purple", color:"#b04dff", bg:"#1a0a30", icon:"⚡", weight:1598, chance:"15.98%", basePrice:1.00   },
+    { rarity:"Pink",   color:"#ff5ec4", bg:"#30081e", icon:"🌸", weight:319,  chance:"3.19%",  basePrice:7.50   },
+    { rarity:"Red",    color:"#ff3b3b", bg:"#2a0505", icon:"🔥", weight:63,   chance:"0.63%",  basePrice:50.00  },
+    { rarity:"Gold",   color:"#f0c040", bg:"#2a1800", icon:"💎", weight:28,   chance:"0.28%",  basePrice:250.00 },
   ];
   const SKIN_NAMES = {
     Blue:  ["Iron Barrel","Cold Finish","Steel Coat","Base Wrap","Grey Matter"],
@@ -445,20 +394,29 @@
     const arr = SKIN_NAMES[rarity];
     return arr[Math.floor(Math.random() * arr.length)];
   }
-  function fmt(p) { return p % 1 === 0 ? p.toFixed(0) : p.toFixed(2); }
+  function fmt(p) {
+    if (p >= 100) return p.toFixed(0);
+    if (p >= 10)  return p.toFixed(1);
+    return p.toFixed(2);
+  }
 
   // ── Reel ───────────────────────────────────────────────────
-  function buildReel(finalSkin) {
+  function buildReel(finalSkin, finalWear) {
     const track = document.getElementById("reelTrack");
     track.innerHTML = "";
     for (let i = 0; i < 50; i++) {
       const skin = (i === 42) ? finalSkin : weightedRandom();
+      const wear = (i === 42) ? finalWear : randomWear();
       const el   = document.createElement("div");
       el.className = "reel-item";
       el.style.background  = skin.bg;
       el.style.borderColor = skin.color + "66";
       const label = pickName(skin.rarity).split("|")[1] || skin.rarity;
-      el.innerHTML = `<div class="skin-icon">${skin.icon}</div><div class="skin-name" style="color:${skin.color}">${label.trim()}</div>`;
+      el.innerHTML = `
+        <div class="skin-icon">${skin.icon}</div>
+        <div class="skin-name" style="color:${skin.color}">${label.trim()}</div>
+        <div class="skin-wear" style="color:${wear.color}">${wear.short}</div>
+      `;
       track.appendChild(el);
     }
   }
@@ -502,7 +460,10 @@
     document.getElementById("openBtn").disabled = true;
     document.getElementById("resultPanel").classList.remove("show");
 
-    const result = weightedRandom();
+    const result    = weightedRandom();
+    const wear      = randomWear();
+    const floatVal  = randomFloat(wear);
+
     const caseEl = document.getElementById("caseBox");
     caseEl.classList.remove("shake");
     void caseEl.offsetWidth;
@@ -510,7 +471,7 @@
     spawnParticles(result.color);
 
     setTimeout(() => {
-      buildReel(result);
+      buildReel(result, wear);
       const track      = document.getElementById("reelTrack");
       const ITEM_W     = 116;
       const containerW = track.parentElement.offsetWidth;
@@ -527,8 +488,8 @@
 
       setTimeout(() => {
         spawnParticles(result.color);
-        showResult(result);
-        updateStats(result);
+        showResult(result, wear, floatVal);
+        updateStats(result, wear);
         spinning = false;
         updateWalletUI();
       }, 4800);
@@ -536,7 +497,7 @@
   }
 
   // ── Show result ────────────────────────────────────────────
-  function showResult(skin) {
+  function showResult(skin, wear, floatVal) {
     const panel  = document.getElementById("resultPanel");
     const swatch = document.getElementById("resultSwatch");
     panel.classList.remove("show");
@@ -546,19 +507,26 @@
     swatch.style.border     = `2px solid ${skin.color}`;
     swatch.textContent      = skin.icon;
 
-    const name = pickName(skin.rarity);
-    document.getElementById("resultName").textContent   = name;
-    document.getElementById("resultRarity").textContent = skin.rarity;
-    document.getElementById("resultRarity").style.color = skin.color;
-    document.getElementById("resultChance").textContent = `Drop chance: ${skin.chance}`;
-    document.getElementById("resultPrice").innerHTML    = `<span>🪙</span><span style="color:${skin.color}">${fmt(skin.price)} coins if sold</span>`;
-    panel.classList.add("show");
+    const name  = pickName(skin.rarity);
+    const price = skin.basePrice * wear.multiplier;
 
-    addToInventory(skin, name);
+    document.getElementById("resultName").textContent    = name;
+    document.getElementById("resultWear").textContent    = wear.name;
+    document.getElementById("resultWear").style.color    = wear.color;
+    document.getElementById("resultRarity").textContent  = skin.rarity;
+    document.getElementById("resultRarity").style.color  = skin.color;
+    document.getElementById("resultChance").textContent  = `Skin: ${skin.chance}  ·  Wear: ${(wear.weight/WEAR_TOTAL*100).toFixed(0)}% chance`;
+    document.getElementById("resultPrice").innerHTML     = `<span>🪙</span><span style="color:${wear.color}">${fmt(price)} coins if sold</span>`;
+
+    // position needle on wear bar (floatVal 0..1 → left 0..100%)
+    document.getElementById("wearNeedle").style.left = (floatVal * 100) + "%";
+
+    panel.classList.add("show");
+    addToInventory(skin, wear, floatVal, name);
   }
 
   // ── Stats ──────────────────────────────────────────────────
-  function updateStats(skin) {
+  function updateStats(skin, wear) {
     state.opened++;
     if (skin.rarity === "Gold") state.goldDrops++;
     const cur = state.bestRarity;
@@ -584,8 +552,6 @@
     if (idx === -1) return;
     const item = state.inventory[idx];
     if (item.locked) return;
-
-    // animate then remove
     const el = document.querySelector(`[data-inv-id="${id}"]`);
     if (el) el.classList.add("selling");
     setTimeout(() => {
@@ -604,7 +570,7 @@
   function sellAll() {
     const unlocked = state.inventory.filter(i => !i.locked);
     if (!unlocked.length) { showToast("No unlocked items to sell"); return; }
-    const total = unlocked.reduce((s, i) => s + i.price, 0);
+    const total = unlocked.reduce((s,i) => s + i.price, 0);
     state.inventory = state.inventory.filter(i => i.locked);
     state.coins     += total;
     state.totalSold += total;
@@ -616,16 +582,20 @@
   }
 
   // ── Inventory ──────────────────────────────────────────────
-  function addToInventory(skin, skinName) {
+  function addToInventory(skin, wear, floatVal, skinName) {
     state.inventory.unshift({
-      id:     itemIdCounter++,
-      rarity: skin.rarity,
-      icon:   skin.icon,
-      color:  skin.color,
-      bg:     skin.bg,
-      name:   skinName,
-      price:  skin.price,
-      locked: false,
+      id:       itemIdCounter++,
+      rarity:   skin.rarity,
+      icon:     skin.icon,
+      color:    skin.color,
+      bg:       skin.bg,
+      name:     skinName,
+      wearName: wear.name,
+      wearShort:wear.short,
+      wearColor:wear.color,
+      floatVal: floatVal,
+      price:    parseFloat((skin.basePrice * wear.multiplier).toFixed(2)),
+      locked:   false,
     });
     if (state.inventory.length > 60) state.inventory.pop();
     saveState();
@@ -646,13 +616,16 @@
       el.style.background  = item.bg;
       el.style.borderColor = item.locked ? "#f0c040aa" : item.color + "88";
       const label = item.name.includes("|") ? item.name.split("|")[1].trim() : item.name;
+      // float needle position
+      const needlePct = (item.floatVal * 100).toFixed(0);
       el.innerHTML = `
         ${item.icon}
         <div class="inv-label" style="color:${item.color}">${label}</div>
-        <div class="inv-price" style="color:${item.color}">🪙 ${fmt(item.price)}</div>
+        <div class="inv-wear"  style="color:${item.wearColor}">${item.wearShort}</div>
+        <div class="inv-price" style="color:${item.wearColor}">🪙 ${fmt(item.price)}</div>
         <div class="inv-actions">
-          <button class="lock-btn ${item.locked ? 'is-locked' : ''}" onclick="toggleLock(${item.id})" title="${item.locked ? 'Unlock' : 'Lock'}">${item.locked ? '🔒' : '🔓'}</button>
-          <button class="sell-btn" onclick="sellItem(${item.id})" ${item.locked ? 'disabled title="Unlock to sell"' : ''}>Sell</button>
+          <button class="lock-btn ${item.locked ? 'is-locked' : ''}" onclick="toggleLock(${item.id})">${item.locked ? '🔒' : '🔓'}</button>
+          <button class="sell-btn" onclick="sellItem(${item.id})" ${item.locked ? 'disabled' : ''}>Sell</button>
         </div>
       `;
       inv.appendChild(el);
@@ -661,7 +634,7 @@
 
   // ── Boot ───────────────────────────────────────────────────
   function boot() {
-    buildReel(SKINS[0]);
+    buildReel(SKINS[0], WEARS[0]);
     const t = document.getElementById("reelTrack");
     t.style.left = (t.parentElement.offsetWidth / 2 - 58) + "px";
 
