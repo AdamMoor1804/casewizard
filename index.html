@@ -24,6 +24,51 @@
     h2 { font-size: 22px; font-weight: 600; color: #f0c040; margin-bottom: 4px; letter-spacing: 0.5px; }
     .sub { font-size: 13px; color: #888; margin-bottom: 1.5rem; }
 
+    /* ── Help tooltip ── */
+    .help-wrap {
+      position: fixed; bottom: 20px; right: 20px; z-index: 1000;
+    }
+    .help-btn {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: #1e1e28; border: 1px solid #3a3a50;
+      color: #888; font-size: 14px; font-weight: 700;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s, color 0.2s;
+      user-select: none;
+    }
+    .help-btn:hover { border-color: #f0c040; color: #f0c040; }
+    .help-popup {
+      position: absolute; bottom: 38px; right: 0;
+      width: 280px;
+      background: #18181f; border: 1px solid #2a2a38;
+      border-radius: 12px; padding: 14px 16px;
+      opacity: 0; pointer-events: none;
+      transform: translateY(6px);
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 8px 32px #000a;
+    }
+    .help-wrap:hover .help-popup {
+      opacity: 1; pointer-events: auto; transform: translateY(0);
+    }
+    .help-section-title {
+      font-size: 11px; font-weight: 700; color: #666;
+      text-transform: uppercase; letter-spacing: 0.8px;
+      margin-bottom: 8px; margin-top: 10px;
+    }
+    .help-section-title:first-child { margin-top: 0; }
+    .help-row {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 5px;
+    }
+    .help-row:last-child { margin-bottom: 0; }
+    .help-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-right: 7px;
+    }
+    .help-name { font-size: 12px; font-weight: 500; display: flex; align-items: center; flex: 1; }
+    .help-right { font-size: 11px; color: #888; text-align: right; }
+    .help-mult  { font-size: 10px; margin-top: 1px; }
+    .help-divider { border: none; border-top: 1px solid #2a2a38; margin: 10px 0; }
+
     /* ── Wallet bar ── */
     .wallet-bar {
       display: flex; align-items: center; justify-content: space-between;
@@ -283,17 +328,71 @@
 
 <div class="particles-wrap" id="particlesWrap"></div>
 
+<!-- Help tooltip -->
+<div class="help-wrap">
+  <div class="help-btn">?</div>
+  <div class="help-popup">
+
+    <div class="help-section-title">🎨 Skin Rarity</div>
+    <div class="help-row">
+      <div class="help-name"><div class="help-dot" style="background:#4a9eff"></div>Blue</div>
+      <div class="help-right">79.92% chance<div class="help-mult">🪙 0.10 base</div></div>
+    </div>
+    <div class="help-row">
+      <div class="help-name"><div class="help-dot" style="background:#b04dff"></div>Purple</div>
+      <div class="help-right">15.98% chance<div class="help-mult">🪙 1.00 base</div></div>
+    </div>
+    <div class="help-row">
+      <div class="help-name"><div class="help-dot" style="background:#ff5ec4"></div>Pink</div>
+      <div class="help-right">3.19% chance<div class="help-mult">🪙 7.50 base</div></div>
+    </div>
+    <div class="help-row">
+      <div class="help-name"><div class="help-dot" style="background:#ff3b3b"></div>Red</div>
+      <div class="help-right">0.63% chance<div class="help-mult">🪙 50.00 base</div></div>
+    </div>
+    <div class="help-row">
+      <div class="help-name"><div class="help-dot" style="background:#f0c040"></div>Gold</div>
+      <div class="help-right">0.28% chance<div class="help-mult">🪙 250.00 base</div></div>
+    </div>
+
+    <hr class="help-divider">
+
+    <div class="help-section-title">🔧 Wear Conditions</div>
+    <div class="help-row">
+      <div class="help-name"><div class="help-dot" style="background:#4caf50"></div>Factory New</div>
+      <div class="help-right">~4% chance<div class="help-mult" style="color:#4caf50">2× price</div></div>
+    </div>
+    <div class="help-row">
+      <div class="help-name"><div class="help-dot" style="background:#8bc34a"></div>Minimal Wear</div>
+      <div class="help-right">~11% chance<div class="help-mult" style="color:#8bc34a">1.5× price</div></div>
+    </div>
+    <div class="help-row">
+      <div class="help-name"><div class="help-dot" style="background:#ffeb3b"></div>Field-Tested</div>
+      <div class="help-right">~22% chance<div class="help-mult" style="color:#ffeb3b">1× price</div></div>
+    </div>
+    <div class="help-row">
+      <div class="help-name"><div class="help-dot" style="background:#ff9800"></div>Well-Worn</div>
+      <div class="help-right">~27% chance<div class="help-mult" style="color:#ff9800">0.75× price</div></div>
+    </div>
+    <div class="help-row">
+      <div class="help-name"><div class="help-dot" style="background:#f44336"></div>Battle-Scarred</div>
+      <div class="help-right">~36% chance<div class="help-mult" style="color:#f44336">0.5× price</div></div>
+    </div>
+
+  </div>
+</div>
+
 <script>
   // ── Wear tiers ─────────────────────────────────────────────
   // weight = rarity weight (higher = more common)
   // multiplier = price multiplier
   // floatMin/Max = float value range (0=perfect, 1=destroyed)
   const WEARS = [
-    { name: "Battle-Scarred", short: "BS", weight: 400, multiplier: 0.5,  floatMin: 0.45, floatMax: 1.00, color: "#f44336" },
-    { name: "Well-Worn",      short: "WW", weight: 280, multiplier: 0.75, floatMin: 0.38, floatMax: 0.45, color: "#ff9800" },
-    { name: "Field-Tested",   short: "FT", weight: 200, multiplier: 1.0,  floatMin: 0.15, floatMax: 0.38, color: "#ffeb3b" },
-    { name: "Minimal Wear",   short: "MW", weight: 90,  multiplier: 1.5,  floatMin: 0.07, floatMax: 0.15, color: "#8bc34a" },
-    { name: "Factory New",    short: "FN", weight: 30,  multiplier: 2.0,  floatMin: 0.00, floatMax: 0.07, color: "#4caf50" },
+    { name: "Battle-Scarred", short: "BS", weight: 360, multiplier: 0.5,  floatMin: 0.45, floatMax: 1.00, color: "#f44336" },
+    { name: "Well-Worn",      short: "WW", weight: 270, multiplier: 0.75, floatMin: 0.38, floatMax: 0.45, color: "#ff9800" },
+    { name: "Field-Tested",   short: "FT", weight: 220, multiplier: 1.0,  floatMin: 0.15, floatMax: 0.38, color: "#ffeb3b" },
+    { name: "Minimal Wear",   short: "MW", weight: 110, multiplier: 1.5,  floatMin: 0.07, floatMax: 0.15, color: "#8bc34a" },
+    { name: "Factory New",    short: "FN", weight: 40,  multiplier: 2.0,  floatMin: 0.00, floatMax: 0.07, color: "#4caf50" },
   ];
   const WEAR_TOTAL = WEARS.reduce((s,w) => s + w.weight, 0);
 
