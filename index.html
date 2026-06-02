@@ -1,362 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zylo Case</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  #app { padding: 1.5rem 1rem; max-width: 680px; font-family: var(--font-sans); }
-  h2 { font-size: 18px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
-  .sub { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0e0e12;
+      color: #e8e8f0;
+      min-height: 100vh;
+    }
 
-  .case-area { display: flex; justify-content: center; margin-bottom: 1.2rem; }
-  .case-box {
-    width: 90px; height: 90px; border-radius: 14px;
-    background: #1a1200; border: 2px solid #f0c04088;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 44px; cursor: pointer;
-    transition: transform 0.15s;
-    position: relative; overflow: visible;
-  }
-  .case-box:hover { transform: scale(1.05); }
-  .case-box.shake {
-    animation: shake 0.45s ease;
-  }
-  @keyframes shake {
-    0%   { transform: rotate(0deg) scale(1); }
-    15%  { transform: rotate(-8deg) scale(1.08); }
-    30%  { transform: rotate(8deg) scale(1.1); }
-    45%  { transform: rotate(-6deg) scale(1.08); }
-    60%  { transform: rotate(6deg) scale(1.06); }
-    75%  { transform: rotate(-3deg) scale(1.04); }
-    90%  { transform: rotate(2deg) scale(1.02); }
-    100% { transform: rotate(0deg) scale(1); }
-  }
+    #app {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
 
-  .particles-wrap { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; }
-  .particle {
-    position: absolute;
-    border-radius: 50%;
-    animation: burst 0.9s ease-out forwards;
-  }
-  @keyframes burst {
-    0%   { transform: translate(0,0) scale(1); opacity: 1; }
-    100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
-  }
+    h2 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #f0c040;
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+    }
+    .sub {
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 1.5rem;
+    }
 
-  .reel-wrap {
-    border: 0.5px solid var(--color-border-secondary);
-    border-radius: var(--border-radius-lg);
-    overflow: hidden; position: relative;
-    height: 120px; background: var(--color-background-secondary);
-    margin-bottom: 1.5rem;
-  }
-  .reel-pointer {
-    position: absolute; left: 50%; top: 0; bottom: 0;
-    width: 2px; background: #f0c040;
-    transform: translateX(-50%); z-index: 10;
-  }
-  .reel-pointer::before, .reel-pointer::after {
-    content: ''; position: absolute; left: 50%;
-    transform: translateX(-50%);
-    border-left: 8px solid transparent; border-right: 8px solid transparent;
-  }
-  .reel-pointer::before { top: 0; border-top: 10px solid #f0c040; }
-  .reel-pointer::after  { bottom: 0; border-bottom: 10px solid #f0c040; }
+    /* ── Wallet bar ── */
+    .wallet-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #18181f;
+      border: 1px solid #2a2a38;
+      border-radius: 12px;
+      padding: 10px 18px;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .wallet-balance {
+      font-size: 18px;
+      font-weight: 600;
+      color: #f0c040;
+    }
+    .wallet-info {
+      font-size: 12px;
+      color: #888;
+    }
+    .wallet-info span { color: #aaa; }
+    .claim-btn {
+      padding: 7px 16px;
+      background: #f0c040;
+      color: #1a1200;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .claim-btn:hover { opacity: 0.85; }
+    .claim-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-  .reel-track {
-    display: flex; align-items: center;
-    height: 120px; position: absolute; left: 0; top: 0;
-  }
-  .reel-item {
-    width: 100px; height: 100px; margin: 0 4px;
-    border-radius: 10px; display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    flex-shrink: 0; border: 2px solid rgba(255,255,255,0.1);
-  }
-  .reel-item .skin-icon { font-size: 30px; }
-  .reel-item .skin-name { font-size: 10px; font-weight: 500; text-align: center; margin-top: 4px; padding: 0 4px; line-height: 1.3; }
+    /* ── Case area ── */
+    .case-area {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+    .case-box {
+      width: 90px; height: 90px;
+      border-radius: 14px;
+      background: #1a1200;
+      border: 2px solid #f0c04066;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 44px;
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+    .case-box:hover { transform: scale(1.05); }
+    .case-box.shake { animation: shake 0.45s ease; }
+    @keyframes shake {
+      0%   { transform: rotate(0deg) scale(1); }
+      15%  { transform: rotate(-8deg) scale(1.08); }
+      30%  { transform: rotate(8deg) scale(1.1); }
+      45%  { transform: rotate(-6deg) scale(1.08); }
+      60%  { transform: rotate(6deg) scale(1.06); }
+      75%  { transform: rotate(-3deg) scale(1.04); }
+      90%  { transform: rotate(2deg) scale(1.02); }
+      100% { transform: rotate(0deg) scale(1); }
+    }
 
-  .stats {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 10px; margin-bottom: 1.5rem;
-  }
-  .stat-card {
-    background: var(--color-background-secondary);
-    border-radius: var(--border-radius-md);
-    padding: 10px 12px; text-align: center;
-  }
-  .stat-label { font-size: 11px; color: var(--color-text-secondary); margin-bottom: 4px; }
-  .stat-val { font-size: 18px; font-weight: 500; color: var(--color-text-primary); }
+    /* ── Particles ── */
+    .particles-wrap {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 999;
+    }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      animation: burst 0.9s ease-out forwards;
+    }
+    @keyframes burst {
+      0%   { transform: translate(0,0) scale(1); opacity: 1; }
+      100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+    }
 
-  .open-btn {
-    display: block; width: 100%; padding: 14px;
-    background: #f0c040; color: #1a1200;
-    border: none; border-radius: var(--border-radius-md);
-    font-size: 16px; font-weight: 500; cursor: pointer;
-    transition: opacity 0.15s, transform 0.1s;
-    margin-bottom: 1.5rem;
-  }
-  .open-btn:hover { opacity: 0.9; }
-  .open-btn:active { transform: scale(0.98); }
-  .open-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    /* ── Reel ── */
+    .reel-wrap {
+      width: 100%;
+      border: 1px solid #2a2a38;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      height: 128px;
+      background: #13131a;
+      margin-bottom: 1.5rem;
+    }
+    .reel-fade-left,
+    .reel-fade-right {
+      position: absolute; top: 0; bottom: 0; width: 80px;
+      z-index: 5; pointer-events: none;
+    }
+    .reel-fade-left  { left: 0;  background: linear-gradient(to right, #13131a, transparent); }
+    .reel-fade-right { right: 0; background: linear-gradient(to left,  #13131a, transparent); }
+    .reel-pointer {
+      position: absolute; left: 50%; top: 0; bottom: 0;
+      width: 2px; background: #f0c040;
+      transform: translateX(-50%); z-index: 10;
+    }
+    .reel-pointer::before, .reel-pointer::after {
+      content: ''; position: absolute; left: 50%;
+      transform: translateX(-50%);
+      border-left: 8px solid transparent; border-right: 8px solid transparent;
+    }
+    .reel-pointer::before { top: 0;    border-top:    10px solid #f0c040; }
+    .reel-pointer::after  { bottom: 0; border-bottom: 10px solid #f0c040; }
+    .reel-track {
+      display: flex; align-items: center;
+      height: 128px; position: absolute; left: 0; top: 0;
+    }
+    .reel-item {
+      width: 108px; height: 108px; margin: 0 4px;
+      border-radius: 10px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      flex-shrink: 0; border: 2px solid rgba(255,255,255,0.08);
+    }
+    .reel-item .skin-icon  { font-size: 32px; }
+    .reel-item .skin-name  {
+      font-size: 10px; font-weight: 500;
+      text-align: center; margin-top: 5px;
+      padding: 0 4px; line-height: 1.3;
+    }
 
-  .result-panel {
-    border: 0.5px solid var(--color-border-tertiary);
-    border-radius: var(--border-radius-lg);
-    padding: 1rem 1.25rem;
-    background: var(--color-background-primary);
-    margin-bottom: 1.5rem;
-    display: none; align-items: center; gap: 16px;
-    animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
-  }
-  @keyframes popIn {
-    0%   { transform: scale(0.7); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-  }
-  .result-swatch {
-    width: 64px; height: 64px; border-radius: 10px;
-    flex-shrink: 0; display: flex;
-    align-items: center; justify-content: center; font-size: 28px;
-    animation: spinIn 0.5s cubic-bezier(0.34,1.56,0.64,1);
-  }
-  @keyframes spinIn {
-    0%   { transform: rotateY(90deg) scale(0.5); opacity: 0; }
-    100% { transform: rotateY(0deg) scale(1); opacity: 1; }
-  }
-  .result-info .result-name { font-size: 16px; font-weight: 500; color: var(--color-text-primary); }
-  .result-info .result-rarity { font-size: 13px; margin-top: 3px; font-weight: 500; }
-  .result-info .result-chance { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; }
-  .result-info .result-price {
-    font-size: 15px; font-weight: 500; margin-top: 6px;
-    display: inline-flex; align-items: center; gap: 5px;
-    animation: fadeSlideUp 0.5s 0.25s both;
-  }
-  @keyframes fadeSlideUp {
-    0%   { transform: translateY(8px); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
-  }
+    /* ── Stats ── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+    .stat-card {
+      background: #18181f;
+      border: 1px solid #2a2a38;
+      border-radius: 10px;
+      padding: 10px 12px; text-align: center;
+    }
+    .stat-label { font-size: 11px; color: #777; margin-bottom: 4px; }
+    .stat-val   { font-size: 18px; font-weight: 600; color: #e8e8f0; }
 
-  .coin-icon { font-size: 14px; }
+    /* ── Open button ── */
+    .open-btn {
+      display: block; width: 100%; padding: 15px;
+      background: #f0c040; color: #1a1200;
+      border: none; border-radius: 10px;
+      font-size: 16px; font-weight: 600; cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      margin-bottom: 1.5rem;
+    }
+    .open-btn:hover { opacity: 0.9; }
+    .open-btn:active { transform: scale(0.98); }
+    .open-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
 
-  .inventory-title { font-size: 14px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 10px; }
-  .inventory { display: flex; flex-wrap: wrap; gap: 8px; }
-  .inv-item {
-    width: 72px; height: 82px; border-radius: 8px;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    border: 0.5px solid rgba(255,255,255,0.12);
-    font-size: 22px; animation: popIn 0.35s cubic-bezier(0.34,1.56,0.64,1);
-  }
-  .inv-item .inv-label { font-size: 9px; font-weight: 500; margin-top: 2px; text-align: center; padding: 0 3px; line-height: 1.2; }
-  .inv-item .inv-price { font-size: 10px; margin-top: 2px; font-weight: 500; }
-  .inv-empty { font-size: 13px; color: var(--color-text-secondary); }
-</style>
+    /* ── Result panel ── */
+    .result-panel {
+      border: 1px solid #2a2a38;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      background: #18181f;
+      margin-bottom: 1.5rem;
+      display: none; align-items: center; gap: 16px;
+    }
+    .result-panel.show {
+      display: flex;
+      animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes popIn {
+      0%   { transform: scale(0.7); opacity: 0; }
+      100% { transform: scale(1);   opacity: 1; }
+    }
+    .result-swatch {
+      width: 68px; height: 68px; border-radius: 10px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 30px;
+      animation: spinIn 0.5s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes spinIn {
+      0%   { transform: rotateY(90deg) scale(0.5); opacity: 0; }
+      100% { transform: rotateY(0deg)  scale(1);   opacity: 1; }
+    }
+    .result-name   { font-size: 17px; font-weight: 600; color: #e8e8f0; }
+    .result-rarity { font-size: 13px; margin-top: 3px; font-weight: 600; }
+    .result-chance { font-size: 12px; color: #777; margin-top: 2px; }
+    .result-price  {
+      font-size: 15px; font-weight: 600; margin-top: 6px;
+      display: inline-flex; align-items: center; gap: 5px;
+      animation: fadeSlideUp 0.5s 0.25s both;
+    }
+    @keyframes fadeSlideUp {
+      0%   { transform: translateY(8px); opacity: 0; }
+      100% { transform: translateY(0);   opacity: 1; }
+    }
+
+    /* ── Inventory ── */
+    .inventory-header {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .inventory-title {
+      font-size: 14px; font-weight: 600; color: #888;
+    }
+    .sell-all-btn {
+      padding: 5px 12px;
+      background: transparent;
+      border: 1px solid #444;
+      color: #aaa;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .sell-all-btn:hover { border-color: #f0c040; color: #f0c040; }
+
+    .inventory { display: flex; flex-wrap: wrap; gap: 8px; }
+    .inv-item {
+      width: 84px; height: 100px; border-radius: 8px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 22px;
+      position: relative;
+      animation: popIn 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      cursor: default;
+    }
+    .inv-label { font-size: 9px; font-weight: 500; margin-top: 3px; text-align: center; padding: 0 3px; line-height: 1.2; }
+    .inv-price { font-size: 10px; margin-top: 2px; font-weight: 600; }
+    .sell-btn {
+      margin-top: 5px;
+      padding: 3px 10px;
+      background: #f0c04022;
+      border: 1px solid #f0c04066;
+      color: #f0c040;
+      border-radius: 5px;
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+      width: calc(100% - 10px);
+    }
+    .sell-btn:hover { background: #f0c04044; }
+    .inv-empty { font-size: 13px; color: #666; }
+
+    /* ── Sell flash animation ── */
+    @keyframes sellFlash {
+      0%   { transform: scale(1); opacity: 1; }
+      40%  { transform: scale(1.1); opacity: 0.6; }
+      100% { transform: scale(0); opacity: 0; }
+    }
+    .inv-item.selling {
+      animation: sellFlash 0.3s ease forwards;
+    }
+
+    @media (max-width: 500px) {
+      .stats { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
 
 <div id="app">
   <h2>Zylo Case</h2>
   <p class="sub">Open a case to reveal a skin. Good luck.</p>
 
+  <!-- Wallet -->
+  <div class="wallet-bar">
+    <div>
+      <div class="wallet-balance" id="walletDisplay">🪙 0.00</div>
+      <div class="wallet-info">Each case costs <span>🪙 0.50</span></div>
+    </div>
+    <div style="text-align:right">
+      <button class="claim-btn" id="claimBtn" onclick="claimDaily()">Claim daily 🪙10</button>
+      <div class="wallet-info" id="claimInfo" style="margin-top:4px">Loading...</div>
+    </div>
+  </div>
+
+  <!-- Case chest -->
   <div class="case-area">
     <div class="case-box" id="caseBox">🎁</div>
   </div>
 
+  <!-- Reel -->
   <div class="reel-wrap">
+    <div class="reel-fade-left"></div>
+    <div class="reel-fade-right"></div>
     <div class="reel-pointer"></div>
     <div class="reel-track" id="reelTrack"></div>
   </div>
 
+  <!-- Stats -->
   <div class="stats">
     <div class="stat-card"><div class="stat-label">Cases opened</div><div class="stat-val" id="statOpened">0</div></div>
     <div class="stat-card"><div class="stat-label">Best drop</div><div class="stat-val" id="statBest">—</div></div>
-    <div class="stat-card"><div class="stat-label">Total coins</div><div class="stat-val" id="statCoins">🪙 0</div></div>
+    <div class="stat-card"><div class="stat-label">Coins sold</div><div class="stat-val" id="statSold">🪙 0</div></div>
     <div class="stat-card"><div class="stat-label">Gold drops</div><div class="stat-val" id="statGold">0</div></div>
   </div>
 
-  <button class="open-btn" id="openBtn" onclick="openCase()">Open case</button>
+  <button class="open-btn" id="openBtn" onclick="openCase()">Open case — 🪙 0.50</button>
 
+  <!-- Result -->
   <div class="result-panel" id="resultPanel">
     <div class="result-swatch" id="resultSwatch"></div>
     <div class="result-info">
-      <div class="result-name" id="resultName"></div>
+      <div class="result-name"   id="resultName"></div>
       <div class="result-rarity" id="resultRarity"></div>
       <div class="result-chance" id="resultChance"></div>
-      <div class="result-price" id="resultPrice"></div>
+      <div class="result-price"  id="resultPrice"></div>
     </div>
   </div>
 
-  <div class="inventory-title">Inventory</div>
+  <div class="inventory-header">
+    <div class="inventory-title">Inventory</div>
+    <button class="sell-all-btn" onclick="sellAll()">Sell all</button>
+  </div>
   <div class="inventory" id="inventory"><span class="inv-empty">No items yet</span></div>
 </div>
 
 <div class="particles-wrap" id="particlesWrap"></div>
 
 <script>
-const SKINS = [
-  { rarity: "Blue",   color: "#4a9eff", bg: "#0a1a3a", icon: "🔧", weight: 7992, chance: "79.92%", price: 0.10  },
-  { rarity: "Purple", color: "#b04dff", bg: "#1a0a30", icon: "⚡", weight: 1598, chance: "15.98%", price: 1.25  },
-  { rarity: "Pink",   color: "#ff5ec4", bg: "#30081e", icon: "🌸", weight: 319,  chance: "3.19%",  price: 7.50  },
-  { rarity: "Red",    color: "#ff3b3b", bg: "#2a0505", icon: "🔥", weight: 63,   chance: "0.63%",  price: 50.00 },
-  { rarity: "Gold",   color: "#f0c040", bg: "#2a1800", icon: "💎", weight: 28,   chance: "0.28%",  price: 250.00},
-];
+  const SKINS = [
+    { rarity:"Blue",   color:"#4a9eff", bg:"#0a1a3a", icon:"🔧", weight:7992, chance:"79.92%", price:0.10  },
+    { rarity:"Purple", color:"#b04dff", bg:"#1a0a30", icon:"⚡", weight:1598, chance:"15.98%", price:1.00  },
+    { rarity:"Pink",   color:"#ff5ec4", bg:"#30081e", icon:"🌸", weight:319,  chance:"3.19%",  price:7.50  },
+    { rarity:"Red",    color:"#ff3b3b", bg:"#2a0505", icon:"🔥", weight:63,   chance:"0.63%",  price:50.00 },
+    { rarity:"Gold",   color:"#f0c040", bg:"#2a1800", icon:"💎", weight:28,   chance:"0.28%",  price:250.00},
+  ];
+  const SKIN_NAMES = {
+    Blue:  ["Iron Barrel","Cold Finish","Steel Coat","Base Wrap","Grey Matter"],
+    Purple:["Void Static","Amethyst Edge","Neural Arc","Phase Shift","Dark Pulse"],
+    Pink:  ["Sakura Storm","Neon Bloom","Rose Fade","Cherry Burst","Candy Wave"],
+    Red:   ["Crimson Web","Dragon Strike","Blood Tiger","Ember Coil","Inferno"],
+    Gold:  ["AWP | Gold Leaf","AK-47 | Gilded","Karambit | Aurum","M4 | Sovereign","Butterfly | Gold"],
+  };
+  const rarityOrder = ["Blue","Purple","Pink","Red","Gold"];
+  const CASE_COST   = 0.50;
+  const DAILY_COINS = 10;
 
-const SKIN_NAMES = {
-  Blue:   ["Iron Barrel","Cold Finish","Steel Coat","Base Wrap","Grey Matter"],
-  Purple: ["Void Static","Amethyst Edge","Neural Arc","Phase Shift","Dark Pulse"],
-  Pink:   ["Sakura Storm","Neon Bloom","Rose Fade","Cherry Burst","Candy Wave"],
-  Red:    ["Crimson Web","Dragon Strike","Blood Tiger","Ember Coil","Inferno"],
-  Gold:   ["AWP | Gold Leaf","AK-47 | Gilded","Karambit | Aurum","M4 | Sovereign","Butterfly | Gold"],
-};
-
-const rarityOrder = ["Blue","Purple","Pink","Red","Gold"];
-let state = { opened: 0, goldDrops: 0, bestRarity: null, totalCoins: 0 };
-let spinning = false;
-
-function weightedRandom() {
-  const total = SKINS.reduce((s, x) => s + x.weight, 0);
-  let r = Math.random() * total;
-  for (const skin of SKINS) { r -= skin.weight; if (r <= 0) return skin; }
-  return SKINS[0];
-}
-
-function pickName(rarity) {
-  const arr = SKIN_NAMES[rarity];
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-
-function buildReel(finalSkin) {
-  const track = document.getElementById("reelTrack");
-  track.innerHTML = "";
-  for (let i = 0; i < 50; i++) {
-    const skin = i === 42 ? finalSkin : weightedRandom();
-    const el = document.createElement("div");
-    el.className = "reel-item";
-    el.style.background = skin.bg;
-    el.style.borderColor = skin.color + "66";
-    const label = pickName(skin.rarity).split("|")[1] || skin.rarity;
-    el.innerHTML = `<div class="skin-icon">${skin.icon}</div><div class="skin-name" style="color:${skin.color}">${label.trim()}</div>`;
-    track.appendChild(el);
+  // ── State ──────────────────────────────────────────────────
+  function loadState() {
+    try {
+      const s = JSON.parse(localStorage.getItem("zyloCase") || "{}");
+      return {
+        coins:      typeof s.coins      === "number" ? s.coins      : 10,
+        opened:     typeof s.opened     === "number" ? s.opened     : 0,
+        goldDrops:  typeof s.goldDrops  === "number" ? s.goldDrops  : 0,
+        bestRarity: s.bestRarity || null,
+        totalSold:  typeof s.totalSold  === "number" ? s.totalSold  : 0,
+        lastClaim:  s.lastClaim  || null,
+        inventory:  Array.isArray(s.inventory) ? s.inventory : [],
+      };
+    } catch(e) {
+      return { coins:10, opened:0, goldDrops:0, bestRarity:null, totalSold:0, lastClaim:null, inventory:[] };
+    }
   }
-}
+  function saveState() { localStorage.setItem("zyloCase", JSON.stringify(state)); }
 
-function spawnParticles(color) {
-  const wrap = document.getElementById("particlesWrap");
-  const caseEl = document.getElementById("caseBox");
-  const rect = caseEl.getBoundingClientRect();
-  const cx = rect.left + rect.width / 2;
-  const cy = rect.top + rect.height / 2;
-  for (let i = 0; i < 22; i++) {
-    const p = document.createElement("div");
-    p.className = "particle";
-    const size = 6 + Math.random() * 8;
-    const angle = Math.random() * 2 * Math.PI;
-    const dist = 60 + Math.random() * 80;
-    const tx = Math.cos(angle) * dist;
-    const ty = Math.sin(angle) * dist - 20;
-    p.style.cssText = `
-      width:${size}px; height:${size}px;
-      background:${color};
-      left:${cx - size/2}px; top:${cy - size/2}px;
-      --tx:${tx}px; --ty:${ty}px;
-      animation-delay:${Math.random()*0.15}s;
-      animation-duration:${0.7 + Math.random()*0.4}s;
-    `;
-    wrap.appendChild(p);
-    setTimeout(() => p.remove(), 1200);
+  let state    = loadState();
+  let spinning = false;
+
+  // ── Daily claim ────────────────────────────────────────────
+  function todayStr() { return new Date().toISOString().slice(0,10); }
+
+  function updateClaimUI() {
+    const btn  = document.getElementById("claimBtn");
+    const info = document.getElementById("claimInfo");
+    if (state.lastClaim === todayStr()) {
+      btn.disabled = true;
+      info.textContent = "Come back tomorrow for more coins";
+    } else {
+      btn.disabled = false;
+      info.textContent = "Free coins available!";
+    }
   }
-}
 
-function openCase() {
-  if (spinning) return;
-  spinning = true;
-  document.getElementById("openBtn").disabled = true;
-  document.getElementById("resultPanel").style.display = "none";
+  function claimDaily() {
+    if (state.lastClaim === todayStr()) return;
+    state.coins    += DAILY_COINS;
+    state.lastClaim = todayStr();
+    saveState();
+    updateWalletUI();
+    updateClaimUI();
+    showToast(`+🪙${DAILY_COINS} claimed!`);
+  }
 
-  const result = weightedRandom();
+  // ── Wallet UI ──────────────────────────────────────────────
+  function updateWalletUI() {
+    document.getElementById("walletDisplay").textContent = "🪙 " + state.coins.toFixed(2);
+    const btn = document.getElementById("openBtn");
+    btn.disabled = spinning || state.coins < CASE_COST;
+    btn.textContent = state.coins < CASE_COST && !spinning ? "Not enough coins" : "Open case — 🪙 0.50";
+  }
 
-  const caseEl = document.getElementById("caseBox");
-  caseEl.classList.remove("shake");
-  void caseEl.offsetWidth;
-  caseEl.classList.add("shake");
-  spawnParticles(result.color);
+  // ── Helpers ────────────────────────────────────────────────
+  function weightedRandom() {
+    const total = SKINS.reduce((s,x) => s + x.weight, 0);
+    let r = Math.random() * total;
+    for (const skin of SKINS) { r -= skin.weight; if (r <= 0) return skin; }
+    return SKINS[0];
+  }
+  function pickName(rarity) {
+    const arr = SKIN_NAMES[rarity];
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+  function fmt(p) { return p % 1 === 0 ? p.toFixed(0) : p.toFixed(2); }
 
-  setTimeout(() => {
-    buildReel(result);
+  // ── Reel ───────────────────────────────────────────────────
+  function buildReel(finalSkin) {
     const track = document.getElementById("reelTrack");
-    const ITEM_W = 108;
-    const containerW = track.parentElement.offsetWidth;
-    const center = containerW / 2;
-    const targetX = 42 * ITEM_W + ITEM_W / 2;
-    const finalLeft = center - targetX + (Math.random() - 0.5) * 50;
+    track.innerHTML = "";
+    for (let i = 0; i < 50; i++) {
+      const skin = (i === 42) ? finalSkin : weightedRandom();
+      const el   = document.createElement("div");
+      el.className = "reel-item";
+      el.style.background  = skin.bg;
+      el.style.borderColor = skin.color + "66";
+      const label = pickName(skin.rarity).split("|")[1] || skin.rarity;
+      el.innerHTML = `<div class="skin-icon">${skin.icon}</div><div class="skin-name" style="color:${skin.color}">${label.trim()}</div>`;
+      track.appendChild(el);
+    }
+  }
 
-    track.style.transition = "none";
-    track.style.left = "0px";
+  // ── Particles ──────────────────────────────────────────────
+  function spawnParticles(color) {
+    const wrap   = document.getElementById("particlesWrap");
+    const caseEl = document.getElementById("caseBox");
+    const rect   = caseEl.getBoundingClientRect();
+    const cx = rect.left + rect.width  / 2;
+    const cy = rect.top  + rect.height / 2;
+    for (let i = 0; i < 24; i++) {
+      const p = document.createElement("div");
+      p.className = "particle";
+      const size  = 6 + Math.random() * 8;
+      const angle = Math.random() * 2 * Math.PI;
+      const dist  = 60 + Math.random() * 90;
+      p.style.cssText = `width:${size}px;height:${size}px;background:${color};left:${cx-size/2}px;top:${cy-size/2}px;--tx:${Math.cos(angle)*dist}px;--ty:${Math.sin(angle)*dist-20}px;animation-delay:${Math.random()*0.15}s;animation-duration:${0.7+Math.random()*0.4}s;`;
+      wrap.appendChild(p);
+      setTimeout(() => p.remove(), 1300);
+    }
+  }
 
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      const dur = 4000 + Math.random() * 700;
-      track.style.transition = `left ${dur}ms cubic-bezier(0.12, 1, 0.36, 1)`;
-      track.style.left = finalLeft + "px";
-    }));
+  // ── Toast ──────────────────────────────────────────────────
+  function showToast(msg) {
+    const t = document.createElement("div");
+    t.textContent = msg;
+    t.style.cssText = "position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#f0c040;color:#1a1200;padding:10px 20px;border-radius:20px;font-weight:600;font-size:14px;z-index:9999;animation:fadeSlideUp 0.3s ease;white-space:nowrap;";
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 2200);
+  }
+
+  // ── Open case ──────────────────────────────────────────────
+  function openCase() {
+    if (spinning || state.coins < CASE_COST) return;
+    spinning = true;
+    state.coins -= CASE_COST;
+    saveState();
+    updateWalletUI();
+
+    document.getElementById("openBtn").disabled = true;
+    document.getElementById("resultPanel").classList.remove("show");
+
+    const result = weightedRandom();
+
+    const caseEl = document.getElementById("caseBox");
+    caseEl.classList.remove("shake");
+    void caseEl.offsetWidth;
+    caseEl.classList.add("shake");
+    spawnParticles(result.color);
 
     setTimeout(() => {
-      spawnParticles(result.color);
-      showResult(result);
-      updateStats(result);
-      spinning = false;
-      document.getElementById("openBtn").disabled = false;
-    }, 4800);
-  }, 500);
-}
+      buildReel(result);
+      const track      = document.getElementById("reelTrack");
+      const ITEM_W     = 116;
+      const containerW = track.parentElement.offsetWidth;
+      const finalLeft  = (containerW / 2) - (42 * ITEM_W + ITEM_W / 2) + (Math.random() - 0.5) * 50;
 
-function formatPrice(p) {
-  return p % 1 === 0 ? p.toFixed(0) : p.toFixed(2);
-}
+      track.style.transition = "none";
+      track.style.left       = "0px";
 
-function showResult(skin) {
-  const panel = document.getElementById("resultPanel");
-  panel.style.display = "none";
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        const dur = 4000 + Math.random() * 700;
+        track.style.transition = `left ${dur}ms cubic-bezier(0.12,1,0.36,1)`;
+        track.style.left       = finalLeft + "px";
+      }));
 
-  const swatch = document.getElementById("resultSwatch");
-  swatch.style.background = skin.bg;
-  swatch.style.border = `2px solid ${skin.color}`;
-  swatch.textContent = skin.icon;
+      setTimeout(() => {
+        spawnParticles(result.color);
+        showResult(result);
+        updateStats(result);
+        spinning = false;
+        updateWalletUI();
+      }, 4800);
+    }, 500);
+  }
 
-  const name = pickName(skin.rarity);
-  document.getElementById("resultName").textContent = name;
-  document.getElementById("resultRarity").textContent = skin.rarity;
-  document.getElementById("resultRarity").style.color = skin.color;
-  document.getElementById("resultChance").textContent = `Drop chance: ${skin.chance}`;
-  document.getElementById("resultPrice").innerHTML = `<span class="coin-icon">🪙</span> <span style="color:${skin.color}">${formatPrice(skin.price)} coins</span>`;
+  // ── Show result ────────────────────────────────────────────
+  function showResult(skin) {
+    const panel  = document.getElementById("resultPanel");
+    const swatch = document.getElementById("resultSwatch");
+    panel.classList.remove("show");
+    void panel.offsetWidth;
 
-  panel.style.animation = "none";
-  void panel.offsetWidth;
-  panel.style.animation = "";
-  panel.style.display = "flex";
+    swatch.style.background = skin.bg;
+    swatch.style.border     = `2px solid ${skin.color}`;
+    swatch.textContent      = skin.icon;
 
-  addToInventory(skin, name);
-}
+    const name = pickName(skin.rarity);
+    document.getElementById("resultName").textContent   = name;
+    document.getElementById("resultRarity").textContent = skin.rarity;
+    document.getElementById("resultRarity").style.color = skin.color;
+    document.getElementById("resultChance").textContent = `Drop chance: ${skin.chance}`;
+    document.getElementById("resultPrice").innerHTML    = `<span>🪙</span><span style="color:${skin.color}">${fmt(skin.price)} coins if sold</span>`;
+    panel.classList.add("show");
 
-function updateStats(skin) {
-  state.opened++;
-  if (skin.rarity === "Gold") state.goldDrops++;
-  state.totalCoins += skin.price;
-  const cur = state.bestRarity;
-  if (!cur || rarityOrder.indexOf(skin.rarity) > rarityOrder.indexOf(cur)) state.bestRarity = skin.rarity;
-  document.getElementById("statOpened").textContent = state.opened;
-  document.getElementById("statBest").textContent = state.bestRarity || "—";
-  document.getElementById("statCoins").textContent = "🪙 " + state.totalCoins.toFixed(2);
-  document.getElementById("statGold").textContent = state.goldDrops;
-}
+    addToInventory(skin, name);
+  }
 
-function addToInventory(skin, skinName) {
-  const inv = document.getElementById("inventory");
-  if (inv.querySelector(".inv-empty")) inv.innerHTML = "";
-  const el = document.createElement("div");
-  el.className = "inv-item";
-  el.style.background = skin.bg;
-  el.style.borderColor = skin.color + "88";
-  const label = skinName.includes("|") ? skinName.split("|")[1].trim() : skinName;
-  el.innerHTML = `${skin.icon}<div class="inv-label" style="color:${skin.color}">${label}</div><div class="inv-price" style="color:${skin.color}">🪙 ${formatPrice(skin.price)}</div>`;
-  inv.insertBefore(el, inv.firstChild);
-}
+  // ── Stats ──────────────────────────────────────────────────
+  function updateStats(skin) {
+    state.opened++;
+    if (skin.rarity === "Gold") state.goldDrops++;
+    const cur = state.bestRarity;
+    if (!cur || rarityOrder.indexOf(skin.rarity) > rarityOrder.indexOf(cur)) state.bestRarity = skin.rarity;
+    saveState();
 
-buildReel(SKINS[0]);
-const t = document.getElementById("reelTrack");
-t.style.left = (t.parentElement.offsetWidth / 2 - 54) + "px";
+    document.getElementById("statOpened").textContent = state.opened;
+    document.getElementById("statBest").textContent   = state.bestRarity || "—";
+    document.getElementById("statGold").textContent   = state.goldDrops;
+  }
+
+  // ── Sell single ────────────────────────────────────────────
+  function sellItem(id, el) {
+    const idx = state.inventory.findIndex(i => i.id === id);
+    if (idx === -1) return;
+    const item = state.inventory[idx];
+
+    el.classList.add("selling");
+    setTimeout(() => {
+      state.inventory.splice(idx, 1);
+      state.coins     += item.price;
+      state.totalSold += item.price;
+      saveState();
+      updateWalletUI();
+      document.getElementById("statSold").textContent = "🪙 " + state.totalSold.toFixed(2);
+      renderInventory();
+      showToast(`Sold for 🪙${fmt(item.price)}!`);
+    }, 300);
+  }
+
+  // ── Sell all ───────────────────────────────────────────────
+  function sellAll() {
+    if (!state.inventory.length) return;
+    const total = state.inventory.reduce((s, i) => s + i.price, 0);
+    state.coins     += total;
+    state.totalSold += total;
+    state.inventory  = [];
+    saveState();
+    updateWalletUI();
+    document.getElementById("statSold").textContent = "🪙 " + state.totalSold.toFixed(2);
+    renderInventory();
+    showToast(`Sold all for 🪙${fmt(total)}!`);
+  }
+
+  // ── Inventory ──────────────────────────────────────────────
+  let itemIdCounter = Date.now();
+
+  function addToInventory(skin, skinName) {
+    const item = {
+      id:     itemIdCounter++,
+      rarity: skin.rarity,
+      icon:   skin.icon,
+      color:  skin.color,
+      bg:     skin.bg,
+      name:   skinName,
+      price:  skin.price,
+    };
+    state.inventory.unshift(item);
+    if (state.inventory.length > 60) state.inventory.pop();
+    saveState();
+    renderInventory();
+  }
+
+  function renderInventory() {
+    const inv = document.getElementById("inventory");
+    if (!state.inventory.length) {
+      inv.innerHTML = '<span class="inv-empty">No items yet</span>';
+      return;
+    }
+    inv.innerHTML = "";
+    state.inventory.forEach(item => {
+      const el    = document.createElement("div");
+      el.className = "inv-item";
+      el.style.background  = item.bg;
+      el.style.borderColor = item.color + "88";
+      const label = item.name.includes("|") ? item.name.split("|")[1].trim() : item.name;
+      el.innerHTML = `
+        ${item.icon}
+        <div class="inv-label" style="color:${item.color}">${label}</div>
+        <div class="inv-price" style="color:${item.color}">🪙 ${fmt(item.price)}</div>
+        <button class="sell-btn" onclick="sellItem(${item.id}, this.closest('.inv-item'))">Sell</button>
+      `;
+      inv.appendChild(el);
+    });
+  }
+
+  // ── Boot ───────────────────────────────────────────────────
+  function boot() {
+    buildReel(SKINS[0]);
+    const t = document.getElementById("reelTrack");
+    t.style.left = (t.parentElement.offsetWidth / 2 - 58) + "px";
+
+    document.getElementById("statOpened").textContent = state.opened;
+    document.getElementById("statBest").textContent   = state.bestRarity || "—";
+    document.getElementById("statSold").textContent   = "🪙 " + state.totalSold.toFixed(2);
+    document.getElementById("statGold").textContent   = state.goldDrops;
+
+    updateWalletUI();
+    updateClaimUI();
+    renderInventory();
+  }
+
+  boot();
 </script>
+</body>
+</html>
