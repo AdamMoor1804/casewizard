@@ -70,6 +70,26 @@
     }
     .case-box-standard { background: #1a1200; border-color: #f0c04066; }
     .case-box-premium  { background: #120820; border-color: #c084fc66; }
+    .case-box-godly    { background: #1a0800; border-color: #ff6a0088; animation: godlyPulse 2s ease-in-out infinite; }
+    @keyframes godlyPulse {
+      0%, 100% { box-shadow: 0 0 12px #ff6a0044; }
+      50%       { box-shadow: 0 0 28px #ff6a0099, 0 0 50px #ff6a0033; }
+    }
+    .case-box-godly    { background: #1f0800; border-color: #ff6a0088; box-shadow: 0 0 18px #ff6a0033; }
+    .case-tab.active-godly { border-color: #ff6a00; background: #1f0800; }
+    .active-godly .active-badge { background: #ff6a0033; color: #ff6a00; }
+    .reel-wrap.godly-reel { border-color: #ff6a0055; }
+    .reel-pointer.pointer-godly { background: #ff6a00; }
+    .reel-pointer.pointer-godly::before { border-top:    10px solid #ff6a00; }
+    .reel-pointer.pointer-godly::after  { border-bottom: 10px solid #ff6a00; }
+    .open-btn-godly { background: linear-gradient(135deg, #ff6a00, #ee0979); color: #fff; }
+    .badge-godly    { background: #ff6a0022; color: #ff6a00; }
+    .tag-godly      { background: #ff6a0022; color: #ff6a00; }
+    @keyframes godlyPulse {
+      0%, 100% { box-shadow: 0 0 16px #ff6a0044; }
+      50%       { box-shadow: 0 0 32px #ff6a0088; }
+    }
+    .case-box-godly { animation: godlyPulse 2s ease-in-out infinite; }
     .case-box:hover { transform: scale(1.05); }
     .case-box.shake { animation: shake 0.45s ease; }
     @keyframes shake {
@@ -99,6 +119,7 @@
       transition: border-color 0.3s;
     }
     .reel-wrap.premium-reel { border-color: #c084fc44; }
+    .reel-wrap.godly-reel   { border-color: #ff6a0066; box-shadow: inset 0 0 20px #ff6a0011; }
     .reel-fade-left, .reel-fade-right {
       position: absolute; top: 0; bottom: 0; width: 80px; z-index: 5; pointer-events: none;
     }
@@ -111,6 +132,7 @@
     }
     .reel-pointer.pointer-standard { background: #f0c040; }
     .reel-pointer.pointer-premium  { background: #c084fc; }
+    .reel-pointer.pointer-godly    { background: #ff6a00; }
     .reel-pointer::before, .reel-pointer::after {
       content: ''; position: absolute; left: 50%; transform: translateX(-50%);
       border-left: 8px solid transparent; border-right: 8px solid transparent;
@@ -119,6 +141,8 @@
     .reel-pointer.pointer-standard::after  { bottom: 0; border-bottom: 10px solid #f0c040; }
     .reel-pointer.pointer-premium::before  { top: 0;    border-top:    10px solid #c084fc; }
     .reel-pointer.pointer-premium::after   { bottom: 0; border-bottom: 10px solid #c084fc; }
+    .reel-pointer.pointer-godly::before    { top: 0;    border-top:    10px solid #ff6a00; }
+    .reel-pointer.pointer-godly::after     { bottom: 0; border-bottom: 10px solid #ff6a00; }
     .reel-track { display: flex; align-items: center; height: 128px; position: absolute; left: 0; top: 0; }
     .reel-item {
       width: 108px; height: 108px; margin: 0 4px; border-radius: 10px;
@@ -143,6 +167,7 @@
     }
     .open-btn-standard { background: #f0c040; color: #1a1200; }
     .open-btn-premium  { background: #c084fc; color: #0d0018; }
+    .open-btn-godly    { background: linear-gradient(135deg, #ff6a00, #ffb347); color: #1a0800; font-size: 15px; letter-spacing: 0.3px; }
     .open-btn:hover { opacity: 0.9; }
     .open-btn:active { transform: scale(0.98); }
     .open-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
@@ -300,6 +325,13 @@
       <div class="tab-cost" style="color:#aaa">🪙 2.00 per open</div>
       <div class="tab-mult" style="color:#777">4× rewards</div>
     </div>
+    <div class="case-tab" id="tabGodly" onclick="selectCase('godly')">
+      <div class="active-badge" id="badgeGodly" style="display:none">SELECTED</div>
+      <div class="tab-icon">👑</div>
+      <div class="tab-name" style="color:#ff6a00">Godly Case</div>
+      <div class="tab-cost" style="color:#aaa">🪙 100 per open</div>
+      <div class="tab-mult" style="color:#777">Min. Pink · 10× rewards</div>
+    </div>
   </div>
 
   <!-- Wallet -->
@@ -376,6 +408,24 @@
       <div class="help-name"><div class="help-dot" style="background:#c084fc"></div>Premium</div>
       <div class="help-right">🪙 2.00 · 4× rewards</div>
     </div>
+    <div class="help-row">
+      <div class="help-name"><div class="help-dot" style="background:#ff6a00"></div>Godly</div>
+      <div class="help-right">🪙 100 · 10× · min Pink</div>
+    </div>
+    <hr class="help-divider">
+    <div class="help-section-title">👑 Godly Case Drops</div>
+    <div class="help-row">
+      <div class="help-name"><div class="help-dot" style="background:#ff5ec4"></div>Pink</div>
+      <div class="help-right">85%<div class="help-mult">🪙 75.00</div></div>
+    </div>
+    <div class="help-row">
+      <div class="help-name"><div class="help-dot" style="background:#ff3b3b"></div>Red</div>
+      <div class="help-right">14%<div class="help-mult">🪙 500.00</div></div>
+    </div>
+    <div class="help-row">
+      <div class="help-name"><div class="help-dot" style="background:#ff6a00"></div>Gold</div>
+      <div class="help-right">1%<div class="help-mult">🪙 2500.00</div></div>
+    </div>
     <hr class="help-divider">
     <div class="help-section-title">🎨 Skin Rarity</div>
     <div class="help-row">
@@ -426,8 +476,9 @@
 <script>
   // ── Case definitions ───────────────────────────────────────
   const CASES = {
-    standard: { name: "Standard Case", icon: "🎁", cost: 0.50, rewardMult: 1, accentColor: "#f0c040", boxClass: "case-box-standard", btnClass: "open-btn-standard", pointerClass: "pointer-standard" },
-    premium:  { name: "Premium Case",  icon: "💼", cost: 2.00, rewardMult: 4, accentColor: "#c084fc", boxClass: "case-box-premium",  btnClass: "open-btn-premium",  pointerClass: "pointer-premium"  },
+    standard: { name: "Standard Case", icon: "🎁", cost: 0.50,   rewardMult: 1,  accentColor: "#f0c040", boxClass: "case-box-standard", btnClass: "open-btn-standard", pointerClass: "pointer-standard", godly: false },
+    premium:  { name: "Premium Case",  icon: "💼", cost: 2.00,   rewardMult: 4,  accentColor: "#c084fc", boxClass: "case-box-premium",  btnClass: "open-btn-premium",  pointerClass: "pointer-premium",  godly: false },
+    godly:    { name: "Godly Case",    icon: "👑", cost: 100.00, rewardMult: 10, accentColor: "#ff6a00", boxClass: "case-box-godly",    btnClass: "open-btn-godly",    pointerClass: "pointer-godly",    godly: true  },
   };
   let activeCase = "standard";
 
@@ -465,6 +516,24 @@
   const rarityOrder = ["Blue","Purple","Pink","Red","Gold"];
   const DAILY_COINS = 10;
 
+  // ── Godly case skin pool (Pink/Red/Gold only) ──────────────
+  const GODLY_POOL = [
+    { ...null, rarity:"Pink", color:"#ff5ec4", bg:"#30081e", icon:"🌸", weight:850, chance:"85%",  basePrice:7.50   },
+    { ...null, rarity:"Red",  color:"#ff3b3b", bg:"#2a0505", icon:"🔥", weight:140, chance:"14%",  basePrice:50.00  },
+    { ...null, rarity:"Gold", color:"#ff6a00", bg:"#1f0a00", icon:"👑", weight:10,  chance:"1%",   basePrice:250.00 },
+  ];
+  // fix spread-of-null
+  GODLY_POOL[0] = { rarity:"Pink", color:"#ff5ec4", bg:"#30081e", icon:"🌸", weight:850, chance:"85%",  basePrice:7.50   };
+  GODLY_POOL[1] = { rarity:"Red",  color:"#ff3b3b", bg:"#2a0505", icon:"🔥", weight:140, chance:"14%",  basePrice:50.00  };
+  GODLY_POOL[2] = { rarity:"Gold", color:"#ff6a00", bg:"#1f0a00", icon:"👑", weight:10,  chance:"1%",   basePrice:250.00 };
+
+  function godlyRandom() {
+    const total = GODLY_POOL.reduce((s,x) => s + x.weight, 0);
+    let r = Math.random() * total;
+    for (const skin of GODLY_POOL) { r -= skin.weight; if (r <= 0) return skin; }
+    return GODLY_POOL[0];
+  }
+
   // ── State ──────────────────────────────────────────────────
   function loadState() {
     try {
@@ -497,8 +566,10 @@
     // tabs
     document.getElementById("tabStandard").className = "case-tab" + (type === "standard" ? " active-standard" : "");
     document.getElementById("tabPremium").className  = "case-tab" + (type === "premium"  ? " active-premium"  : "");
+    document.getElementById("tabGodly").className    = "case-tab" + (type === "godly"    ? " active-godly"    : "");
     document.getElementById("badgeStandard").style.display = type === "standard" ? "" : "none";
     document.getElementById("badgePremium").style.display  = type === "premium"  ? "" : "none";
+    document.getElementById("badgeGodly").style.display    = type === "godly"    ? "" : "none";
 
     // case box
     const box = document.getElementById("caseBox");
@@ -508,7 +579,8 @@
     // reel pointer
     const ptr = document.getElementById("reelPointer");
     ptr.className = "reel-pointer " + c.pointerClass;
-    document.getElementById("reelWrap").className = "reel-wrap" + (type === "premium" ? " premium-reel" : "");
+    const reelWrap = document.getElementById("reelWrap");
+    reelWrap.className = "reel-wrap" + (type === "premium" ? " premium-reel" : type === "godly" ? " godly-reel" : "");
 
     // button
     const btn = document.getElementById("openBtn");
@@ -567,11 +639,11 @@
   }
 
   // ── Reel ───────────────────────────────────────────────────
-  function buildReel(finalSkin, finalWear) {
+  function buildReel(finalSkin, finalWear, isGodly) {
     const track = document.getElementById("reelTrack");
     track.innerHTML = "";
     for (let i = 0; i < 50; i++) {
-      const skin = (i === 42) ? finalSkin : weightedRandom();
+      const skin = (i === 42) ? finalSkin : (isGodly ? godlyRandom() : weightedRandom());
       const wear = (i === 42) ? finalWear : randomWear();
       const el   = document.createElement("div");
       el.className = "reel-item";
@@ -619,7 +691,7 @@
     document.getElementById("openBtn").disabled = true;
     document.getElementById("resultPanel").classList.remove("show");
 
-    const result   = weightedRandom();
+    const result   = c.godly ? godlyRandom() : weightedRandom();
     const wear     = randomWear();
     const floatVal = randomFloat(wear);
 
@@ -628,7 +700,7 @@
     spawnParticles(c.accentColor);
 
     setTimeout(() => {
-      buildReel(result, wear);
+      buildReel(result, wear, c.godly);
       const track = document.getElementById("reelTrack");
       const ITEM_W = 116, containerW = track.parentElement.offsetWidth;
       const finalLeft = (containerW / 2) - (42 * ITEM_W + ITEM_W / 2) + (Math.random() - 0.5) * 50;
@@ -663,7 +735,7 @@
 
     const badge = document.getElementById("resultCaseBadge");
     badge.textContent = c.name;
-    badge.className = "result-case-badge " + (activeCase === "premium" ? "badge-premium" : "badge-standard");
+    badge.className = "result-case-badge " + (activeCase === "premium" ? "badge-premium" : activeCase === "godly" ? "badge-godly" : "badge-standard");
 
     document.getElementById("resultName").textContent   = name;
     document.getElementById("resultWear").textContent   = wear.name;
@@ -750,7 +822,7 @@
         <div class="inv-label" style="color:${item.color}">${label}</div>
         <div class="inv-wear"  style="color:${item.wearColor}">${item.wearShort}</div>
         <div class="inv-price" style="color:${item.wearColor}">🪙 ${fmt(item.price)}</div>
-        <div class="inv-case-tag ${item.caseType === 'premium' ? 'tag-premium' : 'tag-standard'}">${item.caseType === 'premium' ? 'PRO' : 'STD'}</div>
+        <div class="inv-case-tag ${item.caseType === 'premium' ? 'tag-premium' : item.caseType === 'godly' ? 'tag-godly' : 'tag-standard'}">${item.caseType === 'premium' ? 'PRO' : item.caseType === 'godly' ? 'GOD' : 'STD'}</div>
         <div class="inv-actions">
           <button class="lock-btn ${item.locked ? 'is-locked' : ''}" onclick="toggleLock(${item.id})">${item.locked ? '🔒' : '🔓'}</button>
           <button class="sell-btn" onclick="sellItem(${item.id})" ${item.locked ? 'disabled' : ''}>Sell</button>
