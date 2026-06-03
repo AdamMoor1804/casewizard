@@ -322,9 +322,13 @@
     <div class="trade-section">
       <h3>Your Username</h3>
       <div id="unameDisplay" class="uname-display" style="display:none"></div>
+      <div id="unameStatus" style="display:none;font-size:12px;padding:6px 10px;border-radius:6px;margin-bottom:8px;"></div>
       <div class="trade-row" id="unameRow">
-        <input class="trade-input" id="unameInput" placeholder="Choose a username (3+ chars)..." maxlength="20"/>
+        <input class="trade-input" id="unameInput" placeholder="Choose a username (3+ chars, letters/numbers)..." maxlength="20"/>
         <button class="trade-btn" onclick="setUsername()">Set Username</button>
+      </div>
+      <div id="unameChangeRow" style="display:none">
+        <button class="trade-btn grey" onclick="changeUsername()" style="font-size:12px;padding:6px 14px;">Change Username</button>
       </div>
     </div>
     <div class="trade-section">
@@ -711,21 +715,46 @@ function renderInv(){
 }
 
 // ── Trading ───────────────────────────────────────────────────
+function setUsernameStatus(msg, type){
+  const el=document.getElementById("unameStatus");
+  el.textContent=msg;
+  el.style.display="block";
+  el.style.background=type==="success"?"#4caf5018":type==="error"?"#ff3b3b18":"#4a9eff18";
+  el.style.color=type==="success"?"#4caf50":type==="error"?"#ff3b3b":"#4a9eff";
+  el.style.border="1px solid "+(type==="success"?"#4caf5033":type==="error"?"#ff3b3b33":"#4a9eff33");
+}
 function setUsername(){
   const val=document.getElementById("unameInput").value.trim().toLowerCase().replace(/[^a-z0-9_]/g,"");
-  if(!val||val.length<3){toast("Username must be 3+ chars","#ff3b3b");return;}
-  state.username=val;save();renderUnameUI();
-  db.ref("users/"+val).set({username:val,lastSeen:Date.now()});
-  toast("Username set: "+val);loadOffers();
+  if(!val||val.length<3){setUsernameStatus("Username must be at least 3 letters/numbers.","error");return;}
+  setUsernameStatus("Saving to database...","info");
+  db.ref("users/"+val).set({username:val,lastSeen:Date.now()})
+    .then(()=>{
+      state.username=val;save();renderUnameUI();
+      setUsernameStatus("✅ Username set to: "+val,"success");
+      loadOffers();
+    })
+    .catch(err=>{
+      setUsernameStatus("❌ Failed to save: "+err.message,"error");
+    });
+}
+function changeUsername(){
+  state.username=null;save();
+  document.getElementById("unameDisplay").style.display="none";
+  document.getElementById("unameRow").style.display="flex";
+  document.getElementById("unameChangeRow").style.display="none";
+  document.getElementById("unameInput").value="";
+  setUsernameStatus("Enter a new username below.","info");
 }
 function renderUnameUI(){
   if(state.username){
     document.getElementById("unameDisplay").textContent="Logged in as: "+state.username;
     document.getElementById("unameDisplay").style.display="block";
     document.getElementById("unameRow").style.display="none";
+    document.getElementById("unameChangeRow").style.display="block";
   } else {
     document.getElementById("unameDisplay").style.display="none";
     document.getElementById("unameRow").style.display="flex";
+    document.getElementById("unameChangeRow").style.display="none";
   }
 }
 function renderPickGrid(){
