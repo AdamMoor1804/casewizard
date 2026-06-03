@@ -11,7 +11,6 @@
     gtag('js', new Date());
     gtag('config', 'G-17P09SDHQ1');
   </script>
-  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
   <style>
@@ -21,41 +20,34 @@
     h2{font-size:22px;font-weight:600;color:#f0c040;margin-bottom:4px;}
     .sub{font-size:13px;color:#888;margin-bottom:1.5rem;}
 
-    /* ── Nav tabs (Cases / Trade) ── */
     .page-nav{display:flex;gap:8px;margin-bottom:1.5rem;}
     .page-tab{padding:9px 22px;border-radius:9px;border:1px solid #2a2a38;background:#18181f;color:#888;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.15s;}
     .page-tab.active{background:#f0c040;color:#1a1200;border-color:#f0c040;}
     .page-section{display:none;}
     .page-section.visible{display:block;}
 
-    /* ── Case tabs ── */
     .case-tabs{display:flex;gap:8px;margin-bottom:1.5rem;flex-wrap:wrap;}
-    .case-tab{flex:1;min-width:110px;padding:11px 6px;border-radius:12px;cursor:pointer;border:2px solid #2a2a38;background:#18181f;text-align:center;transition:border-color 0.2s,background 0.2s,box-shadow 0.2s;position:relative;}
-    .case-tab:hover{border-color:#3a3a55;}
+    .case-tab{flex:1;min-width:110px;padding:11px 6px;border-radius:12px;cursor:pointer;border:2px solid #2a2a38;background:#18181f;text-align:center;transition:all 0.2s;position:relative;}
     .case-tab .tab-icon{font-size:24px;margin-bottom:3px;}
     .case-tab .tab-name{font-size:12px;font-weight:700;}
     .case-tab .tab-cost{font-size:10px;color:#aaa;margin-top:2px;}
     .case-tab .tab-mult{font-size:9px;color:#666;margin-top:1px;}
     .case-tab .active-badge{position:absolute;top:5px;right:6px;font-size:8px;font-weight:700;padding:2px 5px;border-radius:8px;}
     .case-tab.active-standard{border-color:#f0c040;background:#1e1a08;}
-    .case-tab.active-premium {border-color:#c084fc;background:#150d1e;}
-    .case-tab.active-godly   {border-color:#ff6a00;background:#1a0800;box-shadow:0 0 18px #ff6a0033;}
-        .active-standard .active-badge{background:#f0c04033;color:#f0c040;}
-    .active-premium  .active-badge{background:#c084fc33;color:#c084fc;}
-    .active-godly    .active-badge{background:#ff6a0033;color:#ff6a00;}
-    
-    /* ── Wallet ── */
+    .case-tab.active-premium{border-color:#c084fc;background:#150d1e;}
+    .case-tab.active-godly{border-color:#ff6a00;background:#1a0800;box-shadow:0 0 18px #ff6a0033;}
+    .active-standard .active-badge{background:#f0c04033;color:#f0c040;}
+    .active-premium .active-badge{background:#c084fc33;color:#c084fc;}
+    .active-godly .active-badge{background:#ff6a0033;color:#ff6a00;}
+
     .wallet-bar{display:flex;align-items:center;justify-content:space-between;background:#18181f;border:1px solid #2a2a38;border-radius:12px;padding:10px 18px;margin-bottom:1.5rem;flex-wrap:wrap;gap:8px;}
     .wallet-balance{font-size:18px;font-weight:600;color:#f0c040;}
     .wallet-info{font-size:12px;color:#888;}
     .wallet-info span{color:#aaa;}
-    .claim-btn{padding:7px 16px;background:#f0c040;color:#1a1200;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:opacity 0.15s;}
-    .claim-btn:hover{opacity:0.85;}
+    .claim-btn{padding:7px 16px;background:#f0c040;color:#1a1200;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;}
     .claim-btn:disabled{opacity:0.4;cursor:not-allowed;}
 
-    /* ── Double toggle ── */
-    .double-toggle{display:none;align-items:center;gap:12px;margin-bottom:1rem;background:#18181f;border:1px solid #2a2a38;border-radius:10px;padding:10px 16px;}
-    .double-toggle.visible{display:flex;}
+    .double-toggle{display:flex;align-items:center;gap:12px;margin-bottom:1rem;background:#18181f;border:1px solid #2a2a38;border-radius:10px;padding:10px 16px;}
     .double-toggle label{font-size:13px;color:#aaa;cursor:pointer;user-select:none;display:flex;align-items:center;gap:7px;}
     .toggle-switch{position:relative;width:40px;height:22px;}
     .toggle-switch input{opacity:0;width:0;height:0;}
@@ -65,163 +57,139 @@
     .toggle-switch input:checked + .toggle-slider::before{transform:translateX(18px);}
     .double-cost-note{font-size:11px;color:#f0c040;}
 
-    /* ── Case area ── */
     .case-area{display:flex;justify-content:center;gap:30px;margin-bottom:1.2rem;align-items:center;}
     .case-box{width:86px;height:86px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:42px;cursor:pointer;transition:transform 0.15s;border:2px solid;}
     .case-box:hover{transform:scale(1.05);}
     .case-box.shake{animation:shake 0.45s ease;}
     @keyframes shake{0%{transform:rotate(0)scale(1);}15%{transform:rotate(-8deg)scale(1.08);}30%{transform:rotate(8deg)scale(1.1);}45%{transform:rotate(-6deg)scale(1.08);}60%{transform:rotate(6deg)scale(1.06);}75%{transform:rotate(-3deg)scale(1.04);}90%{transform:rotate(2deg)scale(1.02);}100%{transform:rotate(0)scale(1);}}
     .case-box-standard{background:#1a1200;border-color:#f0c04066;}
-    .case-box-premium {background:#120820;border-color:#c084fc66;}
-    .case-box-godly   {background:#1a0800;border-color:#ff6a0088;animation:godlyPulse 2s ease-in-out infinite;}
-        @keyframes godlyPulse{0%,100%{box-shadow:0 0 14px #ff6a0044;}50%{box-shadow:0 0 30px #ff6a0099;}}
-    25%{box-shadow:0 0 22px #ff800066;border-color:#ff800088;}50%{box-shadow:0 0 30px #00ffff66;border-color:#00ffff88;}75%{box-shadow:0 0 22px #8000ff66;border-color:#8000ff88;}100%{box-shadow:0 0 14px #ff008066;border-color:#ff008088;}}
+    .case-box-premium{background:#120820;border-color:#c084fc66;}
+    .case-box-godly{background:#1a0800;border-color:#ff6a0088;animation:godlyPulse 2s ease-in-out infinite;}
+    @keyframes godlyPulse{0%,100%{box-shadow:0 0 14px #ff6a0044;}50%{box-shadow:0 0 30px #ff6a0099;}}
 
-    /* ── Particles ── */
     .particles-wrap{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;}
     .particle{position:absolute;border-radius:50%;animation:burst 0.9s ease-out forwards;}
     @keyframes burst{0%{transform:translate(0,0)scale(1);opacity:1;}100%{transform:translate(var(--tx),var(--ty))scale(0);opacity:0;}}
 
-    /* ── Reels ── */
-    .reels-container{display:flex;gap:10px;margin-bottom:1.5rem;}
-    .reel-wrap{flex:1;border:1px solid #2a2a38;border-radius:12px;overflow:hidden;position:relative;height:128px;background:#13131a;transition:border-color 0.3s;}
-    .reel-wrap.premium-reel{border-color:#c084fc44;}
-    .reel-wrap.godly-reel  {border-color:#ff6a0055;}
-        33%{border-color:#00ffff77;}66%{border-color:#8000ff77;}100%{border-color:#ff008077;}}
-    .reel-fade-left,.reel-fade-right{position:absolute;top:0;bottom:0;width:60px;z-index:5;pointer-events:none;}
-    .reel-fade-left {left:0; background:linear-gradient(to right,#13131a,transparent);}
-    .reel-fade-right{right:0;background:linear-gradient(to left, #13131a,transparent);}
-    .reel-pointer{position:absolute;left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);z-index:10;}
-    .reel-pointer::before,.reel-pointer::after{content:'';position:absolute;left:50%;transform:translateX(-50%);border-left:8px solid transparent;border-right:8px solid transparent;}
-    .reel-pointer.pointer-standard{background:#f0c040;}
-    .reel-pointer.pointer-standard::before{top:0;   border-top:   10px solid #f0c040;}
-    .reel-pointer.pointer-standard::after {bottom:0;border-bottom:10px solid #f0c040;}
-    .reel-pointer.pointer-premium {background:#c084fc;}
-    .reel-pointer.pointer-premium::before {top:0;   border-top:   10px solid #c084fc;}
-    .reel-pointer.pointer-premium::after  {bottom:0;border-bottom:10px solid #c084fc;}
-    .reel-pointer.pointer-godly   {background:#ff6a00;}
-    .reel-pointer.pointer-godly::before   {top:0;   border-top:   10px solid #ff6a00;}
-    .reel-pointer.pointer-godly::after    {bottom:0;border-bottom:10px solid #ff6a00;}
-        33%{background:#00ffff;}66%{background:#8000ff;}100%{background:#ff0080;}}
-            .reel-track{display:flex;align-items:center;height:128px;position:absolute;left:0;top:0;}
-    .reel-item{width:108px;height:108px;margin:0 4px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;border:2px solid rgba(255,255,255,0.08);}
-    .reel-item .skin-icon{font-size:28px;}
-    .reel-item .skin-name{font-size:9px;font-weight:500;text-align:center;margin-top:4px;padding:0 4px;line-height:1.3;}
-    .reel-item .skin-wear{font-size:8px;font-weight:600;margin-top:2px;}
+    /* REEL */
+    .reel-outer{display:flex;gap:10px;margin-bottom:1.5rem;}
+    .reel-box{flex:1;height:128px;border:1px solid #2a2a38;border-radius:12px;overflow:hidden;position:relative;background:#13131a;}
+    .reel-box.reel-premium{border-color:#c084fc44;}
+    .reel-box.reel-godly{border-color:#ff6a0055;}
+    .reel-fade-l,.reel-fade-r{position:absolute;top:0;bottom:0;width:70px;z-index:5;pointer-events:none;}
+    .reel-fade-l{left:0;background:linear-gradient(to right,#13131a,transparent);}
+    .reel-fade-r{right:0;background:linear-gradient(to left,#13131a,transparent);}
+    .reel-line{position:absolute;left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);z-index:10;}
+    .reel-line::before,.reel-line::after{content:'';position:absolute;left:50%;transform:translateX(-50%);border-left:8px solid transparent;border-right:8px solid transparent;}
+    .reel-line.c-standard{background:#f0c040;}
+    .reel-line.c-standard::before{top:0;border-top:10px solid #f0c040;}
+    .reel-line.c-standard::after{bottom:0;border-bottom:10px solid #f0c040;}
+    .reel-line.c-premium{background:#c084fc;}
+    .reel-line.c-premium::before{top:0;border-top:10px solid #c084fc;}
+    .reel-line.c-premium::after{bottom:0;border-bottom:10px solid #c084fc;}
+    .reel-line.c-godly{background:#ff6a00;}
+    .reel-line.c-godly::before{top:0;border-top:10px solid #ff6a00;}
+    .reel-line.c-godly::after{bottom:0;border-bottom:10px solid #ff6a00;}
+    .reel-track{display:flex;align-items:center;height:128px;position:absolute;top:0;left:0;}
+    .reel-card{width:108px;height:108px;margin:0 4px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;border:2px solid rgba(255,255,255,0.08);}
+    .reel-card .rc-icon{font-size:28px;}
+    .reel-card .rc-name{font-size:9px;font-weight:500;text-align:center;margin-top:4px;padding:0 4px;line-height:1.3;}
+    .reel-card .rc-wear{font-size:8px;font-weight:600;margin-top:2px;}
 
-    /* ── Stats ── */
-    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem;}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem;}
     .stat-card{background:#18181f;border:1px solid #2a2a38;border-radius:10px;padding:10px 12px;text-align:center;}
     .stat-label{font-size:11px;color:#777;margin-bottom:4px;}
-    .stat-val  {font-size:18px;font-weight:600;color:#e8e8f0;}
+    .stat-val{font-size:18px;font-weight:600;color:#e8e8f0;}
 
-    /* ── Open button ── */
     .open-btn{display:block;width:100%;padding:15px;border:none;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;transition:opacity 0.15s,transform 0.1s;margin-bottom:1.5rem;}
     .open-btn:hover{opacity:0.9;}
     .open-btn:active{transform:scale(0.98);}
     .open-btn:disabled{opacity:0.45;cursor:not-allowed;transform:none;}
-    .open-btn-standard{background:#f0c040;color:#1a1200;}
-    .open-btn-premium {background:#c084fc;color:#0d0018;}
-    .open-btn-godly   {background:linear-gradient(135deg,#ff6a00,#ffb347);color:#1a0800;}
-        100%{background-position:200%;}}
+    .btn-standard{background:#f0c040;color:#1a1200;}
+    .btn-premium{background:#c084fc;color:#0d0018;}
+    .btn-godly{background:linear-gradient(135deg,#ff6a00,#ffb347);color:#1a0800;}
 
-    /* ── Result panels ── */
-    .results-container{display:flex;gap:10px;margin-bottom:1.5rem;}
+    .results-row{display:flex;gap:10px;margin-bottom:1.5rem;}
     .result-panel{flex:1;border:1px solid #2a2a38;border-radius:12px;padding:1rem 1.25rem;background:#18181f;display:none;align-items:center;gap:12px;}
     .result-panel.show{display:flex;animation:popIn 0.4s cubic-bezier(0.34,1.56,0.64,1);}
     @keyframes popIn{0%{transform:scale(0.7);opacity:0;}100%{transform:scale(1);opacity:1;}}
-    .result-swatch{width:64px;height:64px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px;animation:spinIn 0.5s cubic-bezier(0.34,1.56,0.64,1);}
-    @keyframes spinIn{0%{transform:rotateY(90deg)scale(0.5);opacity:0;}100%{transform:rotateY(0)scale(1);opacity:1;}}
-    .result-name  {font-size:15px;font-weight:600;color:#e8e8f0;}
-    .result-wear  {font-size:11px;font-weight:700;margin-top:2px;}
-    .result-rarity{font-size:11px;margin-top:2px;font-weight:600;}
-    .result-chance{font-size:10px;color:#777;margin-top:2px;}
-    .result-price {font-size:13px;font-weight:600;margin-top:5px;display:inline-flex;align-items:center;gap:4px;animation:fadeUp 0.5s 0.25s both;}
-    @keyframes fadeUp{0%{transform:translateY(8px);opacity:0;}100%{transform:translateY(0);opacity:1;}}
-    .result-case-badge{display:inline-block;font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;margin-top:3px;}
-    .badge-standard{background:#f0c04022;color:#f0c040;}
-    .badge-premium {background:#c084fc22;color:#c084fc;}
-    .badge-godly   {background:#ff6a0022;color:#ff6a00;}
-        .wear-bar-wrap {margin-top:6px;width:100%;max-width:200px;}
-    .wear-bar-track{height:4px;border-radius:3px;width:100%;background:linear-gradient(to right,#4caf50,#8bc34a,#ffeb3b,#ff9800,#f44336);position:relative;}
+    .result-swatch{width:64px;height:64px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px;}
+    .r-name{font-size:15px;font-weight:600;color:#e8e8f0;}
+    .r-wear{font-size:11px;font-weight:700;margin-top:2px;}
+    .r-rarity{font-size:11px;margin-top:2px;font-weight:600;}
+    .r-chance{font-size:10px;color:#777;margin-top:2px;}
+    .r-price{font-size:13px;font-weight:600;margin-top:5px;display:inline-flex;align-items:center;gap:4px;}
+    .r-badge{display:inline-block;font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;margin-top:3px;}
+    .rb-standard{background:#f0c04022;color:#f0c040;}
+    .rb-premium{background:#c084fc22;color:#c084fc;}
+    .rb-godly{background:#ff6a0022;color:#ff6a00;}
+    .wear-bar-wrap{margin-top:6px;width:100%;max-width:200px;}
+    .wear-bar-track{height:4px;border-radius:3px;background:linear-gradient(to right,#4caf50,#8bc34a,#ffeb3b,#ff9800,#f44336);position:relative;}
     .wear-bar-needle{position:absolute;top:-4px;width:3px;height:12px;background:#fff;border-radius:2px;transform:translateX(-50%);box-shadow:0 0 4px #000a;transition:left 0.6s cubic-bezier(0.34,1.2,0.64,1);}
     .wear-bar-labels{display:flex;justify-content:space-between;font-size:7px;color:#666;margin-top:2px;}
 
-            100%{background-position:200%;}}
-
-    /* ── Inventory ── */
-    .inventory-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
-    .inventory-title{font-size:14px;font-weight:600;color:#888;}
-    .sell-all-btn{padding:5px 12px;background:transparent;border:1px solid #444;color:#aaa;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;transition:border-color 0.15s,color 0.15s;}
+    .inv-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+    .inv-title{font-size:14px;font-weight:600;color:#888;}
+    .sell-all-btn{padding:5px 12px;background:transparent;border:1px solid #444;color:#aaa;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;}
     .sell-all-btn:hover{border-color:#f0c040;color:#f0c040;}
     .inventory{display:flex;flex-wrap:wrap;gap:8px;}
-    .inv-item{width:88px;height:122px;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.1);font-size:20px;position:relative;animation:popIn 0.35s cubic-bezier(0.34,1.56,0.64,1);transition:border-color 0.2s;}
+    .inv-item{width:88px;height:122px;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.1);font-size:20px;animation:popIn 0.35s cubic-bezier(0.34,1.56,0.64,1);transition:border-color 0.2s;}
     .inv-item.locked{border-color:#f0c040aa!important;box-shadow:0 0 8px #f0c04033;}
-        .inv-label{font-size:8.5px;font-weight:500;margin-top:2px;text-align:center;padding:0 3px;line-height:1.2;}
-    .inv-wear {font-size:7.5px;font-weight:700;margin-top:1px;}
+    .inv-label{font-size:8.5px;font-weight:500;margin-top:2px;text-align:center;padding:0 3px;line-height:1.2;}
+    .inv-wear{font-size:7.5px;font-weight:700;margin-top:1px;}
     .inv-price{font-size:9.5px;margin-top:1px;font-weight:600;}
-    .inv-case-tag{font-size:7px;font-weight:700;margin-top:2px;padding:1px 5px;border-radius:6px;}
+    .inv-tag{font-size:7px;font-weight:700;margin-top:2px;padding:1px 5px;border-radius:6px;}
     .tag-standard{background:#f0c04022;color:#f0c040;}
-    .tag-premium {background:#c084fc22;color:#c084fc;}
-    .tag-godly   {background:#ff6a0022;color:#ff6a00;}
-        .inv-actions{display:flex;gap:2px;margin-top:3px;width:calc(100% - 8px);}
-    .lock-btn,.sell-btn,.trade-tag-btn{flex:1;padding:2px 0;border-radius:5px;font-size:9px;font-weight:600;cursor:pointer;border:1px solid;transition:background 0.15s,opacity 0.15s;text-align:center;}
+    .tag-premium{background:#c084fc22;color:#c084fc;}
+    .tag-godly{background:#ff6a0022;color:#ff6a00;}
+    .inv-actions{display:flex;gap:2px;margin-top:3px;width:calc(100% - 8px);}
+    .lock-btn,.sell-btn{flex:1;padding:2px 0;border-radius:5px;font-size:9px;font-weight:600;cursor:pointer;border:1px solid;text-align:center;}
     .lock-btn{background:rgba(255,255,255,0.05);border-color:#ffffff33;color:#aaa;}
-    .lock-btn:hover{background:rgba(255,255,255,0.12);}
     .lock-btn.is-locked{background:#f0c04022;border-color:#f0c040aa;color:#f0c040;}
     .sell-btn{background:#f0c04018;border-color:#f0c04055;color:#f0c040;}
     .sell-btn:hover:not(:disabled){background:#f0c04040;}
     .sell-btn:disabled{opacity:0.3;cursor:not-allowed;}
-    .trade-tag-btn{background:#4a9eff18;border-color:#4a9eff55;color:#4a9eff;}
-    .trade-tag-btn:hover:not(:disabled){background:#4a9eff33;}
-    .trade-tag-btn.tagged{background:#4a9eff33;border-color:#4a9effaa;}
-    .trade-tag-btn:disabled{opacity:0.3;cursor:not-allowed;}
     @keyframes sellFlash{0%{transform:scale(1);opacity:1;}40%{transform:scale(1.1);opacity:0.6;}100%{transform:scale(0);opacity:0;}}
     .inv-item.selling{animation:sellFlash 0.3s ease forwards;}
     .inv-empty{font-size:13px;color:#666;}
 
-    /* ── Trade page ── */
+    /* TRADE */
     .trade-section{background:#18181f;border:1px solid #2a2a38;border-radius:12px;padding:1.25rem;margin-bottom:1.25rem;}
     .trade-section h3{font-size:15px;font-weight:600;color:#e8e8f0;margin-bottom:10px;}
-    .trade-user-row{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap;}
+    .trade-row{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap;}
     .trade-input{flex:1;min-width:160px;padding:9px 12px;background:#0e0e12;border:1px solid #2a2a38;border-radius:8px;color:#e8e8f0;font-size:13px;outline:none;}
     .trade-input:focus{border-color:#4a9eff;}
-    .trade-btn{padding:9px 18px;background:#4a9eff;color:#001a33;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:opacity 0.15s;white-space:nowrap;}
-    .trade-btn:hover{opacity:0.85;}
-    .trade-btn:disabled{opacity:0.4;cursor:not-allowed;}
-    .trade-btn.red  {background:#ff3b3b;color:#fff;}
+    .trade-btn{padding:9px 18px;background:#4a9eff;color:#001a33;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;}
+    .trade-btn.red{background:#ff3b3b;color:#fff;}
     .trade-btn.green{background:#4caf50;color:#fff;}
-    .trade-btn.grey {background:#444;color:#aaa;}
-    .trade-selected-items{display:flex;flex-wrap:wrap;gap:6px;min-height:40px;padding:8px;background:#13131a;border-radius:8px;border:1px dashed #2a2a38;margin-bottom:10px;}
-    .trade-chip{display:flex;align-items:center;gap:5px;padding:4px 8px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;transition:opacity 0.15s;}
+    .trade-btn.grey{background:#444;color:#aaa;}
+    .trade-chips{display:flex;flex-wrap:wrap;gap:6px;min-height:40px;padding:8px;background:#13131a;border-radius:8px;border:1px dashed #2a2a38;margin-bottom:10px;}
+    .trade-chip{display:flex;align-items:center;gap:5px;padding:4px 8px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;}
     .trade-chip:hover{opacity:0.7;}
-    .trade-empty-note{font-size:12px;color:#555;margin:auto;}
-    .trade-offer-card{border:1px solid #2a2a38;border-radius:10px;padding:1rem;background:#13131a;margin-bottom:10px;}
-    .trade-offer-card:last-child{margin-bottom:0;}
-    .trade-offer-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px;}
-    .trade-offer-from{font-size:13px;font-weight:600;color:#4a9eff;}
-    .trade-offer-time{font-size:11px;color:#555;}
-    .trade-offer-items{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px;}
-    .trade-offer-item{display:flex;flex-direction:column;align-items:center;justify-content:center;width:60px;height:68px;border-radius:7px;font-size:16px;border:1px solid rgba(255,255,255,0.1);}
-    .trade-offer-item .ti-name{font-size:7px;margin-top:2px;text-align:center;padding:0 2px;line-height:1.2;}
-    .trade-offer-item .ti-price{font-size:7px;font-weight:600;}
-    .trade-offer-actions{display:flex;gap:6px;}
+    .chip-empty{font-size:12px;color:#555;margin:auto;}
+    .offer-card{border:1px solid #2a2a38;border-radius:10px;padding:1rem;background:#13131a;margin-bottom:10px;}
+    .offer-from{font-size:13px;font-weight:600;color:#4a9eff;}
+    .offer-time{font-size:11px;color:#555;}
+    .offer-items{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0;}
+    .offer-item{display:flex;flex-direction:column;align-items:center;justify-content:center;width:60px;height:68px;border-radius:7px;font-size:16px;border:1px solid rgba(255,255,255,0.1);}
+    .oi-name{font-size:7px;margin-top:2px;text-align:center;padding:0 2px;line-height:1.2;}
+    .oi-price{font-size:7px;font-weight:600;}
+    .offer-actions{display:flex;gap:6px;margin-top:8px;}
     .trade-status{font-size:12px;padding:6px 10px;border-radius:6px;margin-bottom:8px;}
-    .trade-status.info{background:#4a9eff18;color:#4a9eff;border:1px solid #4a9eff33;}
-    .trade-status.success{background:#4caf5018;color:#4caf50;border:1px solid #4caf5033;}
-    .trade-status.error{background:#ff3b3b18;color:#ff3b3b;border:1px solid #ff3b3b33;}
-    .trade-my-items-grid{display:flex;flex-wrap:wrap;gap:6px;}
-    .trade-pick-item{width:72px;height:82px;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:18px;cursor:pointer;border:2px solid rgba(255,255,255,0.08);transition:border-color 0.15s,box-shadow 0.15s;}
-    .trade-pick-item:hover{border-color:#4a9eff66;}
-    .trade-pick-item.selected-for-trade{border-color:#4a9effaa;box-shadow:0 0 8px #4a9eff44;}
-    .trade-pick-item .tp-label{font-size:7.5px;margin-top:2px;text-align:center;padding:0 2px;line-height:1.2;}
-    .trade-pick-item .tp-price{font-size:7.5px;font-weight:600;}
+    .ts-info{background:#4a9eff18;color:#4a9eff;border:1px solid #4a9eff33;}
+    .ts-success{background:#4caf5018;color:#4caf50;border:1px solid #4caf5033;}
+    .ts-error{background:#ff3b3b18;color:#ff3b3b;border:1px solid #ff3b3b33;}
+    .pick-grid{display:flex;flex-wrap:wrap;gap:6px;}
+    .pick-item{width:72px;height:82px;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:18px;cursor:pointer;border:2px solid rgba(255,255,255,0.08);transition:all 0.15s;}
+    .pick-item:hover{border-color:#4a9eff66;}
+    .pick-item.picked{border-color:#4a9effaa;box-shadow:0 0 8px #4a9eff44;}
+    .pi-label{font-size:7.5px;margin-top:2px;text-align:center;padding:0 2px;line-height:1.2;}
+    .pi-price{font-size:7.5px;font-weight:600;}
     .no-offers{font-size:13px;color:#555;padding:8px 0;}
-    .username-display{font-size:12px;color:#4a9eff;margin-bottom:1rem;}
+    .uname-display{font-size:12px;color:#4a9eff;margin-bottom:1rem;}
 
-    /* ── Help ── */
     .help-wrap{position:fixed;bottom:20px;right:20px;z-index:1000;}
-    .help-btn{width:30px;height:30px;border-radius:50%;background:#1e1e28;border:1px solid #3a3a50;color:#888;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color 0.2s,color 0.2s;user-select:none;}
+    .help-btn{width:30px;height:30px;border-radius:50%;background:#1e1e28;border:1px solid #3a3a50;color:#888;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;}
     .help-btn:hover{border-color:#f0c040;color:#f0c040;}
     .help-popup{position:absolute;bottom:38px;right:0;width:290px;background:#18181f;border:1px solid #2a2a38;border-radius:12px;padding:14px 16px;opacity:0;pointer-events:none;transform:translateY(6px);transition:opacity 0.2s,transform 0.2s;box-shadow:0 8px 32px #000a;max-height:80vh;overflow-y:auto;}
     .help-wrap:hover .help-popup{opacity:1;pointer-events:auto;transform:translateY(0);}
@@ -233,7 +201,6 @@
     .help-right{font-size:11px;color:#888;text-align:right;}
     .help-mult{font-size:10px;margin-top:1px;}
     .help-divider{border:none;border-top:1px solid #2a2a38;margin:10px 0;}
-
     @media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr);}.case-tabs{flex-direction:column;}}
   </style>
 </head>
@@ -242,15 +209,13 @@
   <h2>CaseWizard</h2>
   <p class="sub">Open cases, collect skins, trade with others.</p>
 
-  <!-- Page nav -->
   <div class="page-nav">
-    <button class="page-tab active" onclick="showPage('cases')">🎁 Cases</button>
-    <button class="page-tab" onclick="showPage('trade')">🔄 Trade</button>
+    <button class="page-tab active" onclick="showPage('cases',this)">🎁 Cases</button>
+    <button class="page-tab" onclick="showPage('trade',this)">🔄 Trade</button>
   </div>
 
-  <!-- ══ CASES PAGE ══ -->
+  <!-- CASES -->
   <div class="page-section visible" id="pageCases">
-    <!-- Case tabs -->
     <div class="case-tabs">
       <div class="case-tab active-standard" id="tabStandard" onclick="selectCase('standard')">
         <div class="active-badge" id="badgeStandard">●</div>
@@ -273,10 +238,8 @@
         <div class="tab-cost">🪙 150</div>
         <div class="tab-mult">Min. Pink · 10×</div>
       </div>
-
     </div>
 
-    <!-- Wallet -->
     <div class="wallet-bar">
       <div>
         <div class="wallet-balance" id="walletDisplay">🪙 0.00</div>
@@ -288,10 +251,8 @@
       </div>
     </div>
 
-    <!-- Double toggle -->
-    <div class="double-toggle" id="doubleToggle">
-      <label>
-        Open 2 at once
+    <div class="double-toggle">
+      <label>Open 2 at once
         <label class="toggle-switch">
           <input type="checkbox" id="doubleSwitch" onchange="updateDoubleMode()">
           <span class="toggle-slider"></span>
@@ -300,93 +261,90 @@
       <span class="double-cost-note" id="doubleCostNote" style="display:none">×2 cost</span>
     </div>
 
-    <!-- Chests -->
-    <div class="case-area" id="caseArea"></div>
+    <div class="case-area" id="caseArea">
+      <div class="case-box case-box-standard" id="caseBox1">🎁</div>
+    </div>
 
-    <!-- Reels -->
-    <div class="reels-container" id="reelsContainer"></div>
+    <!-- REEL 1 -->
+    <div class="reel-outer" id="reelOuter">
+      <div class="reel-box" id="reelBox1">
+        <div class="reel-fade-l"></div>
+        <div class="reel-fade-r"></div>
+        <div class="reel-line c-standard" id="reelLine1"></div>
+        <div class="reel-track" id="reelTrack1"></div>
+      </div>
+    </div>
 
-    <!-- Stats -->
     <div class="stats">
       <div class="stat-card"><div class="stat-label">Cases opened</div><div class="stat-val" id="statOpened">0</div></div>
       <div class="stat-card"><div class="stat-label">Best drop</div><div class="stat-val" id="statBest">—</div></div>
       <div class="stat-card"><div class="stat-label">Coins sold</div><div class="stat-val" id="statSold">🪙 0</div></div>
     </div>
 
-    <button class="open-btn open-btn-standard" id="openBtn" onclick="openCase()">Open Standard Case — 🪙 0.50</button>
+    <button class="open-btn btn-standard" id="openBtn" onclick="openCase()">Open Standard Case — 🪙 0.50</button>
 
-    <!-- Results -->
-    <div class="results-container" id="resultsContainer">
+    <div class="results-row" id="resultsRow">
       <div class="result-panel" id="resultPanel1">
-        <div class="result-swatch" id="resultSwatch1"></div>
-        <div class="result-info">
-          <div class="result-case-badge badge-standard" id="resultBadge1">Standard</div>
-          <div class="result-name"   id="resultName1"></div>
-          <div class="result-wear"   id="resultWear1"></div>
-          <div class="result-rarity" id="resultRarity1"></div>
-          <div class="result-chance" id="resultChance1"></div>
-          <div class="wear-bar-wrap"><div class="wear-bar-track"><div class="wear-bar-needle" id="wearNeedle1"></div></div><div class="wear-bar-labels"><span>FN</span><span>MW</span><span>FT</span><span>WW</span><span>BS</span></div></div>
-          <div class="result-price"  id="resultPrice1"></div>
+        <div class="result-swatch" id="resSwatch1"></div>
+        <div>
+          <div class="r-badge rb-standard" id="resBadge1">Standard</div>
+          <div class="r-name" id="resName1"></div>
+          <div class="r-wear" id="resWear1"></div>
+          <div class="r-rarity" id="resRarity1"></div>
+          <div class="r-chance" id="resChance1"></div>
+          <div class="wear-bar-wrap"><div class="wear-bar-track"><div class="wear-bar-needle" id="resNeedle1"></div></div><div class="wear-bar-labels"><span>FN</span><span>MW</span><span>FT</span><span>WW</span><span>BS</span></div></div>
+          <div class="r-price" id="resPrice1"></div>
         </div>
       </div>
       <div class="result-panel" id="resultPanel2">
-        <div class="result-swatch" id="resultSwatch2"></div>
-        <div class="result-info">
-          <div class="result-case-badge badge-standard" id="resultBadge2">Standard</div>
-          <div class="result-name"   id="resultName2"></div>
-          <div class="result-wear"   id="resultWear2"></div>
-          <div class="result-rarity" id="resultRarity2"></div>
-          <div class="result-chance" id="resultChance2"></div>
-          <div class="wear-bar-wrap"><div class="wear-bar-track"><div class="wear-bar-needle" id="wearNeedle2"></div></div><div class="wear-bar-labels"><span>FN</span><span>MW</span><span>FT</span><span>WW</span><span>BS</span></div></div>
-          <div class="result-price"  id="resultPrice2"></div>
+        <div class="result-swatch" id="resSwatch2"></div>
+        <div>
+          <div class="r-badge rb-standard" id="resBadge2">Standard</div>
+          <div class="r-name" id="resName2"></div>
+          <div class="r-wear" id="resWear2"></div>
+          <div class="r-rarity" id="resRarity2"></div>
+          <div class="r-chance" id="resChance2"></div>
+          <div class="wear-bar-wrap"><div class="wear-bar-track"><div class="wear-bar-needle" id="resNeedle2"></div></div><div class="wear-bar-labels"><span>FN</span><span>MW</span><span>FT</span><span>WW</span><span>BS</span></div></div>
+          <div class="r-price" id="resPrice2"></div>
         </div>
       </div>
     </div>
 
-    <!-- Inventory -->
-    <div class="inventory-header">
-      <div class="inventory-title">Inventory</div>
+    <div class="inv-header">
+      <div class="inv-title">Inventory</div>
       <button class="sell-all-btn" onclick="sellAll()">Sell all unlocked</button>
     </div>
     <div class="inventory" id="inventory"><span class="inv-empty">No items yet</span></div>
   </div>
 
-  <!-- ══ TRADE PAGE ══ -->
+  <!-- TRADE -->
   <div class="page-section" id="pageTrade">
-
-    <!-- Username setup -->
-    <div class="trade-section" id="usernameSection">
+    <div class="trade-section">
       <h3>Your Username</h3>
-      <div id="usernameDisplay" class="username-display" style="display:none"></div>
-      <div class="trade-user-row" id="usernameRow">
-        <input class="trade-input" id="usernameInput" placeholder="Choose a username..." maxlength="20" />
+      <div id="unameDisplay" class="uname-display" style="display:none"></div>
+      <div class="trade-row" id="unameRow">
+        <input class="trade-input" id="unameInput" placeholder="Choose a username (3+ chars)..." maxlength="20"/>
         <button class="trade-btn" onclick="setUsername()">Set Username</button>
       </div>
     </div>
-
-    <!-- Send a trade offer -->
     <div class="trade-section">
       <h3>Send Trade Offer</h3>
-      <div id="tradeStatus" style="display:none" class="trade-status info"></div>
-      <div class="trade-user-row">
-        <input class="trade-input" id="tradeTargetInput" placeholder="Their username..." maxlength="20" />
+      <div id="tradeStatus" style="display:none" class="trade-status ts-info"></div>
+      <div class="trade-row">
+        <input class="trade-input" id="tradeTarget" placeholder="Their username..." maxlength="20"/>
       </div>
-      <p style="font-size:12px;color:#666;margin-bottom:8px;">Select items to offer (click to toggle):</p>
-      <div class="trade-my-items-grid" id="tradePickGrid"></div>
+      <p style="font-size:12px;color:#666;margin-bottom:8px;">Click items to offer:</p>
+      <div class="pick-grid" id="pickGrid"></div>
       <div style="margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-        <span style="font-size:12px;color:#888">Offering: </span>
-        <div class="trade-selected-items" id="tradeSelectedChips" style="flex:1;min-width:140px;"><span class="trade-empty-note">None selected</span></div>
-        <button class="trade-btn" id="sendTradeBtn" onclick="sendTradeOffer()">Send Offer</button>
+        <span style="font-size:12px;color:#888">Offering:</span>
+        <div class="trade-chips" id="tradeChips" style="flex:1;min-width:140px;"><span class="chip-empty">None selected</span></div>
+        <button class="trade-btn" onclick="sendOffer()">Send Offer</button>
       </div>
     </div>
-
-    <!-- Incoming offers -->
     <div class="trade-section">
       <h3>Incoming Offers</h3>
       <div id="incomingOffers"><p class="no-offers">No incoming offers.</p></div>
     </div>
-
-    <!-- Sent offers -->
     <div class="trade-section">
       <h3>Sent Offers</h3>
       <div id="sentOffers"><p class="no-offers">No sent offers.</p></div>
@@ -396,18 +354,19 @@
 
 <div class="particles-wrap" id="particlesWrap"></div>
 
-<!-- Help -->
 <div class="help-wrap">
   <div class="help-btn">?</div>
   <div class="help-popup">
     <div class="help-section-title">📦 Cases</div>
     <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#f0c040"></div>Standard</div><div class="help-right">🪙 0.50 · Base</div></div>
     <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#c084fc"></div>Premium</div><div class="help-right">🪙 2.00 · 4×</div></div>
-    <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#ff6a00"></div>Godly</div><div class="help-right">🪙 150 · 10× · min Pink</div></div>    <hr class="help-divider">
+    <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#ff6a00"></div>Godly</div><div class="help-right">🪙 150 · 10× · min Pink</div></div>
+    <hr class="help-divider">
     <div class="help-section-title">👑 Godly Drops</div>
     <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#ff5ec4"></div>Pink</div><div class="help-right">85%<div class="help-mult">🪙 7.50 base</div></div></div>
     <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#ff3b3b"></div>Red</div><div class="help-right">14%<div class="help-mult">🪙 50 base</div></div></div>
-    <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#f0c040"></div>Gold</div><div class="help-right">1%<div class="help-mult">🪙 250 base</div></div></div><hr class="help-divider">
+    <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#f0c040"></div>Gold</div><div class="help-right">1%<div class="help-mult">🪙 250 base</div></div></div>
+    <hr class="help-divider">
     <div class="help-section-title">🎨 Standard Rarities</div>
     <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#4a9eff"></div>Blue</div><div class="help-right">79.92%<div class="help-mult">🪙 0.10</div></div></div>
     <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#b04dff"></div>Purple</div><div class="help-right">15.98%<div class="help-mult">🪙 1.00</div></div></div>
@@ -425,7 +384,7 @@
 </div>
 
 <script>
-// ── Firebase config (reuse zylo-00) ───────────────────────────
+// Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyCS1pBFFiGHvsCxe7yEkb9oJyjicCTeoyQ",
   authDomain: "casewizard-5d9ad.firebaseapp.com",
@@ -439,132 +398,122 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// ── Page navigation ────────────────────────────────────────────
-function showPage(page) {
-  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('visible'));
-  document.querySelectorAll('.page-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('page' + page.charAt(0).toUpperCase() + page.slice(1)).classList.add('visible');
-  event.target.classList.add('active');
-  if (page === 'trade') { renderTradePickGrid(); loadOffers(); }
-}
-
-// ── Case definitions ───────────────────────────────────────────
+// ── Data ──────────────────────────────────────────────────────
 const CASES = {
-  standard:{ name:"Standard Case", icon:"🎁", cost:0.50,   rewardMult:1,  accentColor:"#f0c040", boxClass:"case-box-standard", btnClass:"open-btn-standard", pointerClass:"pointer-standard", reelClass:"",            pool:"standard" },
-  premium: { name:"Premium Case",  icon:"💼", cost:2.00,   rewardMult:4,  accentColor:"#c084fc", boxClass:"case-box-premium",  btnClass:"open-btn-premium",  pointerClass:"pointer-premium",  reelClass:"premium-reel", pool:"standard" },
-  godly:   { name:"Godly Case",    icon:"👑", cost:150.00, rewardMult:10, accentColor:"#ff6a00", boxClass:"case-box-godly",    btnClass:"open-btn-godly",    pointerClass:"pointer-godly",    reelClass:"godly-reel",   pool:"godly"    },
+  standard:{ name:"Standard Case", icon:"🎁", cost:0.50,  mult:1,  accent:"#f0c040", boxCls:"case-box-standard", btnCls:"btn-standard", lineCls:"c-standard", reelCls:"",          pool:"std"   },
+  premium: { name:"Premium Case",  icon:"💼", cost:2.00,  mult:4,  accent:"#c084fc", boxCls:"case-box-premium",  btnCls:"btn-premium",  lineCls:"c-premium",  reelCls:"reel-premium",pool:"std"   },
+  godly:   { name:"Godly Case",    icon:"👑", cost:150,   mult:10, accent:"#ff6a00", boxCls:"case-box-godly",    btnCls:"btn-godly",    lineCls:"c-godly",    reelCls:"reel-godly",  pool:"godly" },
 };
-let activeCase = "standard";
-let doubleMode = false;
-
-// ── Wear tiers ─────────────────────────────────────────────────
-const WEARS = [
-  { name:"Battle-Scarred",short:"BS",weight:360,multiplier:0.5, floatMin:0.45,floatMax:1.00,color:"#f44336" },
-  { name:"Well-Worn",     short:"WW",weight:270,multiplier:0.75,floatMin:0.38,floatMax:0.45,color:"#ff9800" },
-  { name:"Field-Tested",  short:"FT",weight:220,multiplier:1.0, floatMin:0.15,floatMax:0.38,color:"#ffeb3b" },
-  { name:"Minimal Wear",  short:"MW",weight:110,multiplier:1.5, floatMin:0.07,floatMax:0.15,color:"#8bc34a" },
-  { name:"Factory New",   short:"FN",weight:40, multiplier:2.0, floatMin:0.00,floatMax:0.07,color:"#4caf50" },
+const WEARS=[
+  {name:"Battle-Scarred",short:"BS",w:360,mult:0.5, fMin:0.45,fMax:1.00,col:"#f44336"},
+  {name:"Well-Worn",     short:"WW",w:270,mult:0.75,fMin:0.38,fMax:0.45,col:"#ff9800"},
+  {name:"Field-Tested",  short:"FT",w:220,mult:1.0, fMin:0.15,fMax:0.38,col:"#ffeb3b"},
+  {name:"Minimal Wear",  short:"MW",w:110,mult:1.5, fMin:0.07,fMax:0.15,col:"#8bc34a"},
+  {name:"Factory New",   short:"FN",w:40, mult:2.0, fMin:0.00,fMax:0.07,col:"#4caf50"},
 ];
-const WEAR_TOTAL = WEARS.reduce((s,w)=>s+w.weight,0);
-function randomWear(){ let r=Math.random()*WEAR_TOTAL; for(const w of WEARS){r-=w.weight;if(r<=0)return w;} return WEARS[0]; }
-function randomFloat(w){ return w.floatMin+Math.random()*(w.floatMax-w.floatMin); }
-
-// ── Skin pools ─────────────────────────────────────────────────
-const SKINS=[
-  {rarity:"Blue",  color:"#4a9eff",bg:"#0a1a3a",icon:"🔧",weight:7992,chance:"79.92%",basePrice:0.10 },
-  {rarity:"Purple",color:"#b04dff",bg:"#1a0a30",icon:"⚡",weight:1598,chance:"15.98%",basePrice:1.00 },
-  {rarity:"Pink",  color:"#ff5ec4",bg:"#30081e",icon:"🌸",weight:319, chance:"3.19%", basePrice:7.50 },
-  {rarity:"Red",   color:"#ff3b3b",bg:"#2a0505",icon:"🔥",weight:63,  chance:"0.63%", basePrice:50.00},
-  {rarity:"Gold",  color:"#f0c040",bg:"#2a1800",icon:"💎",weight:28,  chance:"0.28%", basePrice:250.00},
+const WT = WEARS.reduce((s,w)=>s+w.w,0);
+const STD_POOL=[
+  {r:"Blue",  col:"#4a9eff",bg:"#0a1a3a",icon:"🔧",w:7992,ch:"79.92%",bp:0.10},
+  {r:"Purple",col:"#b04dff",bg:"#1a0a30",icon:"⚡",w:1598,ch:"15.98%",bp:1.00},
+  {r:"Pink",  col:"#ff5ec4",bg:"#30081e",icon:"🌸",w:319, ch:"3.19%", bp:7.50},
+  {r:"Red",   col:"#ff3b3b",bg:"#2a0505",icon:"🔥",w:63,  ch:"0.63%", bp:50.00},
+  {r:"Gold",  col:"#f0c040",bg:"#2a1800",icon:"💎",w:28,  ch:"0.28%", bp:250.00},
 ];
 const GODLY_POOL=[
-  {rarity:"Pink",color:"#ff5ec4",bg:"#30081e",icon:"🌸",weight:850,chance:"85%",basePrice:7.50 },
-  {rarity:"Red", color:"#ff3b3b",bg:"#2a0505",icon:"🔥",weight:140,chance:"14%",basePrice:50.00},
-  {rarity:"Gold",color:"#f0c040",bg:"#2a1800",icon:"💎",weight:10, chance:"1%", basePrice:250.00},
+  {r:"Pink",col:"#ff5ec4",bg:"#30081e",icon:"🌸",w:850,ch:"85%",bp:7.50},
+  {r:"Red", col:"#ff3b3b",bg:"#2a0505",icon:"🔥",w:140,ch:"14%",bp:50.00},
+  {r:"Gold",col:"#f0c040",bg:"#2a1800",icon:"💎",w:10, ch:"1%", bp:250.00},
 ];
-const SKIN_NAMES={
-  Blue:   ["Iron Barrel","Cold Finish","Steel Coat","Base Wrap","Grey Matter"],
-  Purple: ["Void Static","Amethyst Edge","Neural Arc","Phase Shift","Dark Pulse"],
-  Pink:   ["Sakura Storm","Neon Bloom","Rose Fade","Cherry Burst","Candy Wave"],
-  Red:    ["Crimson Web","Dragon Strike","Blood Tiger","Ember Coil","Inferno"],
-  Gold:   ["AWP | Gold Leaf","AK-47 | Gilded","Karambit | Aurum","M4 | Sovereign","Butterfly | Gold"],
+const NAMES={
+  Blue:  ["Iron Barrel","Cold Finish","Steel Coat","Base Wrap","Grey Matter"],
+  Purple:["Void Static","Amethyst Edge","Neural Arc","Phase Shift","Dark Pulse"],
+  Pink:  ["Sakura Storm","Neon Bloom","Rose Fade","Cherry Burst","Candy Wave"],
+  Red:   ["Crimson Web","Dragon Strike","Blood Tiger","Ember Coil","Inferno"],
+  Gold:  ["AWP | Gold Leaf","AK-47 | Gilded","Karambit | Aurum","M4 | Sovereign","Butterfly | Gold"],
 };
-const rarityOrder=["Blue","Purple","Pink","Red","Gold"];
+const RARITY_ORDER=["Blue","Purple","Pink","Red","Gold"];
 
-function pickFromPool(pool){ const t=pool.reduce((s,x)=>s+x.weight,0);let r=Math.random()*t;for(const s of pool){r-=s.weight;if(r<=0)return s;}return pool[0]; }
-function pickSkin(pool){ if(pool==="godly")return pickFromPool(GODLY_POOL);return pickFromPool(SKINS); }
-function pickName(r){ const a=SKIN_NAMES[r];return a[Math.floor(Math.random()*a.length)]; }
-function fmt(p){ if(p>=10000)return p.toLocaleString(undefined,{maximumFractionDigits:0});if(p>=100)return p.toFixed(0);if(p>=10)return p.toFixed(1);return p.toFixed(2); }
+function wRand(pool){const t=pool.reduce((s,x)=>s+x.w,0);let r=Math.random()*t;for(const x of pool){r-=x.w;if(r<=0)return x;}return pool[0];}
+function pickSkin(pool){return wRand(pool==="godly"?GODLY_POOL:STD_POOL);}
+function pickWear(){let r=Math.random()*WT;for(const w of WEARS){r-=w.w;if(r<=0)return w;}return WEARS[0];}
+function pickFloat(wear){return wear.fMin+Math.random()*(wear.fMax-wear.fMin);}
+function pickName(r){const a=NAMES[r];return a[Math.floor(Math.random()*a.length)];}
+function fmt(p){if(p>=10000)return p.toLocaleString(undefined,{maximumFractionDigits:0});if(p>=100)return p.toFixed(0);if(p>=10)return p.toFixed(1);return p.toFixed(2);}
 
-// ── State ──────────────────────────────────────────────────────
+// ── State ─────────────────────────────────────────────────────
 function loadState(){
   try{
     const s=JSON.parse(localStorage.getItem("caseWizard")||"{}");
-    return{
-      coins:       typeof s.coins==="number"?s.coins:10,
-      opened:      typeof s.opened==="number"?s.opened:0,
-      bestRarity:  s.bestRarity||null,
-      totalSold:   typeof s.totalSold==="number"?s.totalSold:0,
-      lastClaim:   s.lastClaim||null,
-      inventory:   Array.isArray(s.inventory)?s.inventory:[],
-      username:    s.username||null,
-    };
-  }catch(e){ return{coins:10,opened:0,bestRarity:null,totalSold:0,lastClaim:null,inventory:[],username:null}; }
+    return{coins:typeof s.coins==="number"?s.coins:10,opened:s.opened||0,bestRarity:s.bestRarity||null,totalSold:s.totalSold||0,lastClaim:s.lastClaim||null,inventory:Array.isArray(s.inventory)?s.inventory:[],username:s.username||null};
+  }catch(e){return{coins:10,opened:0,bestRarity:null,totalSold:0,lastClaim:null,inventory:[],username:null};}
 }
-function saveState(){ localStorage.setItem("caseWizard",JSON.stringify(state)); }
-
+function save(){localStorage.setItem("caseWizard",JSON.stringify(state));}
 let state=loadState();
 let spinning=false;
-let itemIdCounter=Date.now();
+let doubleMode=false;
+let activeCase="standard";
+let idc=Date.now();
+let tradeSelected=[];
 
-// ── Select case ────────────────────────────────────────────────
+// ── Pages ─────────────────────────────────────────────────────
+function showPage(page,btn){
+  document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('visible'));
+  document.querySelectorAll('.page-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('page'+page.charAt(0).toUpperCase()+page.slice(1)).classList.add('visible');
+  btn.classList.add('active');
+  if(page==='trade'){renderPickGrid();loadOffers();}
+}
+
+// ── Select case ───────────────────────────────────────────────
 function selectCase(type){
   if(spinning)return;
   activeCase=type;
   ["standard","premium","godly"].forEach(t=>{
-    const cap=t.charAt(0).toUpperCase()+t.slice(1);
+    const cap=t[0].toUpperCase()+t.slice(1);
     document.getElementById("tab"+cap).className="case-tab"+(t===type?" active-"+t:"");
     document.getElementById("badge"+cap).style.display=t===type?"":"none";
   });
-  document.getElementById("doubleToggle").className="double-toggle visible";
-  document.getElementById("doubleCostNote").style.display=doubleMode?"":"none";
-  updateCaseArea(); updateReelUI();
-  document.getElementById("caseCostInfo").innerHTML=`Each case costs <span>🪙 ${fmt(CASES[type].cost)}</span>`;
+  refreshCaseArea();
+  const c=CASES[type];
+  // update reel box class and line colour
+  const box1=document.getElementById("reelBox1");
+  if(box1)box1.className="reel-box "+(c.reelCls||"");
+  const line1=document.getElementById("reelLine1");
+  if(line1)line1.className="reel-line "+c.lineCls;
+  document.getElementById("caseCostInfo").innerHTML=`Each case costs <span>🪙 ${fmt(c.cost)}</span>`;
   document.getElementById("resultPanel1").classList.remove("show");
   document.getElementById("resultPanel2").classList.remove("show");
+  buildTrack("reelTrack1",null,null);
   updateWalletUI();
+}
+
+function refreshCaseArea(){
+  const c=CASES[activeCase];
+  const area=document.getElementById("caseArea");
+  if(doubleMode){
+    area.innerHTML=`<div class="case-box ${c.boxCls}" id="caseBox1">${c.icon}</div><div style="font-size:20px;color:#aaa;font-weight:700">×2</div><div class="case-box ${c.boxCls}" id="caseBox2">${c.icon}</div>`;
+    // ensure second reel exists
+    const outer=document.getElementById("reelOuter");
+    if(!document.getElementById("reelBox2")){
+      outer.innerHTML+=`<div class="reel-box ${c.reelCls||""}" id="reelBox2"><div class="reel-fade-l"></div><div class="reel-fade-r"></div><div class="reel-line ${c.lineCls}" id="reelLine2"></div><div class="reel-track" id="reelTrack2"></div></div>`;
+      buildTrack("reelTrack2",null,null);
+    }
+  } else {
+    area.innerHTML=`<div class="case-box ${c.boxCls}" id="caseBox1">${c.icon}</div>`;
+    const box2=document.getElementById("reelBox2");
+    if(box2)box2.remove();
+  }
 }
 
 function updateDoubleMode(){
   doubleMode=document.getElementById("doubleSwitch").checked;
   document.getElementById("doubleCostNote").style.display=doubleMode?"":"none";
-  updateCaseArea(); updateReelUI(); updateWalletUI();
+  refreshCaseArea();
+  updateWalletUI();
 }
 
-function updateCaseArea(){
-  const c=CASES[activeCase];
-  const area=document.getElementById("caseArea");
-  if(doubleMode){
-    area.innerHTML=`<div class="case-box ${c.boxClass}" id="caseBox">${c.icon}</div><div style="font-size:20px;color:#aaa;font-weight:700">×2</div><div class="case-box ${c.boxClass}" id="caseBox2">${c.icon}</div>`;
-  } else {
-    area.innerHTML=`<div class="case-box ${c.boxClass}" id="caseBox">${c.icon}</div>`;
-  }
-}
-
-function updateReelUI(){
-  const c=CASES[activeCase];
-  const cont=document.getElementById("reelsContainer");
-  function makeReel(n){
-    return `<div class="reel-wrap ${c.reelClass}" id="reelWrap${n}"><div class="reel-fade-left"></div><div class="reel-fade-right"></div><div class="reel-pointer ${c.pointerClass}" id="reelPointer${n}"></div><div class="reel-track" id="reelTrack${n}"></div></div>`;
-  }
-  cont.innerHTML = doubleMode ? makeReel(1)+makeReel(2) : makeReel(1);
-  buildReel("reelTrack1",null,null);
-  if(doubleMode) buildReel("reelTrack2",null,null);
-  positionReels();
-}
-
-// ── Daily claim ────────────────────────────────────────────────
-function todayStr(){ return new Date().toISOString().slice(0,10); }
+// ── Daily coins ───────────────────────────────────────────────
+function todayStr(){return new Date().toISOString().slice(0,10);}
 function updateClaimUI(){
   const btn=document.getElementById("claimBtn"),info=document.getElementById("claimInfo");
   if(state.lastClaim===todayStr()){btn.disabled=true;info.textContent="Come back tomorrow for more coins";}
@@ -572,288 +521,269 @@ function updateClaimUI(){
 }
 function claimDaily(){
   if(state.lastClaim===todayStr())return;
-  state.coins+=10;state.lastClaim=todayStr();saveState();updateWalletUI();updateClaimUI();showToast("+🪙10 claimed!");
+  state.coins+=10;state.lastClaim=todayStr();save();updateWalletUI();updateClaimUI();toast("+🪙10 claimed!");
 }
 
-// ── Wallet UI ──────────────────────────────────────────────────
+// ── Wallet ────────────────────────────────────────────────────
 function updateWalletUI(){
   const c=CASES[activeCase];
   const cost=doubleMode?c.cost*2:c.cost;
   document.getElementById("walletDisplay").textContent="🪙 "+state.coins.toFixed(2);
   const btn=document.getElementById("openBtn");
   btn.disabled=spinning||state.coins<cost;
-  btn.className="open-btn "+c.btnClass;
+  btn.className="open-btn "+c.btnCls;
   btn.textContent=state.coins<cost&&!spinning?"Not enough coins":doubleMode?`Open 2× ${c.name} — 🪙 ${fmt(cost)}`:`Open ${c.name} — 🪙 ${fmt(c.cost)}`;
 }
 
-// ── Reel ───────────────────────────────────────────────────────
-function buildReel(trackId,finalSkin,finalWear){
-  const track=document.getElementById(trackId);if(!track)return;
+// ── Build reel track ──────────────────────────────────────────
+function buildTrack(trackId, finalSkin, finalWear){
+  const track=document.getElementById(trackId);
+  if(!track)return;
   track.innerHTML="";
   const c=CASES[activeCase];
   for(let i=0;i<50;i++){
     const skin=(i===42&&finalSkin)?finalSkin:pickSkin(c.pool);
-    const wear=(i===42&&finalWear)?finalWear:randomWear();
+    const wear=(i===42&&finalWear)?finalWear:pickWear();
     const el=document.createElement("div");
-    el.className="reel-item";el.style.background=skin.bg;
-    el.style.borderColor=skin.color+"66";
-    const label=pickName(skin.rarity).split("|")[1]||skin.rarity;
-    const ns=`style="color:${skin.color}"`;
-    el.innerHTML=`<div class="skin-icon">${skin.icon}</div><div class="skin-name" ${ns}>${label.trim()}</div><div class="skin-wear" style="color:${wear.color}">${wear.short}</div>`;
+    el.className="reel-card";
+    el.style.background=skin.bg;
+    el.style.borderColor=skin.col+"66";
+    const lbl=pickName(skin.r).split("|")[1]||skin.r;
+    el.innerHTML=`<div class="rc-icon">${skin.icon}</div><div class="rc-name" style="color:${skin.col}">${lbl.trim()}</div><div class="rc-wear" style="color:${wear.col}">${wear.short}</div>`;
     track.appendChild(el);
   }
-}
-function positionReels(){
-  ["reelTrack1","reelTrack2"].forEach(id=>{
-    const t=document.getElementById(id);if(!t)return;
-    t.style.left=(t.parentElement.offsetWidth/2-58)+"px";
-  });
+  // position so first item is near center initially
+  const ITEM_W=116;
+  const cw=track.parentElement.offsetWidth||800;
+  track.style.transition="none";
+  track.style.left=(cw/2-58)+"px";
 }
 
-// ── Particles ──────────────────────────────────────────────────
+// ── Particles ─────────────────────────────────────────────────
 function spawnParticles(color,elId){
-  const wrap=document.getElementById("particlesWrap"),el=document.getElementById(elId);if(!el)return;
-  const rect=el.getBoundingClientRect(),cx=rect.left+rect.width/2,cy=rect.top+rect.height/2;
-  const colors=color===[color];
+  const wrap=document.getElementById("particlesWrap");
+  const el=document.getElementById(elId);
+  if(!el)return;
+  const rect=el.getBoundingClientRect();
+  const cx=rect.left+rect.width/2,cy=rect.top+rect.height/2;
   for(let i=0;i<24;i++){
     const p=document.createElement("div");p.className="particle";
     const size=6+Math.random()*8,angle=Math.random()*2*Math.PI,dist=60+Math.random()*90;
-    const col=colors[Math.floor(Math.random()*colors.length)];
-    p.style.cssText=`width:${size}px;height:${size}px;background:${col};left:${cx-size/2}px;top:${cy-size/2}px;--tx:${Math.cos(angle)*dist}px;--ty:${Math.sin(angle)*dist-20}px;animation-delay:${Math.random()*0.15}s;animation-duration:${0.7+Math.random()*0.4}s;`;
+    p.style.cssText=`width:${size}px;height:${size}px;background:${color};left:${cx-size/2}px;top:${cy-size/2}px;--tx:${Math.cos(angle)*dist}px;--ty:${Math.sin(angle)*dist-20}px;animation-delay:${Math.random()*0.15}s;animation-duration:${0.7+Math.random()*0.4}s;`;
     wrap.appendChild(p);setTimeout(()=>p.remove(),1300);
   }
 }
 
-// ── Toast ──────────────────────────────────────────────────────
-function showToast(msg,col){
+// ── Toast ─────────────────────────────────────────────────────
+function toast(msg,col){
   const t=document.createElement("div");t.textContent=msg;
   t.style.cssText=`position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:${col||"#f0c040"};color:${col?"#fff":"#1a1200"};padding:10px 20px;border-radius:20px;font-weight:600;font-size:14px;z-index:9999;white-space:nowrap;`;
   document.body.appendChild(t);setTimeout(()=>t.remove(),2400);
 }
 
-// ── Open case ──────────────────────────────────────────────────
+// ── Open case ─────────────────────────────────────────────────
 function openCase(){
   const c=CASES[activeCase];
   const cost=doubleMode?c.cost*2:c.cost;
   if(spinning||state.coins<cost)return;
-  spinning=true;state.coins-=cost;saveState();updateWalletUI();
+  spinning=true;
+  state.coins-=cost;save();updateWalletUI();
   document.getElementById("openBtn").disabled=true;
   document.getElementById("resultPanel1").classList.remove("show");
   document.getElementById("resultPanel2").classList.remove("show");
-  const r1=pickSkin(c.pool),w1=randomWear(),f1=randomFloat(w1);
-  const r2=doubleMode?pickSkin(c.pool):null,w2=r2?randomWear():null,f2=w2?randomFloat(w2):null;
-  function shake(id){const e=document.getElementById(id);if(!e)return;e.classList.remove("shake");void e.offsetWidth;e.classList.add("shake");}
-  shake("caseBox");shake("caseBox2");
-  spawnParticles(c.accentColor,"caseBox");if(r2)spawnParticles(c.accentColor,"caseBox2");
-  let done=0;const total=r2?2:1;
+
+  const s1=pickSkin(c.pool),w1=pickWear(),f1=pickFloat(w1);
+  const s2=doubleMode?pickSkin(c.pool):null,w2=s2?pickWear():null,f2=w2?pickFloat(w2):null;
+
+  function shakeBox(id){const e=document.getElementById(id);if(!e)return;e.classList.remove("shake");void e.offsetWidth;e.classList.add("shake");}
+  shakeBox("caseBox1");if(s2)shakeBox("caseBox2");
+  spawnParticles(c.accent,"caseBox1");if(s2)spawnParticles(c.accent,"caseBox2");
+
+  let done=0;
+  const total=s2?2:1;
   function onDone(){
-    done++;if(done<total)return;
-    spawnParticles(r1.color,"caseBox");
-    showResult(r1,w1,f1,1);
-    if(r2){spawnParticles(r2.color,"caseBox2");showResult(r2,w2,f2,2);}
-    updateStats(r1);if(r2)updateStats(r2);
+    done++;
+    if(done<total)return;
+    spawnParticles(s1.col,"caseBox1");
+    showResult(s1,w1,f1,1);
+    if(s2){spawnParticles(s2.col,"caseBox2");showResult(s2,w2,f2,2);}
+    updateStats(s1);if(s2)updateStats(s2);
     spinning=false;updateWalletUI();
   }
+
   setTimeout(()=>{
-    spinReel("reelTrack1",r1,w1,onDone);
-    if(r2)spinReel("reelTrack2",r2,w2,onDone);
+    doSpin("reelTrack1",s1,w1,onDone);
+    if(s2)doSpin("reelTrack2",s2,w2,onDone);
   },500);
 }
-function spinReel(trackId,finalSkin,finalWear,cb){
-  buildReel(trackId,finalSkin,finalWear);
+
+function doSpin(trackId,finalSkin,finalWear,cb){
+  buildTrack(trackId,finalSkin,finalWear);
   const track=document.getElementById(trackId);
-  const ITEM_W=116,cw=track.parentElement.offsetWidth;
-  const fl=(cw/2)-(42*ITEM_W+ITEM_W/2)+(Math.random()-0.5)*50;
-  track.style.transition="none";track.style.left="0px";
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+  if(!track){cb();return;}
+  const ITEM_W=116;
+  const cw=track.parentElement.offsetWidth;
+  const dest=(cw/2)-(42*ITEM_W+ITEM_W/2)+(Math.random()-0.5)*50;
+  // force reflow so transition reset works
+  track.style.transition="none";
+  track.style.left="0px";
+  void track.offsetWidth; // force reflow
+  requestAnimationFrame(()=>{
     const dur=4000+Math.random()*700;
     track.style.transition=`left ${dur}ms cubic-bezier(0.12,1,0.36,1)`;
-    track.style.left=fl+"px";
-  }));
+    track.style.left=dest+"px";
+  });
   setTimeout(cb,4800);
 }
 
-// ── Show result ────────────────────────────────────────────────
+// ── Show result ───────────────────────────────────────────────
 function showResult(skin,wear,floatVal,slot){
   const c=CASES[activeCase];
   const panel=document.getElementById("resultPanel"+slot);
   panel.classList.remove("show");void panel.offsetWidth;
-  const price=parseFloat((skin.basePrice*c.rewardMult*wear.multiplier).toFixed(2));
-  const sw=document.getElementById("resultSwatch"+slot);
-  sw.style.background=skin.bg;sw.style.border=`2px solid ${skin.color}`;sw.textContent=skin.icon;
-  const name=pickName(skin.rarity);
-  const badge=document.getElementById("resultBadge"+slot);badge.textContent=c.name;badge.className="result-case-badge badge-"+activeCase;
-  document.getElementById("resultName"+slot).textContent=name;
-  document.getElementById("resultWear"+slot).textContent=wear.name;document.getElementById("resultWear"+slot).style.color=wear.color;
-  const re=document.getElementById("resultRarity"+slot);
-  re.textContent=skin.rarity;re.style.color=skin.color;
-  document.getElementById("resultChance"+slot).textContent=`Skin: ${skin.chance}  ·  Wear: ${(wear.weight/WEAR_TOTAL*100).toFixed(0)}%`;
-  const pe=document.getElementById("resultPrice"+slot);
-  pe.innerHTML=`<span>🪙</span><span style="color:${wear.color}">${fmt(price)} coins if sold</span>`;
-  document.getElementById("wearNeedle"+slot).style.left=(floatVal*100)+"%";
+  const price=parseFloat((skin.bp*c.mult*wear.mult).toFixed(2));
+  const sw=document.getElementById("resSwatch"+slot);
+  sw.style.background=skin.bg;sw.style.border=`2px solid ${skin.col}`;sw.textContent=skin.icon;
+  const name=pickName(skin.r);
+  document.getElementById("resBadge"+slot).textContent=c.name;
+  document.getElementById("resBadge"+slot).className="r-badge rb-"+activeCase;
+  document.getElementById("resName"+slot).textContent=name;
+  document.getElementById("resWear"+slot).textContent=wear.name;document.getElementById("resWear"+slot).style.color=wear.col;
+  document.getElementById("resRarity"+slot).textContent=skin.r;document.getElementById("resRarity"+slot).style.color=skin.col;
+  document.getElementById("resChance"+slot).textContent=`Skin: ${skin.ch}  ·  Wear: ${(wear.w/WT*100).toFixed(0)}%`;
+  document.getElementById("resPrice"+slot).innerHTML=`<span>🪙</span><span style="color:${wear.col}">${fmt(price)} coins if sold</span>`;
+  document.getElementById("resNeedle"+slot).style.left=(floatVal*100)+"%";
   panel.classList.add("show");
-  addToInventory(skin,wear,floatVal,name,price);
+  addToInv(skin,wear,floatVal,name,price);
 }
 
-// ── Stats ──────────────────────────────────────────────────────
+// ── Stats ─────────────────────────────────────────────────────
 function updateStats(skin){
   state.opened++;
   const cur=state.bestRarity;
-  if(!cur||rarityOrder.indexOf(skin.rarity)>rarityOrder.indexOf(cur))state.bestRarity=skin.rarity;
-  saveState();
+  if(!cur||RARITY_ORDER.indexOf(skin.r)>RARITY_ORDER.indexOf(cur))state.bestRarity=skin.r;
+  save();
   document.getElementById("statOpened").textContent=state.opened;
   document.getElementById("statBest").textContent=state.bestRarity||"—";
 }
 
-// ── Lock / Sell ────────────────────────────────────────────────
-function toggleLock(id){
-  const item=state.inventory.find(i=>i.id===id);if(!item)return;
-  item.locked=!item.locked;saveState();renderInventory();
-}
+// ── Inventory ─────────────────────────────────────────────────
+function toggleLock(id){const item=state.inventory.find(i=>i.id===id);if(!item)return;item.locked=!item.locked;save();renderInv();}
 function sellItem(id){
   const idx=state.inventory.findIndex(i=>i.id===id);if(idx===-1)return;
   const item=state.inventory[idx];if(item.locked)return;
   const el=document.querySelector(`[data-inv-id="${id}"]`);if(el)el.classList.add("selling");
   setTimeout(()=>{
     state.inventory.splice(idx,1);state.coins+=item.price;state.totalSold+=item.price;
-    saveState();updateWalletUI();
+    save();updateWalletUI();
     document.getElementById("statSold").textContent="🪙 "+state.totalSold.toFixed(2);
-    renderInventory();showToast(`Sold for 🪙${fmt(item.price)}!`);
+    renderInv();toast(`Sold for 🪙${fmt(item.price)}!`);
   },300);
 }
 function sellAll(){
-  const ul=state.inventory.filter(i=>!i.locked);if(!ul.length){showToast("No unlocked items to sell");return;}
+  const ul=state.inventory.filter(i=>!i.locked);if(!ul.length){toast("No unlocked items");return;}
   const total=ul.reduce((s,i)=>s+i.price,0);
   state.inventory=state.inventory.filter(i=>i.locked);state.coins+=total;state.totalSold+=total;
-  saveState();updateWalletUI();
+  save();updateWalletUI();
   document.getElementById("statSold").textContent="🪙 "+state.totalSold.toFixed(2);
-  renderInventory();showToast(`Sold ${ul.length} item${ul.length>1?"s":""} for 🪙${fmt(total)}!`);
+  renderInv();toast(`Sold ${ul.length} item${ul.length>1?"s":""} for 🪙${fmt(total)}!`);
 }
-
-// ── Inventory ──────────────────────────────────────────────────
-function addToInventory(skin,wear,floatVal,skinName,price){
-  state.inventory.unshift({id:itemIdCounter++,caseType:activeCase,rarity:skin.rarity,icon:skin.icon,color:skin.color,bg:skin.bg,name:skinName,wearName:wear.name,wearShort:wear.short,wearColor:wear.color,floatVal,price,locked:false});
+function addToInv(skin,wear,fv,name,price){
+  state.inventory.unshift({id:idc++,ct:activeCase,r:skin.r,icon:skin.icon,col:skin.col,bg:skin.bg,name,ws:wear.short,wc:wear.col,fv,price,locked:false});
   if(state.inventory.length>80)state.inventory.pop();
-  saveState();renderInventory();
+  save();renderInv();
 }
-function renderInventory(){
+function renderInv(){
   const inv=document.getElementById("inventory");
   if(!state.inventory.length){inv.innerHTML='<span class="inv-empty">No items yet</span>';return;}
   inv.innerHTML="";
   state.inventory.forEach(item=>{
     const el=document.createElement("div");
     el.className="inv-item"+(item.locked?" locked":"");
-    el.dataset.invId=item.id;el.style.background=item.bg;
-    el.style.borderColor=item.locked?(item.caseType==="godly"?"#ff6a00aa":"#f0c040aa"):item.color+"88";
-    const label=item.name.includes("|")?item.name.split("|")[1].trim():item.name;
-    const priceHtml=`<div class="inv-price" style="color:${item.wearColor}">🪙 ${fmt(item.price)}</div>`;
-    const nameHtml=`<div class="inv-label" style="color:${item.color}">${label}</div>`;
-    const tagMap={standard:"STD",premium:"PRO",godly:"GOD"};
-    const tagClass="tag-"+(item.caseType||"standard");
-    el.innerHTML=`${item.icon}${nameHtml}<div class="inv-wear" style="color:${item.wearColor}">${item.wearShort}</div>${priceHtml}<div class="inv-case-tag ${tagClass}">${tagMap[item.caseType]||"STD"}</div><div class="inv-actions"><button class="lock-btn ${item.locked?"is-locked":""}" onclick="toggleLock(${item.id})">${item.locked?"🔒":"🔓"}</button><button class="sell-btn" onclick="sellItem(${item.id})" ${item.locked?"disabled":""}>Sell</button></div>`;
+    el.dataset.invId=item.id;
+    el.style.background=item.bg;
+    el.style.borderColor=item.locked?(item.ct==="godly"?"#ff6a00aa":item.ct==="premium"?"#c084fcaa":"#f0c040aa"):item.col+"88";
+    const lbl=item.name.includes("|")?item.name.split("|")[1].trim():item.name;
+    const tags={standard:"STD",premium:"PRO",godly:"GOD",trade:"TRD"};
+    el.innerHTML=`${item.icon}<div class="inv-label" style="color:${item.col}">${lbl}</div><div class="inv-wear" style="color:${item.wc}">${item.ws}</div><div class="inv-price" style="color:${item.wc}">🪙 ${fmt(item.price)}</div><div class="inv-tag tag-${item.ct||"standard"}">${tags[item.ct]||"STD"}</div><div class="inv-actions"><button class="lock-btn ${item.locked?"is-locked":""}" onclick="toggleLock(${item.id})">${item.locked?"🔒":"🔓"}</button><button class="sell-btn" onclick="sellItem(${item.id})" ${item.locked?"disabled":""}>Sell</button></div>`;
     inv.appendChild(el);
   });
 }
 
-// ══════════════════════════════════════════════════════════════
-// ── TRADING SYSTEM ────────────────────────────────────────────
-// ══════════════════════════════════════════════════════════════
-let tradeSelectedIds = [];
-let offersListener = null;
-
-// ── Username ────────────────────────────────────────────────
+// ── Trading ───────────────────────────────────────────────────
 function setUsername(){
-  const val=document.getElementById("usernameInput").value.trim().toLowerCase().replace(/[^a-z0-9_]/g,"");
-  if(!val||val.length<3){showToast("Username must be 3+ letters/numbers","#ff3b3b");return;}
-  state.username=val;saveState();renderUsernameUI();
-  // register in DB
+  const val=document.getElementById("unameInput").value.trim().toLowerCase().replace(/[^a-z0-9_]/g,"");
+  if(!val||val.length<3){toast("Username must be 3+ chars","#ff3b3b");return;}
+  state.username=val;save();renderUnameUI();
   db.ref("users/"+val).set({username:val,lastSeen:Date.now()});
-  showToast("Username set: "+val);
-  loadOffers();
+  toast("Username set: "+val);loadOffers();
 }
-function renderUsernameUI(){
+function renderUnameUI(){
   if(state.username){
-    document.getElementById("usernameDisplay").textContent="Logged in as: "+state.username;
-    document.getElementById("usernameDisplay").style.display="block";
-    document.getElementById("usernameRow").style.display="none";
+    document.getElementById("unameDisplay").textContent="Logged in as: "+state.username;
+    document.getElementById("unameDisplay").style.display="block";
+    document.getElementById("unameRow").style.display="none";
   } else {
-    document.getElementById("usernameDisplay").style.display="none";
-    document.getElementById("usernameRow").style.display="flex";
+    document.getElementById("unameDisplay").style.display="none";
+    document.getElementById("unameRow").style.display="flex";
   }
 }
-
-// ── Trade pick grid ─────────────────────────────────────────
-function renderTradePickGrid(){
-  const grid=document.getElementById("tradePickGrid");
+function renderPickGrid(){
+  const grid=document.getElementById("pickGrid");
   const tradeable=state.inventory.filter(i=>!i.locked);
-  if(!tradeable.length){grid.innerHTML='<p style="font-size:12px;color:#555">No unlocked items in inventory.</p>';return;}
+  if(!tradeable.length){grid.innerHTML='<p style="font-size:12px;color:#555">No unlocked items.</p>';return;}
   grid.innerHTML="";
   tradeable.forEach(item=>{
     const el=document.createElement("div");
-    el.className="trade-pick-item"+(tradeSelectedIds.includes(item.id)?" selected-for-trade":"");
-    el.dataset.id=item.id;
-    el.style.background=item.bg;el.style.borderColor=(isRb?"#ff0080":item.color)+"66";
-    const label=item.name.includes("|")?item.name.split("|")[1].trim():item.name;
-    const nameHtml=`<div class="tp-label" style="color:${item.color}">${label}</div>`;
-    el.innerHTML=`${item.icon}${nameHtml}<div class="tp-price" style="color:${item.wearColor}">🪙${fmt(item.price)}</div>`;
-    el.onclick=()=>toggleTradeSelect(item.id);
+    el.className="pick-item"+(tradeSelected.includes(item.id)?" picked":"");
+    el.style.background=item.bg;el.style.borderColor=item.col+"66";
+    const lbl=item.name.includes("|")?item.name.split("|")[1].trim():item.name;
+    el.innerHTML=`${item.icon}<div class="pi-label" style="color:${item.col}">${lbl}</div><div class="pi-price" style="color:${item.wc}">🪙${fmt(item.price)}</div>`;
+    el.onclick=()=>{
+      const idx=tradeSelected.indexOf(item.id);
+      if(idx===-1)tradeSelected.push(item.id);else tradeSelected.splice(idx,1);
+      renderPickGrid();renderChips();
+    };
     grid.appendChild(el);
   });
-  renderTradeChips();
+  renderChips();
 }
-function toggleTradeSelect(id){
-  const idx=tradeSelectedIds.indexOf(id);
-  if(idx===-1)tradeSelectedIds.push(id);else tradeSelectedIds.splice(idx,1);
-  renderTradePickGrid();
-}
-function renderTradeChips(){
-  const cont=document.getElementById("tradeSelectedChips");
-  if(!tradeSelectedIds.length){cont.innerHTML='<span class="trade-empty-note">None selected</span>';return;}
+function renderChips(){
+  const cont=document.getElementById("tradeChips");
+  if(!tradeSelected.length){cont.innerHTML='<span class="chip-empty">None selected</span>';return;}
   cont.innerHTML="";
-  tradeSelectedIds.forEach(id=>{
+  tradeSelected.forEach(id=>{
     const item=state.inventory.find(i=>i.id===id);if(!item)return;
     const chip=document.createElement("div");
-    chip.className="trade-chip";chip.style.background=item.bg;chip.style.border=`1px solid ${item.color}55`;
-    const label=item.name.includes("|")?item.name.split("|")[1].trim():item.name;
-    chip.innerHTML=`<span>${item.icon}</span><span style="color:${item.color}">${label}</span><span style="color:#555;font-size:10px">×</span>`;
-    chip.onclick=()=>toggleTradeSelect(id);
+    chip.className="trade-chip";chip.style.background=item.bg;chip.style.border=`1px solid ${item.col}55`;
+    const lbl=item.name.includes("|")?item.name.split("|")[1].trim():item.name;
+    chip.innerHTML=`${item.icon}<span style="color:${item.col}">${lbl}</span><span style="color:#555;font-size:10px">×</span>`;
+    chip.onclick=()=>{const idx=tradeSelected.indexOf(id);if(idx!==-1)tradeSelected.splice(idx,1);renderPickGrid();};
     cont.appendChild(chip);
   });
 }
-
-// ── Send offer ──────────────────────────────────────────────
-async function sendTradeOffer(){
-  if(!state.username){showToast("Set a username first","#ff3b3b");return;}
-  const target=document.getElementById("tradeTargetInput").value.trim().toLowerCase().replace(/[^a-z0-9_]/g,"");
-  if(!target){showToast("Enter a target username","#ff3b3b");return;}
-  if(target===state.username){showToast("Can't trade with yourself","#ff3b3b");return;}
-  if(!tradeSelectedIds.length){showToast("Select items to offer","#ff3b3b");return;}
-
+function setTradeStatus(msg,type){
+  const el=document.getElementById("tradeStatus");el.textContent=msg;el.className="trade-status ts-"+type;el.style.display="block";
+}
+async function sendOffer(){
+  if(!state.username){toast("Set a username first","#ff3b3b");return;}
+  const target=document.getElementById("tradeTarget").value.trim().toLowerCase().replace(/[^a-z0-9_]/g,"");
+  if(!target){toast("Enter a username","#ff3b3b");return;}
+  if(target===state.username){toast("Can't trade with yourself","#ff3b3b");return;}
+  if(!tradeSelected.length){toast("Select items to offer","#ff3b3b");return;}
   setTradeStatus("Checking user...","info");
   const snap=await db.ref("users/"+target).get();
   if(!snap.exists()){setTradeStatus("User '"+target+"' not found.","error");return;}
-
-  const offerItems=tradeSelectedIds.map(id=>state.inventory.find(i=>i.id===id)).filter(Boolean);
-  const offerData={
-    from:state.username,to:target,
-    items:offerItems.map(i=>({id:i.id,name:i.name,rarity:i.rarity,icon:i.icon,color:i.color,bg:i.bg,wearShort:i.wearShort,wearColor:i.wearColor,price:i.price})),
-    timestamp:Date.now(),status:"pending"
-  };
-  const ref=await db.ref("trades/"+target+"/incoming").push(offerData);
-  await db.ref("trades/"+state.username+"/sent/"+ref.key).set({...offerData,refKey:ref.key});
-  tradeSelectedIds=[];renderTradePickGrid();
-  setTradeStatus("Trade offer sent to "+target+"!","success");
+  const items=tradeSelected.map(id=>state.inventory.find(i=>i.id===id)).filter(Boolean);
+  const offer={from:state.username,to:target,items:items.map(i=>({id:i.id,name:i.name,r:i.r,icon:i.icon,col:i.col,bg:i.bg,ws:i.ws,wc:i.wc,price:i.price})),timestamp:Date.now(),status:"pending"};
+  const ref=await db.ref("trades/"+target+"/incoming").push(offer);
+  await db.ref("trades/"+state.username+"/sent/"+ref.key).set({...offer,refKey:ref.key});
+  tradeSelected=[];renderPickGrid();
+  setTradeStatus("Offer sent to "+target+"!","success");
   loadOffers();
 }
-function setTradeStatus(msg,type){
-  const el=document.getElementById("tradeStatus");
-  el.textContent=msg;el.className="trade-status "+type;el.style.display="block";
-}
-
-// ── Load offers ─────────────────────────────────────────────
 function loadOffers(){
   if(!state.username)return;
-  // incoming
   db.ref("trades/"+state.username+"/incoming").on("value",snap=>{
     const cont=document.getElementById("incomingOffers");
     const offers=[];snap.forEach(c=>offers.push({key:c.key,...c.val()}));
@@ -861,67 +791,50 @@ function loadOffers(){
     if(!pending.length){cont.innerHTML='<p class="no-offers">No incoming offers.</p>';return;}
     cont.innerHTML="";
     pending.forEach(offer=>{
-      const card=document.createElement("div");card.className="trade-offer-card";
+      const card=document.createElement("div");card.className="offer-card";
       const total=offer.items.reduce((s,i)=>s+i.price,0);
-      card.innerHTML=`<div class="trade-offer-header"><div class="trade-offer-from">From: ${offer.from}</div><div class="trade-offer-time">${timeAgo(offer.timestamp)}</div></div><div class="trade-offer-items">${offer.items.map(i=>`<div class="trade-offer-item" style="background:${i.bg};border-color:${i.color}44">${i.icon}<div class="ti-name" style="color:${i.color}">${i.name.includes("|")?i.name.split("|")[1].trim():i.name}</div><div class="ti-price" style="color:${i.wearColor||i.color}">🪙${fmt(i.price)}</div></div>`).join("")}</div><div style="font-size:11px;color:#888;margin-bottom:8px">Total value: 🪙${fmt(total)}</div><div class="trade-offer-actions"><button class="trade-btn green" onclick="acceptTrade('${offer.key}',${JSON.stringify(offer).replace(/"/g,'&quot;')})">Accept</button><button class="trade-btn red" onclick="declineTrade('${offer.key}')">Decline</button></div>`;
+      card.innerHTML=`<div style="display:flex;justify-content:space-between"><div class="offer-from">From: ${offer.from}</div><div class="offer-time">${timeAgo(offer.timestamp)}</div></div><div class="offer-items">${offer.items.map(i=>`<div class="offer-item" style="background:${i.bg};border-color:${i.col}44">${i.icon}<div class="oi-name" style="color:${i.col}">${i.name.includes("|")?i.name.split("|")[1].trim():i.name}</div><div class="oi-price" style="color:${i.wc||i.col}">🪙${fmt(i.price)}</div></div>`).join("")}</div><div style="font-size:11px;color:#888;margin-bottom:8px">Total: 🪙${fmt(total)}</div><div class="offer-actions"><button class="trade-btn green" onclick='acceptOffer("${offer.key}",${JSON.stringify(offer).replace(/"/g,"&quot;")})'>Accept</button><button class="trade-btn red" onclick="declineOffer('${offer.key}')">Decline</button></div>`;
       cont.appendChild(card);
     });
   });
-  // sent
   db.ref("trades/"+state.username+"/sent").on("value",snap=>{
     const cont=document.getElementById("sentOffers");
     const offers=[];snap.forEach(c=>offers.push({key:c.key,...c.val()}));
     const pending=offers.filter(o=>o.status==="pending");
-    if(!pending.length){cont.innerHTML='<p class="no-offers">No pending sent offers.</p>';return;}
+    if(!pending.length){cont.innerHTML='<p class="no-offers">No pending offers.</p>';return;}
     cont.innerHTML="";
     pending.forEach(offer=>{
-      const card=document.createElement("div");card.className="trade-offer-card";
-      card.innerHTML=`<div class="trade-offer-header"><div class="trade-offer-from">To: ${offer.to}</div><div class="trade-offer-time">${timeAgo(offer.timestamp)}</div></div><div class="trade-offer-items">${offer.items.map(i=>`<div class="trade-offer-item" style="background:${i.bg};border-color:${i.color}44">${i.icon}<div class="ti-name" style="color:${i.color}">${i.name.includes("|")?i.name.split("|")[1].trim():i.name}</div></div>`).join("")}</div><div class="trade-offer-actions"><button class="trade-btn grey" onclick="cancelTrade('${offer.key}','${offer.to}')">Cancel</button></div>`;
+      const card=document.createElement("div");card.className="offer-card";
+      card.innerHTML=`<div style="display:flex;justify-content:space-between"><div class="offer-from">To: ${offer.to}</div><div class="offer-time">${timeAgo(offer.timestamp)}</div></div><div class="offer-items">${offer.items.map(i=>`<div class="offer-item" style="background:${i.bg};border-color:${i.col}44">${i.icon}</div>`).join("")}</div><div class="offer-actions"><button class="trade-btn grey" onclick="cancelOffer('${offer.key}')">Cancel</button></div>`;
       cont.appendChild(card);
     });
   });
 }
-
-async function acceptTrade(key, offer){
-  // Remove offered items from sender's inventory (best effort — items may no longer exist)
-  // Add items to our inventory
-  offer.items.forEach(tradeItem=>{
-    state.inventory.unshift({
-      id:itemIdCounter++,caseType:"trade",
-      rarity:tradeItem.rarity,icon:tradeItem.icon,color:tradeItem.color,bg:tradeItem.bg,
-      name:tradeItem.name,wearName:"Traded",wearShort:"TR",wearColor:"#4a9eff",
-      floatVal:0.5,price:tradeItem.price,locked:false
-    });
+async function acceptOffer(key,offer){
+  offer.items.forEach(ti=>{
+    state.inventory.unshift({id:idc++,ct:"trade",r:ti.r,icon:ti.icon,col:ti.col,bg:ti.bg,name:ti.name,ws:ti.ws||"TR",wc:ti.wc||"#4a9eff",fv:0.5,price:ti.price,locked:false});
   });
-  saveState();renderInventory();
-  // Mark accepted
+  save();renderInv();
   await db.ref("trades/"+state.username+"/incoming/"+key).update({status:"accepted"});
-  await db.ref("trades/"+offer.from+"/sent").orderByChild("to").equalTo(state.username).once("value",snap=>{
-    snap.forEach(c=>{ if(c.val().status==="pending")c.ref.update({status:"accepted"}); });
-  });
-  showToast("Trade accepted! Items added to inventory.","#4caf50");
+  toast("Trade accepted! Items added.","#4caf50");
 }
-async function declineTrade(key){
+async function declineOffer(key){
   await db.ref("trades/"+state.username+"/incoming/"+key).update({status:"declined"});
-  showToast("Trade declined.","#ff3b3b");
+  toast("Trade declined.","#ff3b3b");
 }
-async function cancelTrade(key,toUser){
+async function cancelOffer(key){
   await db.ref("trades/"+state.username+"/sent/"+key).update({status:"cancelled"});
-  showToast("Trade cancelled.");
+  toast("Trade cancelled.");
 }
+function timeAgo(ts){const s=Math.floor((Date.now()-ts)/1000);if(s<60)return s+"s ago";if(s<3600)return Math.floor(s/60)+"m ago";return Math.floor(s/3600)+"h ago";}
 
-function timeAgo(ts){
-  const s=Math.floor((Date.now()-ts)/1000);
-  if(s<60)return s+"s ago";if(s<3600)return Math.floor(s/60)+"m ago";return Math.floor(s/3600)+"h ago";
-}
-
-// ── Boot ────────────────────────────────────────────────────
+// ── Boot ──────────────────────────────────────────────────────
 function boot(){
   selectCase("standard");
   document.getElementById("statOpened").textContent=state.opened;
   document.getElementById("statBest").textContent=state.bestRarity||"—";
   document.getElementById("statSold").textContent="🪙 "+state.totalSold.toFixed(2);
-  updateWalletUI();updateClaimUI();renderInventory();renderUsernameUI();
+  updateWalletUI();updateClaimUI();renderInv();renderUnameUI();
   if(state.username)loadOffers();
 }
 boot();
