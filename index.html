@@ -772,15 +772,19 @@ async function sendOffer(){
   if(target===state.username){toast("Can't trade with yourself","#ff3b3b");return;}
   if(!tradeSelected.length){toast("Select items to offer","#ff3b3b");return;}
   setTradeStatus("Checking user...","info");
-  const snap=await db.ref("users/"+target).get();
-  if(!snap.exists()){setTradeStatus("User '"+target+"' not found.","error");return;}
-  const items=tradeSelected.map(id=>state.inventory.find(i=>i.id===id)).filter(Boolean);
-  const offer={from:state.username,to:target,items:items.map(i=>({id:i.id,name:i.name,r:i.r,icon:i.icon,col:i.col,bg:i.bg,ws:i.ws,wc:i.wc,price:i.price})),timestamp:Date.now(),status:"pending"};
-  const ref=await db.ref("trades/"+target+"/incoming").push(offer);
-  await db.ref("trades/"+state.username+"/sent/"+ref.key).set({...offer,refKey:ref.key});
-  tradeSelected=[];renderPickGrid();
-  setTradeStatus("Offer sent to "+target+"!","success");
-  loadOffers();
+  try{
+    const snap=await db.ref("users/"+target).get();
+    if(!snap.exists()){setTradeStatus("User '"+target+"' not found. Make sure they have set a username.","error");return;}
+    const items=tradeSelected.map(id=>state.inventory.find(i=>i.id===id)).filter(Boolean);
+    const offer={from:state.username,to:target,items:items.map(i=>({id:i.id,name:i.name,r:i.r,icon:i.icon,col:i.col,bg:i.bg,ws:i.ws,wc:i.wc,price:i.price})),timestamp:Date.now(),status:"pending"};
+    const ref=await db.ref("trades/"+target+"/incoming").push(offer);
+    await db.ref("trades/"+state.username+"/sent/"+ref.key).set({...offer,refKey:ref.key});
+    tradeSelected=[];renderPickGrid();
+    setTradeStatus("Offer sent to "+target+"! ✅","success");
+    loadOffers();
+  }catch(err){
+    setTradeStatus("Error: "+err.message+". Check Firebase rules (set to test mode).","error");
+  }
 }
 function loadOffers(){
   if(!state.username)return;
