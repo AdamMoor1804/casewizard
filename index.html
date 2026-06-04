@@ -259,7 +259,7 @@
         <div class="active-badge" id="badgeHeaven" style="display:none">●</div>
         <div class="tab-icon">✨</div>
         <div class="tab-name" style="color:#c8b8ff">Heaven</div>
-        <div class="tab-cost">🪙 1,500</div>
+        <div class="tab-cost">🪙 1,000</div>
         <div class="tab-mult">Min. Red · Heavenly</div>
       </div>
     </div>
@@ -389,11 +389,11 @@
     <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#f0c040"></div>Standard</div><div class="help-right">🪙 0.50 · Base</div></div>
     <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#c084fc"></div>Premium</div><div class="help-right">🪙 2.00 · 4×</div></div>
     <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#ff6a00"></div>Godly</div><div class="help-right">🪙 150 · 10× · min Pink</div></div>
-    <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#c8b8ff"></div>Heaven</div><div class="help-right">🪙 1,500 · min Red · Heavenly</div></div>
+    <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#c8b8ff"></div>Heaven</div><div class="help-right">🪙 1,000 · min Red · Heavenly</div></div>
     <hr class="help-divider">
     <div class="help-section-title">✨ Heaven Drops</div>
-    <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#ff3b3b"></div>Red</div><div class="help-right">87.5%<div class="help-mult">🪙 750 base</div></div></div>
-    <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#f0c040"></div>Gold</div><div class="help-right">11.5%<div class="help-mult">🪙 1,000 base</div></div></div>
+    <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#ff3b3b"></div>Red</div><div class="help-right">87.5%<div class="help-mult">🪙 700 base</div></div></div>
+    <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#f0c040"></div>Gold</div><div class="help-right">11.5%<div class="help-mult">🪙 1,500 base</div></div></div>
     <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#c8b8ff"></div><span class="heavenly-text">Heavenly</span></div><div class="help-right">1%<div class="help-mult heavenly-text">🪙 10,000 base</div></div></div>
     <hr class="help-divider">
     <div class="help-section-title">👑 Godly Drops</div>
@@ -437,7 +437,7 @@ const CASES = {
   standard:{ name:"Standard Case", icon:"🎁", cost:0.50,  mult:1,  accent:"#f0c040", boxCls:"case-box-standard", btnCls:"btn-standard", lineCls:"c-standard", reelCls:"",             pool:"std"    },
   premium: { name:"Premium Case",  icon:"💼", cost:2.00,  mult:4,  accent:"#c084fc", boxCls:"case-box-premium",  btnCls:"btn-premium",  lineCls:"c-premium",  reelCls:"reel-premium", pool:"std"    },
   godly:   { name:"Godly Case",    icon:"👑", cost:150,   mult:10, accent:"#ff6a00", boxCls:"case-box-godly",    btnCls:"btn-godly",    lineCls:"c-godly",    reelCls:"reel-godly",   pool:"godly"  },
-  heaven:  { name:"Heaven Case",   icon:"✨", cost:1500,  mult:1,  accent:"#c8b8ff", boxCls:"case-box-heaven",   btnCls:"btn-heaven",   lineCls:"c-heaven",   reelCls:"reel-heaven",  pool:"heaven" },
+  heaven:  { name:"Heaven Case",   icon:"✨", cost:1000,  mult:1,  accent:"#c8b8ff", boxCls:"case-box-heaven",   btnCls:"btn-heaven",   lineCls:"c-heaven",   reelCls:"reel-heaven",  pool:"heaven" },
 };
 const WEARS=[
   {name:"Battle-Scarred",short:"BS",w:360,mult:0.5, fMin:0.45,fMax:1.00,col:"#f44336"},
@@ -460,8 +460,8 @@ const GODLY_POOL=[
   {r:"Gold",col:"#f0c040",bg:"#2a1800",icon:"💎",w:10, ch:"1%", bp:250.00},
 ];
 const HEAVEN_POOL=[
-  {r:"Red",     col:"#ff3b3b",bg:"#2a0505",  icon:"🔥",w:875,ch:"87.5%",bp:750.00  },
-  {r:"Gold",    col:"#f0c040",bg:"#2a1800",  icon:"💎",w:115,ch:"11.5%",bp:1000.00 },
+  {r:"Red",     col:"#ff3b3b",bg:"#2a0505",  icon:"🔥",w:875,ch:"87.5%",bp:700.00  },
+  {r:"Gold",    col:"#f0c040",bg:"#2a1800",  icon:"💎",w:115,ch:"11.5%",bp:1500.00 },
   {r:"Heavenly",col:"#c8b8ff",bg:"#0d0820",  icon:"✨",w:10, ch:"1%",   bp:10000.00},
 ];
 const NAMES={
