@@ -31,10 +31,13 @@
     .case-tab.active-godly{border-color:#ff6a00;background:#1a0800;box-shadow:0 0 18px #ff6a0033;}
     .case-tab.active-heaven{border-color:#c8b8ff;background:#080415;box-shadow:0 0 18px #c8b8ff33;animation:heavenTabPulse 2s ease-in-out infinite;}
     @keyframes heavenTabPulse{0%,100%{box-shadow:0 0 18px #c8b8ff33;}50%{box-shadow:0 0 30px #c8b8ff88;}}
+    .case-tab.active-brainrot{border-color:#00ff88;background:#001a0d;box-shadow:0 0 18px #00ff8833;animation:brainrotTabPulse 1.5s ease-in-out infinite;}
+    @keyframes brainrotTabPulse{0%,100%{box-shadow:0 0 18px #00ff8833;}50%{box-shadow:0 0 30px #00ff8888;}}
     .active-standard .active-badge{background:#f0c04033;color:#f0c040;}
     .active-premium .active-badge{background:#c084fc33;color:#c084fc;}
     .active-godly .active-badge{background:#ff6a0033;color:#ff6a00;}
     .active-heaven .active-badge{background:#c8b8ff33;color:#c8b8ff;}
+    .active-brainrot .active-badge{background:#00ff8833;color:#00ff88;}
 
     .wallet-bar{display:flex;align-items:center;justify-content:space-between;background:#18181f;border:1px solid #2a2a38;border-radius:12px;padding:10px 18px;margin-bottom:1.5rem;flex-wrap:wrap;gap:8px;}
     .wallet-balance{font-size:18px;font-weight:600;color:#f0c040;}
@@ -64,6 +67,8 @@
     @keyframes godlyPulse{0%,100%{box-shadow:0 0 14px #ff6a0044;}50%{box-shadow:0 0 30px #ff6a0099;}}
     .case-box-heaven{background:#080415;border-color:#c8b8ff88;animation:heavenPulse 2s ease-in-out infinite;}
     @keyframes heavenPulse{0%,100%{box-shadow:0 0 14px #c8b8ff44;}50%{box-shadow:0 0 35px #c8b8ffaa,0 0 60px #c8b8ff22;}}
+    .case-box-brainrot{background:#001a0d;border-color:#00ff8888;animation:brainrotPulse 1.5s ease-in-out infinite;}
+    @keyframes brainrotPulse{0%,100%{box-shadow:0 0 14px #00ff8844;}50%{box-shadow:0 0 35px #00ff88aa,0 0 60px #00ff8822;}}
     .case-box-heaven{background:#080415;border-color:#c8b8ff88;animation:heavenPulse 2s ease-in-out infinite;}
     @keyframes heavenPulse{0%,100%{box-shadow:0 0 14px #c8b8ff44;}50%{box-shadow:0 0 35px #c8b8ffaa,0 0 60px #c8b8ff33;}}
 
@@ -78,9 +83,14 @@
     .reel-box.reel-godly{border-color:#ff6a0055;}
     .reel-box.reel-heaven{border-color:#c8b8ff55;animation:heavenBorder 2s ease-in-out infinite;}
     @keyframes heavenBorder{0%,100%{border-color:#c8b8ff33;}50%{border-color:#c8b8ffaa;}}
+    .reel-box.reel-brainrot{border-color:#00ff8855;animation:brainrotBorder 1.5s ease-in-out infinite;}
+    @keyframes brainrotBorder{0%,100%{border-color:#00ff8833;}50%{border-color:#00ff88aa;}}
     .reel-line.c-heaven{background:#c8b8ff;}
     .reel-line.c-heaven::before{top:0;border-top:10px solid #c8b8ff;}
     .reel-line.c-heaven::after{bottom:0;border-bottom:10px solid #c8b8ff;}
+    .reel-line.c-brainrot{background:#00ff88;}
+    .reel-line.c-brainrot::before{top:0;border-top:10px solid #00ff88;}
+    .reel-line.c-brainrot::after{bottom:0;border-bottom:10px solid #00ff88;}
     .reel-fade-l,.reel-fade-r{position:absolute;top:0;bottom:0;width:70px;z-index:5;pointer-events:none;}
     .reel-fade-l{left:0;background:linear-gradient(to right,#13131a,transparent);}
     .reel-fade-r{right:0;background:linear-gradient(to left,#13131a,transparent);}
@@ -114,6 +124,11 @@
     .btn-premium{background:#c084fc;color:#0d0018;}
     .btn-godly{background:linear-gradient(135deg,#ff6a00,#ffb347);color:#1a0800;}
     .btn-heaven{background:linear-gradient(135deg,#a78bfa,#c8b8ff);color:#0d0820;font-weight:700;}
+    .btn-brainrot{background:linear-gradient(135deg,#00ff88,#00cc6a);color:#001a0d;font-weight:700;}
+    .brainrot-text{color:#00ff88;font-weight:700;text-shadow:0 0 8px #00ff8866;}
+    .tralalero-text{color:#ff4500;font-weight:700;text-shadow:0 0 8px #ff450066;}
+    .tungtung-text{background:linear-gradient(90deg,#ff00ff,#ff66ff,#cc00cc,#ff00ff);background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:tungShimmer 1.5s linear infinite;font-weight:700;}
+    @keyframes tungShimmer{0%{background-position:0%;}100%{background-position:200%;}}
     .heavenly-text{background:linear-gradient(90deg,#c8b8ff,#e0d4ff,#a78bfa,#c8b8ff);background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:heavenlyShimmer 2s linear infinite;font-weight:700;}
     @keyframes heavenlyShimmer{0%{background-position:0%;}100%{background-position:200%;}}
 
@@ -151,6 +166,7 @@
     .tag-premium{background:#c084fc22;color:#c084fc;}
     .tag-godly{background:#ff6a0022;color:#ff6a00;}
     .tag-heaven{background:#c8b8ff22;color:#c8b8ff;}
+    .tag-brainrot{background:#00ff8822;color:#00ff88;}
     .inv-actions{display:flex;gap:2px;margin-top:3px;width:calc(100% - 8px);}
     .lock-btn,.sell-btn{flex:1;padding:2px 0;border-radius:5px;font-size:9px;font-weight:600;cursor:pointer;border:1px solid;text-align:center;}
     .lock-btn{background:rgba(255,255,255,0.05);border-color:#ffffff33;color:#aaa;}
@@ -225,6 +241,13 @@
         <div class="tab-name" style="color:#c8b8ff">Heaven</div>
         <div class="tab-cost">🪙 1,000</div>
         <div class="tab-mult">Min. Red · Heavenly</div>
+      </div>
+      <div class="case-tab" id="tabBrainrot" onclick="selectCase('brainrot')">
+        <div class="active-badge" id="badgeBrainrot" style="display:none">●</div>
+        <div class="tab-icon">🧠</div>
+        <div class="tab-name" style="color:#00ff88">Brainrot</div>
+        <div class="tab-cost">🪙 5,000</div>
+        <div class="tab-mult">67 · Tralalero · Tung Tung</div>
       </div>
     </div>
 
@@ -354,10 +377,11 @@
 <script>
 // ── Data ──────────────────────────────────────────────────────
 const CASES = {
-  standard:{ name:"Standard Case", icon:"🎁", cost:0.50,  mult:1,  accent:"#f0c040", boxCls:"case-box-standard", btnCls:"btn-standard", lineCls:"c-standard", reelCls:"",             pool:"std"    },
-  premium: { name:"Premium Case",  icon:"💼", cost:2.00,  mult:4,  accent:"#c084fc", boxCls:"case-box-premium",  btnCls:"btn-premium",  lineCls:"c-premium",  reelCls:"reel-premium", pool:"std"    },
-  godly:   { name:"Godly Case",    icon:"👑", cost:150,   mult:10, accent:"#ff6a00", boxCls:"case-box-godly",    btnCls:"btn-godly",    lineCls:"c-godly",    reelCls:"reel-godly",   pool:"godly"  },
-  heaven:  { name:"Heaven Case",   icon:"✨", cost:1000,  mult:1,  accent:"#c8b8ff", boxCls:"case-box-heaven",   btnCls:"btn-heaven",   lineCls:"c-heaven",   reelCls:"reel-heaven",  pool:"heaven" },
+  standard:{ name:"Standard Case", icon:"🎁", cost:0.50,  mult:1,  accent:"#f0c040", boxCls:"case-box-standard", btnCls:"btn-standard", lineCls:"c-standard", reelCls:"",             pool:"std"      },
+  premium: { name:"Premium Case",  icon:"💼", cost:2.00,  mult:4,  accent:"#c084fc", boxCls:"case-box-premium",  btnCls:"btn-premium",  lineCls:"c-premium",  reelCls:"reel-premium", pool:"std"      },
+  godly:   { name:"Godly Case",    icon:"👑", cost:150,   mult:10, accent:"#ff6a00", boxCls:"case-box-godly",    btnCls:"btn-godly",    lineCls:"c-godly",    reelCls:"reel-godly",   pool:"godly"    },
+  heaven:  { name:"Heaven Case",   icon:"✨", cost:1000,  mult:1,  accent:"#c8b8ff", boxCls:"case-box-heaven",   btnCls:"btn-heaven",   lineCls:"c-heaven",   reelCls:"reel-heaven",  pool:"heaven"   },
+  brainrot:{ name:"Brainrot Case", icon:"🧠", cost:5000,  mult:1,  accent:"#00ff88", boxCls:"case-box-brainrot", btnCls:"btn-brainrot", lineCls:"c-brainrot", reelCls:"reel-brainrot",pool:"brainrot" },
 };
 const WEARS=[
   {name:"Battle-Scarred",short:"BS",w:360,mult:0.5, fMin:0.45,fMax:1.00,col:"#f44336"},
@@ -384,18 +408,26 @@ const HEAVEN_POOL=[
   {r:"Gold",    col:"#f0c040",bg:"#2a1800",  icon:"💎",w:115,ch:"11.5%",bp:1500.00 },
   {r:"Heavenly",col:"#c8b8ff",bg:"#0d0820",  icon:"✨",w:10, ch:"1%",   bp:10000.00},
 ];
+const BRAINROT_POOL=[
+  {r:"67",       col:"#00ff88",bg:"#001a0d",icon:"🗿",w:875,ch:"87.5%",bp:3000.00 },
+  {r:"Tralalero",col:"#ff4500",bg:"#1a0800",icon:"🦈",w:120,ch:"12%",  bp:7500.00 },
+  {r:"TungTung", col:"#ff00ff",bg:"#1a001a",icon:"🥁",w:5,  ch:"0.5%", bp:50000.00},
+];
 const NAMES={
-  Blue:    ["Iron Barrel","Cold Finish","Steel Coat","Base Wrap","Grey Matter"],
-  Purple:  ["Void Static","Amethyst Edge","Neural Arc","Phase Shift","Dark Pulse"],
-  Pink:    ["Sakura Storm","Neon Bloom","Rose Fade","Cherry Burst","Candy Wave"],
-  Red:     ["Crimson Web","Dragon Strike","Blood Tiger","Ember Coil","Inferno"],
-  Gold:    ["AWP | Gold Leaf","AK-47 | Gilded","Karambit | Aurum","M4 | Sovereign","Butterfly | Gold"],
-  Heavenly:["Angel's Wing","Divine Blade","Celestial Edge","Sacred Coil","Heaven's Arc"],
+  Blue:     ["Iron Barrel","Cold Finish","Steel Coat","Base Wrap","Grey Matter"],
+  Purple:   ["Void Static","Amethyst Edge","Neural Arc","Phase Shift","Dark Pulse"],
+  Pink:     ["Sakura Storm","Neon Bloom","Rose Fade","Cherry Burst","Candy Wave"],
+  Red:      ["Crimson Web","Dragon Strike","Blood Tiger","Ember Coil","Inferno"],
+  Gold:     ["AWP | Gold Leaf","AK-47 | Gilded","Karambit | Aurum","M4 | Sovereign","Butterfly | Gold"],
+  Heavenly: ["Angel's Wing","Divine Blade","Celestial Edge","Sacred Coil","Heaven's Arc"],
+  "67":     ["Bombardiro","Crocodilo","Lirili Larila","Brr Brr Patapim","Bombombini"],
+  Tralalero:["Tralala Shark","Tralalero Express","Tralala Supreme","La La Lero","Shark Attack"],
+  TungTung: ["Tung Tung Sahur","Tung Supreme","Anomaly Tung","Tung Tung OG","Sahur Legend"],
 };
-const RARITY_ORDER=["Blue","Purple","Pink","Red","Gold","Heavenly"];
+const RARITY_ORDER=["Blue","Purple","Pink","Red","Gold","Heavenly","67","Tralalero","TungTung"];
 
 function wRand(pool){const t=pool.reduce((s,x)=>s+x.w,0);let r=Math.random()*t;for(const x of pool){r-=x.w;if(r<=0)return x;}return pool[0];}
-function pickSkin(pool){if(pool==="godly")return wRand(GODLY_POOL);if(pool==="heaven")return wRand(HEAVEN_POOL);return wRand(STD_POOL);}
+function pickSkin(pool){if(pool==="godly")return wRand(GODLY_POOL);if(pool==="heaven")return wRand(HEAVEN_POOL);if(pool==="brainrot")return wRand(BRAINROT_POOL);return wRand(STD_POOL);}
 function pickWear(){let r=Math.random()*WT;for(const w of WEARS){r-=w.w;if(r<=0)return w;}return WEARS[0];}
 function pickFloat(wear){return wear.fMin+Math.random()*(wear.fMax-wear.fMin);}
 function pickName(r){const a=NAMES[r];return a[Math.floor(Math.random()*a.length)];}
@@ -419,7 +451,7 @@ let idc=Date.now();
 function selectCase(type){
   if(spinning)return;
   activeCase=type;
-  ["standard","premium","godly","heaven"].forEach(t=>{
+  ["standard","premium","godly","heaven","brainrot"].forEach(t=>{
     const cap=t[0].toUpperCase()+t.slice(1);
     document.getElementById("tab"+cap).className="case-tab"+(t===type?" active-"+t:"");
     document.getElementById("badge"+cap).style.display=t===type?"":"none";
@@ -594,8 +626,11 @@ function showResult(skin,wear,floatVal,slot){
   panel.classList.remove("show");void panel.offsetWidth;
   const price=parseFloat((skin.bp*c.mult*wear.mult).toFixed(2));
   const isHeavenly=skin.r==="Heavenly";
+  const isTung=skin.r==="TungTung";
+  const isTral=skin.r==="Tralalero";
+  const is67=skin.r==="67";
   const sw=document.getElementById("resSwatch"+slot);
-  sw.style.background=skin.bg;sw.style.border=`2px solid ${isHeavenly?"#c8b8ff":skin.col}`;sw.textContent=skin.icon;
+  sw.style.background=skin.bg;sw.style.border=`2px solid ${isHeavenly?"#c8b8ff":isTung?"#ff00ff":skin.col}`;sw.textContent=skin.icon;
   const name=pickName(skin.r);
   document.getElementById("resBadge"+slot).textContent=c.name;
   document.getElementById("resBadge"+slot).className="r-badge rb-"+activeCase;
@@ -603,10 +638,16 @@ function showResult(skin,wear,floatVal,slot){
   document.getElementById("resWear"+slot).textContent=wear.name;document.getElementById("resWear"+slot).style.color=wear.col;
   const re=document.getElementById("resRarity"+slot);
   if(isHeavenly){re.innerHTML='<span class="heavenly-text">Heavenly ✨</span>';}
+  else if(isTung){re.innerHTML='<span class="tungtung-text">Tung Tung 🥁</span>';}
+  else if(isTral){re.innerHTML='<span class="tralalero-text">Tralalero 🦈</span>';}
+  else if(is67){re.innerHTML='<span class="brainrot-text">67 🗿</span>';}
   else{re.textContent=skin.r;re.style.color=skin.col;}
   document.getElementById("resChance"+slot).textContent=`Skin: ${skin.ch}  ·  Wear: ${(wear.w/WT*100).toFixed(0)}%`;
   const pe=document.getElementById("resPrice"+slot);
   if(isHeavenly)pe.innerHTML=`<span>🪙</span><span class="heavenly-text">${fmt(price)} coins if sold</span>`;
+  else if(isTung)pe.innerHTML=`<span>🪙</span><span class="tungtung-text">${fmt(price)} coins if sold</span>`;
+  else if(isTral)pe.innerHTML=`<span>🪙</span><span class="tralalero-text">${fmt(price)} coins if sold</span>`;
+  else if(is67)pe.innerHTML=`<span>🪙</span><span class="brainrot-text">${fmt(price)} coins if sold</span>`;
   else pe.innerHTML=`<span>🪙</span><span style="color:${wear.col}">${fmt(price)} coins if sold</span>`;
   document.getElementById("resNeedle"+slot).style.left=(floatVal*100)+"%";
   panel.classList.add("show");
