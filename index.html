@@ -32,11 +32,14 @@
     @keyframes heavenTabPulse{0%,100%{box-shadow:0 0 18px #c8b8ff33;}50%{box-shadow:0 0 30px #c8b8ff88;}}
     .case-tab.active-brainrot{border-color:#00ff88;background:#001a0d;box-shadow:0 0 18px #00ff8833;animation:brainrotTabPulse 1.5s ease-in-out infinite;}
     @keyframes brainrotTabPulse{0%,100%{box-shadow:0 0 18px #00ff8833;}50%{box-shadow:0 0 30px #00ff8888;}}
+    .case-tab.active-superhero{border-color:#e63946;background:#1a0205;box-shadow:0 0 18px #e6394633;animation:superheroTabPulse 1.8s ease-in-out infinite;}
+    @keyframes superheroTabPulse{0%,100%{box-shadow:0 0 18px #e6394633;}50%{box-shadow:0 0 30px #e6394688;}}
     .active-standard .active-badge{background:#f0c04033;color:#f0c040;}
     .active-premium .active-badge{background:#c084fc33;color:#c084fc;}
     .active-godly .active-badge{background:#ff6a0033;color:#ff6a00;}
     .active-heaven .active-badge{background:#c8b8ff33;color:#c8b8ff;}
     .active-brainrot .active-badge{background:#00ff8833;color:#00ff88;}
+    .active-superhero .active-badge{background:#e6394633;color:#e63946;}
 
     .wallet-bar{display:flex;align-items:center;justify-content:space-between;background:#18181f;border:1px solid #2a2a38;border-radius:12px;padding:10px 18px;margin-bottom:1.5rem;flex-wrap:wrap;gap:8px;}
     .wallet-balance{font-size:18px;font-weight:600;color:#f0c040;}
@@ -73,6 +76,8 @@
     @keyframes heavenPulse{0%,100%{box-shadow:0 0 14px #c8b8ff44;}50%{box-shadow:0 0 35px #c8b8ffaa;}}
     .case-box-brainrot{background:#001a0d;border-color:#00ff8888;animation:brainrotPulse 1.5s ease-in-out infinite;}
     @keyframes brainrotPulse{0%,100%{box-shadow:0 0 14px #00ff8844;}50%{box-shadow:0 0 35px #00ff88aa;}}
+    .case-box-superhero{background:#1a0205;border-color:#e6394888;animation:superheroPulse 1.8s ease-in-out infinite;}
+    @keyframes superheroPulse{0%,100%{box-shadow:0 0 14px #e6394844;}50%{box-shadow:0 0 35px #e63948cc,0 0 60px #e6394833;}}
 
     .particles-wrap{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;}
     .particle{position:absolute;border-radius:50%;animation:burst 0.9s ease-out forwards;}
@@ -86,6 +91,8 @@
     @keyframes heavenBorder{0%,100%{border-color:#c8b8ff33;}50%{border-color:#c8b8ffaa;}}
     .reel-box.reel-brainrot{border-color:#00ff8855;animation:brainrotBorder 1.5s ease-in-out infinite;}
     @keyframes brainrotBorder{0%,100%{border-color:#00ff8833;}50%{border-color:#00ff88aa;}}
+    .reel-box.reel-superhero{border-color:#e6394855;animation:superheroBorder 1.8s ease-in-out infinite;}
+    @keyframes superheroBorder{0%,100%{border-color:#e6394833;}50%{border-color:#e63948aa;}}
     .reel-fade-l,.reel-fade-r{position:absolute;top:0;bottom:0;width:50px;z-index:5;pointer-events:none;}
     .reel-fade-l{left:0;background:linear-gradient(to right,#13131a,transparent);}
     .reel-fade-r{right:0;background:linear-gradient(to left,#13131a,transparent);}
@@ -96,6 +103,7 @@
     .reel-line.c-godly{background:#ff6a00;}    .reel-line.c-godly::before{top:0;border-top:10px solid #ff6a00;}    .reel-line.c-godly::after{bottom:0;border-bottom:10px solid #ff6a00;}
     .reel-line.c-heaven{background:#c8b8ff;}   .reel-line.c-heaven::before{top:0;border-top:10px solid #c8b8ff;}   .reel-line.c-heaven::after{bottom:0;border-bottom:10px solid #c8b8ff;}
     .reel-line.c-brainrot{background:#00ff88;} .reel-line.c-brainrot::before{top:0;border-top:10px solid #00ff88;} .reel-line.c-brainrot::after{bottom:0;border-bottom:10px solid #00ff88;}
+    .reel-line.c-superhero{background:#e63946;} .reel-line.c-superhero::before{top:0;border-top:10px solid #e63946;} .reel-line.c-superhero::after{bottom:0;border-bottom:10px solid #e63946;}
     .reel-track{display:flex;align-items:center;height:128px;position:absolute;top:0;left:0;}
     .reel-card{width:100px;height:108px;margin:0 3px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;border:2px solid rgba(255,255,255,0.08);}
     .reel-card .rc-icon{font-size:24px;}
@@ -114,6 +122,13 @@
     .btn-godly{background:linear-gradient(135deg,#ff6a00,#ffb347);color:#1a0800;}
     .btn-heaven{background:linear-gradient(135deg,#a78bfa,#c8b8ff);color:#0d0820;font-weight:700;}
     .btn-brainrot{background:linear-gradient(135deg,#00ff88,#00cc6a);color:#001a0d;font-weight:700;}
+    .btn-superhero{background:linear-gradient(135deg,#e63946,#ff6b6b);color:#fff;font-weight:700;}
+
+    .hulk-text{color:#4caf50;font-weight:700;text-shadow:0 0 8px #4caf5066;}
+    .ironman-text{color:#e63946;font-weight:700;text-shadow:0 0 8px #e6394666;}
+    .spiderman-text{color:#c084fc;font-weight:700;text-shadow:0 0 8px #c084fc66;}
+    .thor-text{background:linear-gradient(90deg,#f0c040,#fff5aa,#f0c040);background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:thorShimmer 1.5s linear infinite;font-weight:700;}
+    @keyframes thorShimmer{0%{background-position:0%;}100%{background-position:200%;}}
 
     .heavenly-text{background:linear-gradient(90deg,#c8b8ff,#e0d4ff,#a78bfa,#c8b8ff);background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:hvShimmer 2s linear infinite;font-weight:700;}
     @keyframes hvShimmer{0%{background-position:0%;}100%{background-position:200%;}}
@@ -133,7 +148,7 @@
     .r-chance{font-size:9px;color:#777;margin-top:2px;}
     .r-price{font-size:12px;font-weight:600;margin-top:5px;display:inline-flex;align-items:center;gap:4px;}
     .r-badge{display:inline-block;font-size:8px;font-weight:700;padding:2px 6px;border-radius:6px;margin-top:3px;}
-    .rb-standard{background:#f0c04022;color:#f0c040;} .rb-premium{background:#c084fc22;color:#c084fc;} .rb-godly{background:#ff6a0022;color:#ff6a00;} .rb-heaven{background:#c8b8ff22;color:#c8b8ff;} .rb-brainrot{background:#00ff8822;color:#00ff88;}
+    .rb-standard{background:#f0c04022;color:#f0c040;} .rb-premium{background:#c084fc22;color:#c084fc;} .rb-godly{background:#ff6a0022;color:#ff6a00;} .rb-heaven{background:#c8b8ff22;color:#c8b8ff;} .rb-brainrot{background:#00ff8822;color:#00ff88;} .rb-superhero{background:#e6394622;color:#e63946;}
     .wear-bar-wrap{margin-top:5px;width:100%;max-width:180px;}
     .wear-bar-track{height:4px;border-radius:3px;background:linear-gradient(to right,#4caf50,#8bc34a,#ffeb3b,#ff9800,#f44336);position:relative;}
     .wear-bar-needle{position:absolute;top:-4px;width:3px;height:12px;background:#fff;border-radius:2px;transform:translateX(-50%);box-shadow:0 0 4px #000a;transition:left 0.6s cubic-bezier(0.34,1.2,0.64,1);}
@@ -150,7 +165,7 @@
     .inv-wear{font-size:7.5px;font-weight:700;margin-top:1px;}
     .inv-price{font-size:9.5px;margin-top:1px;font-weight:600;}
     .inv-tag{font-size:7px;font-weight:700;margin-top:2px;padding:1px 5px;border-radius:6px;}
-    .tag-standard{background:#f0c04022;color:#f0c040;} .tag-premium{background:#c084fc22;color:#c084fc;} .tag-godly{background:#ff6a0022;color:#ff6a00;} .tag-heaven{background:#c8b8ff22;color:#c8b8ff;} .tag-brainrot{background:#00ff8822;color:#00ff88;}
+    .tag-standard{background:#f0c04022;color:#f0c040;} .tag-premium{background:#c084fc22;color:#c084fc;} .tag-godly{background:#ff6a0022;color:#ff6a00;} .tag-heaven{background:#c8b8ff22;color:#c8b8ff;} .tag-brainrot{background:#00ff8822;color:#00ff88;} .tag-superhero{background:#e6394622;color:#e63946;}
     .inv-actions{display:flex;gap:2px;margin-top:3px;width:calc(100% - 8px);}
     .lock-btn,.sell-btn{flex:1;padding:2px 0;border-radius:5px;font-size:9px;font-weight:600;cursor:pointer;border:1px solid;text-align:center;}
     .lock-btn{background:rgba(255,255,255,0.05);border-color:#ffffff33;color:#aaa;}
@@ -228,6 +243,13 @@
       <div class="tab-name" style="color:#00ff88">Brainrot</div>
       <div class="tab-cost">🪙 5,000</div>
       <div class="tab-mult">67 · Tralalero · Tung</div>
+    </div>
+    <div class="case-tab" id="tabSuperhero" onclick="selectCase('superhero')">
+      <div class="active-badge" id="badgeSuperhero" style="display:none">●</div>
+      <div class="tab-icon">🦸</div>
+      <div class="tab-name" style="color:#e63946">Superhero</div>
+      <div class="tab-cost">🪙 20,000</div>
+      <div class="tab-mult">Hulk · Iron Man · Thor</div>
     </div>
   </div>
 
@@ -350,6 +372,13 @@
     <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#ff6a00"></div>Godly</div><div class="help-right">🪙 150 · 10× · min Pink</div></div>
     <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#c8b8ff"></div>Heaven</div><div class="help-right">🪙 1,000 · min Red</div></div>
     <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#00ff88"></div>Brainrot</div><div class="help-right">🪙 5,000 · 67/Tral/Tung</div></div>
+    <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#e63946"></div>Superhero</div><div class="help-right">🪙 20,000 · min Hulk</div></div>
+    <hr class="help-divider">
+    <div class="help-section-title">🦸 Superhero Drops</div>
+    <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#4caf50"></div><span class="hulk-text">Hulk</span></div><div class="help-right">85%<div class="help-mult">🪙 10,000 base</div></div></div>
+    <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#e63946"></div><span class="ironman-text">Iron Man</span></div><div class="help-right">10%<div class="help-mult">🪙 30,000 base</div></div></div>
+    <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#c084fc"></div><span class="spiderman-text">Spider-Man</span></div><div class="help-right">4.5%<div class="help-mult">🪙 75,000 base</div></div></div>
+    <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#f0c040"></div><span class="thor-text">Thor</span></div><div class="help-right">0.5%<div class="help-mult thor-text">🪙 200,000 base</div></div></div>
     <hr class="help-divider">
     <div class="help-section-title">🧠 Brainrot Drops</div>
     <div class="help-row"><div class="help-name"><div class="help-dot" style="background:#00ff88"></div>67 🔢</div><div class="help-right">87.5%<div class="help-mult">🪙 3,000 base</div></div></div>
@@ -384,7 +413,8 @@ const CASES = {
   premium: { name:"Premium Case",  icon:"💼", cost:2.00,  mult:4,  accent:"#c084fc", boxCls:"case-box-premium",  btnCls:"btn-premium",  lineCls:"c-premium",  reelCls:"reel-premium", pool:"std"      },
   godly:   { name:"Godly Case",    icon:"👑", cost:150,   mult:10, accent:"#ff6a00", boxCls:"case-box-godly",    btnCls:"btn-godly",    lineCls:"c-godly",    reelCls:"reel-godly",   pool:"godly"    },
   heaven:  { name:"Heaven Case",   icon:"✨", cost:1000,  mult:1,  accent:"#c8b8ff", boxCls:"case-box-heaven",   btnCls:"btn-heaven",   lineCls:"c-heaven",   reelCls:"reel-heaven",  pool:"heaven"   },
-  brainrot:{ name:"Brainrot Case", icon:"🧠", cost:5000,  mult:1,  accent:"#00ff88", boxCls:"case-box-brainrot", btnCls:"btn-brainrot", lineCls:"c-brainrot", reelCls:"reel-brainrot",pool:"brainrot" },
+  brainrot:  { name:"Brainrot Case",  icon:"🧠", cost:5000,  mult:1, accent:"#00ff88", boxCls:"case-box-brainrot",  btnCls:"btn-brainrot",  lineCls:"c-brainrot",  reelCls:"reel-brainrot",  pool:"brainrot"  },
+  superhero: { name:"Superhero Case", icon:"🦸", cost:20000, mult:1, accent:"#e63946", boxCls:"case-box-superhero", btnCls:"btn-superhero", lineCls:"c-superhero", reelCls:"reel-superhero", pool:"superhero" },
 };
 const WEARS=[
   {name:"Battle-Scarred",short:"BS",w:360,mult:0.5, fMin:0.45,fMax:1.00,col:"#f44336"},
@@ -416,6 +446,12 @@ const BRAINROT_POOL=[
   {r:"Tralalero",col:"#ff4500",bg:"#1a0800",icon:"🦈",   w:120,ch:"12%",  bp:7500.00 },
   {r:"TungTung", col:"#ff00ff",bg:"#1a001a",icon:"🦇",   w:5,  ch:"0.5%", bp:50000.00},
 ];
+const SUPERHERO_POOL=[
+  {r:"Hulk",     col:"#4caf50",bg:"#0a1a0a",icon:"💚",w:850,ch:"85%",  bp:10000.00 },
+  {r:"IronMan",  col:"#e63946",bg:"#1a0505",icon:"🔴",w:100,ch:"10%",  bp:30000.00 },
+  {r:"SpiderMan",col:"#c084fc",bg:"#150d1e",icon:"🕷️",w:45, ch:"4.5%", bp:75000.00 },
+  {r:"Thor",     col:"#f0c040",bg:"#1a1400",icon:"⚡",w:5,  ch:"0.5%", bp:200000.00},
+];
 const NAMES={
   Blue:     ["Iron Barrel","Cold Finish","Steel Coat","Base Wrap","Grey Matter"],
   Purple:   ["Void Static","Amethyst Edge","Neural Arc","Phase Shift","Dark Pulse"],
@@ -426,11 +462,15 @@ const NAMES={
   "67":     ["Bombardiro","Crocodilo","Lirili Larila","Brr Brr Patapim","Bombombini"],
   Tralalero:["Tralala Shark","Tralalero Express","Tralala Supreme","La La Lero","Shark Attack"],
   TungTung: ["Tung Tung Sahur","Tung Supreme","Anomaly Tung","Tung Tung OG","Sahur Legend"],
+  Hulk:     ["Gamma Surge","Smash Strike","Green Rage","Hulk Buster","Savage Hulk"],
+  IronMan:  ["Mark VII","Extremis Armor","War Machine","Iron Patriot","Bleeding Edge"],
+  SpiderMan:["Web Slinger","Stealth Suit","Iron Spider","Symbiote Suit","Scarlet Spider"],
+  Thor:     ["Mjolnir Strike","Stormbreaker","God of Thunder","Worthy One","Ragnarok Thor"],
 };
-const RARITY_ORDER=["Blue","Purple","Pink","Red","Gold","Heavenly","67","Tralalero","TungTung"];
+const RARITY_ORDER=["Blue","Purple","Pink","Red","Gold","Heavenly","67","Tralalero","TungTung","Hulk","IronMan","SpiderMan","Thor"];
 
 function wRand(pool){const t=pool.reduce((s,x)=>s+x.w,0);let r=Math.random()*t;for(const x of pool){r-=x.w;if(r<=0)return x;}return pool[0];}
-function pickSkin(p){if(p==="godly")return wRand(GODLY_POOL);if(p==="heaven")return wRand(HEAVEN_POOL);if(p==="brainrot")return wRand(BRAINROT_POOL);return wRand(STD_POOL);}
+function pickSkin(p){if(p==="godly")return wRand(GODLY_POOL);if(p==="heaven")return wRand(HEAVEN_POOL);if(p==="brainrot")return wRand(BRAINROT_POOL);if(p==="superhero")return wRand(SUPERHERO_POOL);return wRand(STD_POOL);}
 function pickWear(){let r=Math.random()*WT;for(const w of WEARS){r-=w.w;if(r<=0)return w;}return WEARS[0];}
 function pickFloat(w){return w.fMin+Math.random()*(w.fMax-w.fMin);}
 function pickName(r){const a=NAMES[r];return a[Math.floor(Math.random()*a.length)];}
@@ -499,7 +539,7 @@ function triggerAuto(){
 function selectCase(type){
   if(spinning)return;
   activeCase=type;
-  ["standard","premium","godly","heaven","brainrot"].forEach(t=>{
+  ["standard","premium","godly","heaven","brainrot","superhero"].forEach(t=>{
     const cap=t[0].toUpperCase()+t.slice(1);
     document.getElementById("tab"+cap).className="case-tab"+(t===type?" active-"+t:"");
     document.getElementById("badge"+cap).style.display=t===type?"":"none";
@@ -653,10 +693,14 @@ function doSpin(trackId,finalSkin,finalWear,cb){
 
 // ── Show result ───────────────────────────────────────────────
 function rarityStyle(r){
-  if(r==="Heavenly") return {cls:"heavenly-text",label:"Heavenly ✨"};
-  if(r==="TungTung") return {cls:"tungtung-text",label:"Tung Tung 🦇"};
-  if(r==="Tralalero")return {cls:"tralalero-text",label:"Tralalero 🦈"};
-  if(r==="67")       return {cls:"brainrot-text", label:"67 🔢"};
+  if(r==="Heavenly") return {cls:"heavenly-text",  label:"Heavenly ✨"};
+  if(r==="TungTung") return {cls:"tungtung-text",   label:"Tung Tung 🦇"};
+  if(r==="Tralalero")return {cls:"tralalero-text",  label:"Tralalero 🦈"};
+  if(r==="67")       return {cls:"brainrot-text",   label:"67 🔢"};
+  if(r==="Hulk")     return {cls:"hulk-text",       label:"Hulk 💚"};
+  if(r==="IronMan")  return {cls:"ironman-text",    label:"Iron Man 🔴"};
+  if(r==="SpiderMan")return {cls:"spiderman-text",  label:"Spider-Man 🕷️"};
+  if(r==="Thor")     return {cls:"thor-text",       label:"Thor ⚡"};
   return null;
 }
 
@@ -731,7 +775,7 @@ function renderInv(){
     el.dataset.invId=item.id;el.style.background=item.bg;
     el.style.borderColor=item.locked?(item.ct==="godly"?"#ff6a00aa":item.ct==="premium"?"#c084fcaa":item.ct==="heaven"?"#c8b8ffaa":item.ct==="brainrot"?"#00ff88aa":"#f0c040aa"):item.col+"88";
     const lbl=item.name.includes("|")?item.name.split("|")[1].trim():item.name;
-    const tags={standard:"STD",premium:"PRO",godly:"GOD",heaven:"HVN",brainrot:"BRT"};
+    const tags={standard:"STD",premium:"PRO",godly:"GOD",heaven:"HVN",brainrot:"BRT",superhero:"SHR"};
     const rs=rarityStyle(item.r);
     const nameHtml=rs?`<div class="inv-label ${rs.cls}">${lbl}</div>`:`<div class="inv-label" style="color:${item.col}">${lbl}</div>`;
     const priceHtml=rs?`<div class="inv-price ${rs.cls}">🪙 ${fmt(item.price)}</div>`:`<div class="inv-price" style="color:${item.wc}">🪙 ${fmt(item.price)}</div>`;
