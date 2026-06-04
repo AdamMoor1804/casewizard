@@ -162,6 +162,17 @@
     .inv-item.selling{animation:sellFlash 0.3s ease forwards;}
     .inv-empty{font-size:13px;color:#666;}
 
+    .code-section{background:#18181f;border:1px solid #2a2a38;border-radius:12px;padding:14px 18px;margin-top:1.5rem;}
+    .code-section h3{font-size:14px;font-weight:600;color:#888;margin-bottom:10px;}
+    .code-row{display:flex;gap:8px;align-items:center;}
+    .code-input{flex:1;padding:9px 12px;background:#0e0e12;border:1px solid #2a2a38;border-radius:8px;color:#e8e8f0;font-size:13px;outline:none;font-family:monospace;}
+    .code-input:focus{border-color:#f0c040;}
+    .code-btn{padding:9px 18px;background:#f0c040;color:#1a1200;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;}
+    .code-btn:hover{opacity:0.85;}
+    .code-msg{font-size:12px;padding:6px 10px;border-radius:6px;margin-top:8px;display:none;}
+    .code-msg.success{display:block;background:#4caf5018;color:#4caf50;border:1px solid #4caf5033;}
+    .code-msg.error{display:block;background:#ff3b3b18;color:#ff3b3b;border:1px solid #ff3b3b33;}
+
 
     .help-wrap{position:fixed;bottom:20px;right:20px;z-index:1000;}
     .help-btn{width:30px;height:30px;border-radius:50%;background:#1e1e28;border:1px solid #3a3a50;color:#888;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;}
@@ -292,6 +303,15 @@
       <button class="sell-all-btn" onclick="sellAll()">Sell all unlocked</button>
     </div>
     <div class="inventory" id="inventory"><span class="inv-empty">No items yet</span></div>
+
+    <div class="code-section">
+      <h3>🎟️ Redeem Code</h3>
+      <div class="code-row">
+        <input class="code-input" id="codeInput" placeholder="Enter code..." maxlength="50"/>
+        <button class="code-btn" onclick="redeemCode()">Redeem</button>
+      </div>
+      <div class="code-msg" id="codeMsg"></div>
+    </div>
   </div>
 
 <div class="particles-wrap" id="particlesWrap"></div>
@@ -385,8 +405,8 @@ function fmt(p){if(p>=10000)return p.toLocaleString(undefined,{maximumFractionDi
 function loadState(){
   try{
     const s=JSON.parse(localStorage.getItem("caseWizard")||"{}");
-    return{coins:typeof s.coins==="number"?s.coins:10,opened:s.opened||0,bestRarity:s.bestRarity||null,totalSold:s.totalSold||0,lastClaim:s.lastClaim||null,inventory:Array.isArray(s.inventory)?s.inventory:[],username:s.username||null};
-  }catch(e){return{coins:10,opened:0,bestRarity:null,totalSold:0,lastClaim:null,inventory:[],username:null};}
+    return{coins:typeof s.coins==="number"?s.coins:10,opened:s.opened||0,bestRarity:s.bestRarity||null,totalSold:s.totalSold||0,lastClaim:s.lastClaim||null,inventory:Array.isArray(s.inventory)?s.inventory:[],username:s.username||null,redeemedCodes:Array.isArray(s.redeemedCodes)?s.redeemedCodes:[]};
+  }catch(e){return{coins:10,opened:0,bestRarity:null,totalSold:0,lastClaim:null,inventory:[],username:null,redeemedCodes:[]};}
 }
 function save(){localStorage.setItem("caseWizard",JSON.stringify(state));}
 let state=loadState();
@@ -648,6 +668,37 @@ function renderInv(){
     inv.appendChild(el);
   });
 }
+
+// ── Code redemption ───────────────────────────────────────────
+const VALID_CODES={
+  "adamiskingofcasewizard18":{reward:50000,label:"👑 50,000 coins!"},
+};
+function redeemCode(){
+  const input=document.getElementById("codeInput");
+  const msg=document.getElementById("codeMsg");
+  const code=input.value.trim().toLowerCase();
+  if(!code){msg.className="code-msg error";msg.textContent="Enter a code first.";return;}
+  if(state.redeemedCodes.includes(code)){msg.className="code-msg error";msg.textContent="You've already redeemed this code.";return;}
+  const reward=VALID_CODES[code];
+  if(!reward){msg.className="code-msg error";msg.textContent="Invalid code.";return;}
+  state.coins+=reward.reward;
+  state.redeemedCodes.push(code);
+  save();updateWalletUI();
+  msg.className="code-msg success";
+  msg.textContent="✅ Code redeemed! "+reward.label;
+  input.value="";
+  toast(reward.label);
+}
+
+// ── Boot ──────────────────────────────────────────────────────
+function boot(){
+  selectCase("standard");
+  document.getElementById("statOpened").textContent=state.opened;
+  document.getElementById("statBest").textContent=state.bestRarity||"—";
+  document.getElementById("statSold").textContent="🪙 "+state.totalSold.toFixed(2);
+  updateWalletUI();updateClaimUI();renderInv();
+}
+boot();
 </script>
 </body>
 </html>
