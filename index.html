@@ -11,8 +11,6 @@
     gtag('js', new Date());
     gtag('config', 'G-17P09SDHQ1');
   </script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0e0e12;color:#e8e8f0;min-height:100vh;}
@@ -20,11 +18,6 @@
     h2{font-size:22px;font-weight:600;color:#f0c040;margin-bottom:4px;}
     .sub{font-size:13px;color:#888;margin-bottom:1.5rem;}
 
-    .page-nav{display:flex;gap:8px;margin-bottom:1.5rem;}
-    .page-tab{padding:9px 22px;border-radius:9px;border:1px solid #2a2a38;background:#18181f;color:#888;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.15s;}
-    .page-tab.active{background:#f0c040;color:#1a1200;border-color:#f0c040;}
-    .page-section{display:none;}
-    .page-section.visible{display:block;}
 
     .case-tabs{display:flex;gap:8px;margin-bottom:1.5rem;flex-wrap:wrap;}
     .case-tab{flex:1;min-width:110px;padding:11px 6px;border-radius:12px;cursor:pointer;border:2px solid #2a2a38;background:#18181f;text-align:center;transition:all 0.2s;position:relative;}
@@ -158,7 +151,6 @@
     .tag-premium{background:#c084fc22;color:#c084fc;}
     .tag-godly{background:#ff6a0022;color:#ff6a00;}
     .tag-heaven{background:#c8b8ff22;color:#c8b8ff;}
-    .tag-trade{background:#4a9eff22;color:#4a9eff;}
     .inv-actions{display:flex;gap:2px;margin-top:3px;width:calc(100% - 8px);}
     .lock-btn,.sell-btn{flex:1;padding:2px 0;border-radius:5px;font-size:9px;font-weight:600;cursor:pointer;border:1px solid;text-align:center;}
     .lock-btn{background:rgba(255,255,255,0.05);border-color:#ffffff33;color:#aaa;}
@@ -170,40 +162,6 @@
     .inv-item.selling{animation:sellFlash 0.3s ease forwards;}
     .inv-empty{font-size:13px;color:#666;}
 
-    /* TRADE */
-    .trade-section{background:#18181f;border:1px solid #2a2a38;border-radius:12px;padding:1.25rem;margin-bottom:1.25rem;}
-    .trade-section h3{font-size:15px;font-weight:600;color:#e8e8f0;margin-bottom:10px;}
-    .trade-row{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap;}
-    .trade-input{flex:1;min-width:160px;padding:9px 12px;background:#0e0e12;border:1px solid #2a2a38;border-radius:8px;color:#e8e8f0;font-size:13px;outline:none;}
-    .trade-input:focus{border-color:#4a9eff;}
-    .trade-btn{padding:9px 18px;background:#4a9eff;color:#001a33;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;}
-    .trade-btn.red{background:#ff3b3b;color:#fff;}
-    .trade-btn.green{background:#4caf50;color:#fff;}
-    .trade-btn.grey{background:#444;color:#aaa;}
-    .trade-chips{display:flex;flex-wrap:wrap;gap:6px;min-height:40px;padding:8px;background:#13131a;border-radius:8px;border:1px dashed #2a2a38;margin-bottom:10px;}
-    .trade-chip{display:flex;align-items:center;gap:5px;padding:4px 8px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;}
-    .trade-chip:hover{opacity:0.7;}
-    .chip-empty{font-size:12px;color:#555;margin:auto;}
-    .offer-card{border:1px solid #2a2a38;border-radius:10px;padding:1rem;background:#13131a;margin-bottom:10px;}
-    .offer-from{font-size:13px;font-weight:600;color:#4a9eff;}
-    .offer-time{font-size:11px;color:#555;}
-    .offer-items{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0;}
-    .offer-item{display:flex;flex-direction:column;align-items:center;justify-content:center;width:60px;height:68px;border-radius:7px;font-size:16px;border:1px solid rgba(255,255,255,0.1);}
-    .oi-name{font-size:7px;margin-top:2px;text-align:center;padding:0 2px;line-height:1.2;}
-    .oi-price{font-size:7px;font-weight:600;}
-    .offer-actions{display:flex;gap:6px;margin-top:8px;}
-    .trade-status{font-size:12px;padding:6px 10px;border-radius:6px;margin-bottom:8px;}
-    .ts-info{background:#4a9eff18;color:#4a9eff;border:1px solid #4a9eff33;}
-    .ts-success{background:#4caf5018;color:#4caf50;border:1px solid #4caf5033;}
-    .ts-error{background:#ff3b3b18;color:#ff3b3b;border:1px solid #ff3b3b33;}
-    .pick-grid{display:flex;flex-wrap:wrap;gap:6px;}
-    .pick-item{width:72px;height:82px;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:18px;cursor:pointer;border:2px solid rgba(255,255,255,0.08);transition:all 0.15s;}
-    .pick-item:hover{border-color:#4a9eff66;}
-    .pick-item.picked{border-color:#4a9effaa;box-shadow:0 0 8px #4a9eff44;}
-    .pi-label{font-size:7.5px;margin-top:2px;text-align:center;padding:0 2px;line-height:1.2;}
-    .pi-price{font-size:7.5px;font-weight:600;}
-    .no-offers{font-size:13px;color:#555;padding:8px 0;}
-    .uname-display{font-size:12px;color:#4a9eff;margin-bottom:1rem;}
 
     .help-wrap{position:fixed;bottom:20px;right:20px;z-index:1000;}
     .help-btn{width:30px;height:30px;border-radius:50%;background:#1e1e28;border:1px solid #3a3a50;color:#888;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;}
@@ -224,12 +182,7 @@
 <body>
 <div id="app">
   <h2>CaseWizard</h2>
-  <p class="sub">Open cases, collect skins, trade with others.</p>
-
-  <div class="page-nav">
-    <button class="page-tab active" onclick="showPage('cases',this)">🎁 Cases</button>
-    <button class="page-tab" onclick="showPage('trade',this)">🔄 Trade</button>
-  </div>
+  <p class="sub">Open cases and collect skins. Good luck.</p>
 
   <!-- CASES -->
   <div class="page-section visible" id="pageCases">
@@ -341,45 +294,6 @@
     <div class="inventory" id="inventory"><span class="inv-empty">No items yet</span></div>
   </div>
 
-  <!-- TRADE -->
-  <div class="page-section" id="pageTrade">
-    <div class="trade-section">
-      <h3>Your Username</h3>
-      <div id="unameDisplay" class="uname-display" style="display:none"></div>
-      <div id="unameStatus" style="display:none;font-size:12px;padding:6px 10px;border-radius:6px;margin-bottom:8px;"></div>
-      <div class="trade-row" id="unameRow">
-        <input class="trade-input" id="unameInput" placeholder="Choose a username (3+ chars, letters/numbers)..." maxlength="20"/>
-        <button class="trade-btn" onclick="setUsername()">Set Username</button>
-      </div>
-      <div id="unameChangeRow" style="display:none">
-        <button class="trade-btn grey" onclick="changeUsername()" style="font-size:12px;padding:6px 14px;">Change Username</button>
-      </div>
-    </div>
-    <div class="trade-section">
-      <h3>Send Trade Offer</h3>
-      <div id="tradeStatus" style="display:none" class="trade-status ts-info"></div>
-      <div class="trade-row">
-        <input class="trade-input" id="tradeTarget" placeholder="Their username..." maxlength="20"/>
-      </div>
-      <p style="font-size:12px;color:#666;margin-bottom:8px;">Click items to offer:</p>
-      <div class="pick-grid" id="pickGrid"></div>
-      <div style="margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-        <span style="font-size:12px;color:#888">Offering:</span>
-        <div class="trade-chips" id="tradeChips" style="flex:1;min-width:140px;"><span class="chip-empty">None selected</span></div>
-        <button class="trade-btn" onclick="sendOffer()">Send Offer</button>
-      </div>
-    </div>
-    <div class="trade-section">
-      <h3>Incoming Offers</h3>
-      <div id="incomingOffers"><p class="no-offers">No incoming offers.</p></div>
-    </div>
-    <div class="trade-section">
-      <h3>Sent Offers</h3>
-      <div id="sentOffers"><p class="no-offers">No sent offers.</p></div>
-    </div>
-  </div>
-</div>
-
 <div class="particles-wrap" id="particlesWrap"></div>
 
 <div class="help-wrap">
@@ -418,20 +332,6 @@
 </div>
 
 <script>
-// Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyCS1pBFFiGHvsCxe7yEkb9oJyjicCTeoyQ",
-  authDomain: "casewizard-5d9ad.firebaseapp.com",
-  databaseURL: "https://casewizard-5d9ad-default-rtdb.firebaseio.com",
-  projectId: "casewizard-5d9ad",
-  storageBucket: "casewizard-5d9ad.firebasestorage.app",
-  messagingSenderId: "583206904513",
-  appId: "1:583206904513:web:806a746959018d59dbea40",
-  measurementId: "G-WTS7ZXKH2P"
-};
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-
 // ── Data ──────────────────────────────────────────────────────
 const CASES = {
   standard:{ name:"Standard Case", icon:"🎁", cost:0.50,  mult:1,  accent:"#f0c040", boxCls:"case-box-standard", btnCls:"btn-standard", lineCls:"c-standard", reelCls:"",             pool:"std"    },
@@ -494,16 +394,6 @@ let spinning=false;
 let doubleMode=false;
 let activeCase="standard";
 let idc=Date.now();
-let tradeSelected=[];
-
-// ── Pages ─────────────────────────────────────────────────────
-function showPage(page,btn){
-  document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('visible'));
-  document.querySelectorAll('.page-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('page'+page.charAt(0).toUpperCase()+page.slice(1)).classList.add('visible');
-  btn.classList.add('active');
-  if(page==='trade'){renderPickGrid();loadOffers();}
-}
 
 // ── Select case ───────────────────────────────────────────────
 function selectCase(type){
@@ -750,7 +640,7 @@ function renderInv(){
     el.style.background=item.bg;
     el.style.borderColor=item.locked?(item.ct==="godly"?"#ff6a00aa":item.ct==="premium"?"#c084fcaa":item.ct==="heaven"?"#c8b8ffaa":"#f0c040aa"):item.col+"88";
     const lbl=item.name.includes("|")?item.name.split("|")[1].trim():item.name;
-    const tags={standard:"STD",premium:"PRO",godly:"GOD",heaven:"HVN",trade:"TRD"};
+    const tags={standard:"STD",premium:"PRO",godly:"GOD",heaven:"HVN"};
     const isH=item.r==="Heavenly";
     const nameHtml=isH?`<div class="inv-label heavenly-text">${lbl}</div>`:`<div class="inv-label" style="color:${item.col}">${lbl}</div>`;
     const priceHtml=isH?`<div class="inv-price heavenly-text">🪙 ${fmt(item.price)}</div>`:`<div class="inv-price" style="color:${item.wc}">🪙 ${fmt(item.price)}</div>`;
@@ -758,164 +648,6 @@ function renderInv(){
     inv.appendChild(el);
   });
 }
-
-// ── Trading ───────────────────────────────────────────────────
-function setUsernameStatus(msg, type){
-  const el=document.getElementById("unameStatus");
-  el.textContent=msg;
-  el.style.display="block";
-  el.style.background=type==="success"?"#4caf5018":type==="error"?"#ff3b3b18":"#4a9eff18";
-  el.style.color=type==="success"?"#4caf50":type==="error"?"#ff3b3b":"#4a9eff";
-  el.style.border="1px solid "+(type==="success"?"#4caf5033":type==="error"?"#ff3b3b33":"#4a9eff33");
-}
-function setUsername(){
-  const val=document.getElementById("unameInput").value.trim().toLowerCase().replace(/[^a-z0-9_]/g,"");
-  if(!val||val.length<3){setUsernameStatus("Username must be at least 3 letters/numbers.","error");return;}
-  setUsernameStatus("Saving to database...","info");
-  db.ref("users/"+val).set({username:val,lastSeen:Date.now()})
-    .then(()=>{
-      state.username=val;save();renderUnameUI();
-      setUsernameStatus("✅ Username set to: "+val,"success");
-      loadOffers();
-    })
-    .catch(err=>{
-      setUsernameStatus("❌ Failed to save: "+err.message,"error");
-    });
-}
-function changeUsername(){
-  state.username=null;save();
-  document.getElementById("unameDisplay").style.display="none";
-  document.getElementById("unameRow").style.display="flex";
-  document.getElementById("unameChangeRow").style.display="none";
-  document.getElementById("unameInput").value="";
-  setUsernameStatus("Enter a new username below.","info");
-}
-function renderUnameUI(){
-  if(state.username){
-    document.getElementById("unameDisplay").textContent="Logged in as: "+state.username;
-    document.getElementById("unameDisplay").style.display="block";
-    document.getElementById("unameRow").style.display="none";
-    document.getElementById("unameChangeRow").style.display="block";
-  } else {
-    document.getElementById("unameDisplay").style.display="none";
-    document.getElementById("unameRow").style.display="flex";
-    document.getElementById("unameChangeRow").style.display="none";
-  }
-}
-function renderPickGrid(){
-  const grid=document.getElementById("pickGrid");
-  const tradeable=state.inventory.filter(i=>!i.locked);
-  if(!tradeable.length){grid.innerHTML='<p style="font-size:12px;color:#555">No unlocked items.</p>';return;}
-  grid.innerHTML="";
-  tradeable.forEach(item=>{
-    const el=document.createElement("div");
-    el.className="pick-item"+(tradeSelected.includes(item.id)?" picked":"");
-    el.style.background=item.bg;el.style.borderColor=item.col+"66";
-    const lbl=item.name.includes("|")?item.name.split("|")[1].trim():item.name;
-    el.innerHTML=`${item.icon}<div class="pi-label" style="color:${item.col}">${lbl}</div><div class="pi-price" style="color:${item.wc}">🪙${fmt(item.price)}</div>`;
-    el.onclick=()=>{
-      const idx=tradeSelected.indexOf(item.id);
-      if(idx===-1)tradeSelected.push(item.id);else tradeSelected.splice(idx,1);
-      renderPickGrid();renderChips();
-    };
-    grid.appendChild(el);
-  });
-  renderChips();
-}
-function renderChips(){
-  const cont=document.getElementById("tradeChips");
-  if(!tradeSelected.length){cont.innerHTML='<span class="chip-empty">None selected</span>';return;}
-  cont.innerHTML="";
-  tradeSelected.forEach(id=>{
-    const item=state.inventory.find(i=>i.id===id);if(!item)return;
-    const chip=document.createElement("div");
-    chip.className="trade-chip";chip.style.background=item.bg;chip.style.border=`1px solid ${item.col}55`;
-    const lbl=item.name.includes("|")?item.name.split("|")[1].trim():item.name;
-    chip.innerHTML=`${item.icon}<span style="color:${item.col}">${lbl}</span><span style="color:#555;font-size:10px">×</span>`;
-    chip.onclick=()=>{const idx=tradeSelected.indexOf(id);if(idx!==-1)tradeSelected.splice(idx,1);renderPickGrid();};
-    cont.appendChild(chip);
-  });
-}
-function setTradeStatus(msg,type){
-  const el=document.getElementById("tradeStatus");el.textContent=msg;el.className="trade-status ts-"+type;el.style.display="block";
-}
-async function sendOffer(){
-  if(!state.username){toast("Set a username first","#ff3b3b");return;}
-  const target=document.getElementById("tradeTarget").value.trim().toLowerCase().replace(/[^a-z0-9_]/g,"");
-  if(!target){toast("Enter a username","#ff3b3b");return;}
-  if(target===state.username){toast("Can't trade with yourself","#ff3b3b");return;}
-  if(!tradeSelected.length){toast("Select items to offer","#ff3b3b");return;}
-  setTradeStatus("Checking user...","info");
-  try{
-    const snap=await db.ref("users/"+target).get();
-    if(!snap.exists()){setTradeStatus("User '"+target+"' not found. Make sure they have set a username.","error");return;}
-    const items=tradeSelected.map(id=>state.inventory.find(i=>i.id===id)).filter(Boolean);
-    const offer={from:state.username,to:target,items:items.map(i=>({id:i.id,name:i.name,r:i.r,icon:i.icon,col:i.col,bg:i.bg,ws:i.ws,wc:i.wc,price:i.price})),timestamp:Date.now(),status:"pending"};
-    const ref=await db.ref("trades/"+target+"/incoming").push(offer);
-    await db.ref("trades/"+state.username+"/sent/"+ref.key).set({...offer,refKey:ref.key});
-    tradeSelected=[];renderPickGrid();
-    setTradeStatus("Offer sent to "+target+"! ✅","success");
-    loadOffers();
-  }catch(err){
-    setTradeStatus("Error: "+err.message+". Check Firebase rules (set to test mode).","error");
-  }
-}
-function loadOffers(){
-  if(!state.username)return;
-  db.ref("trades/"+state.username+"/incoming").on("value",snap=>{
-    const cont=document.getElementById("incomingOffers");
-    const offers=[];snap.forEach(c=>offers.push({key:c.key,...c.val()}));
-    const pending=offers.filter(o=>o.status==="pending");
-    if(!pending.length){cont.innerHTML='<p class="no-offers">No incoming offers.</p>';return;}
-    cont.innerHTML="";
-    pending.forEach(offer=>{
-      const card=document.createElement("div");card.className="offer-card";
-      const total=offer.items.reduce((s,i)=>s+i.price,0);
-      card.innerHTML=`<div style="display:flex;justify-content:space-between"><div class="offer-from">From: ${offer.from}</div><div class="offer-time">${timeAgo(offer.timestamp)}</div></div><div class="offer-items">${offer.items.map(i=>`<div class="offer-item" style="background:${i.bg};border-color:${i.col}44">${i.icon}<div class="oi-name" style="color:${i.col}">${i.name.includes("|")?i.name.split("|")[1].trim():i.name}</div><div class="oi-price" style="color:${i.wc||i.col}">🪙${fmt(i.price)}</div></div>`).join("")}</div><div style="font-size:11px;color:#888;margin-bottom:8px">Total: 🪙${fmt(total)}</div><div class="offer-actions"><button class="trade-btn green" onclick='acceptOffer("${offer.key}",${JSON.stringify(offer).replace(/"/g,"&quot;")})'>Accept</button><button class="trade-btn red" onclick="declineOffer('${offer.key}')">Decline</button></div>`;
-      cont.appendChild(card);
-    });
-  });
-  db.ref("trades/"+state.username+"/sent").on("value",snap=>{
-    const cont=document.getElementById("sentOffers");
-    const offers=[];snap.forEach(c=>offers.push({key:c.key,...c.val()}));
-    const pending=offers.filter(o=>o.status==="pending");
-    if(!pending.length){cont.innerHTML='<p class="no-offers">No pending offers.</p>';return;}
-    cont.innerHTML="";
-    pending.forEach(offer=>{
-      const card=document.createElement("div");card.className="offer-card";
-      card.innerHTML=`<div style="display:flex;justify-content:space-between"><div class="offer-from">To: ${offer.to}</div><div class="offer-time">${timeAgo(offer.timestamp)}</div></div><div class="offer-items">${offer.items.map(i=>`<div class="offer-item" style="background:${i.bg};border-color:${i.col}44">${i.icon}</div>`).join("")}</div><div class="offer-actions"><button class="trade-btn grey" onclick="cancelOffer('${offer.key}')">Cancel</button></div>`;
-      cont.appendChild(card);
-    });
-  });
-}
-async function acceptOffer(key,offer){
-  offer.items.forEach(ti=>{
-    state.inventory.unshift({id:idc++,ct:"trade",r:ti.r,icon:ti.icon,col:ti.col,bg:ti.bg,name:ti.name,ws:ti.ws||"TR",wc:ti.wc||"#4a9eff",fv:0.5,price:ti.price,locked:false});
-  });
-  save();renderInv();
-  await db.ref("trades/"+state.username+"/incoming/"+key).update({status:"accepted"});
-  toast("Trade accepted! Items added.","#4caf50");
-}
-async function declineOffer(key){
-  await db.ref("trades/"+state.username+"/incoming/"+key).update({status:"declined"});
-  toast("Trade declined.","#ff3b3b");
-}
-async function cancelOffer(key){
-  await db.ref("trades/"+state.username+"/sent/"+key).update({status:"cancelled"});
-  toast("Trade cancelled.");
-}
-function timeAgo(ts){const s=Math.floor((Date.now()-ts)/1000);if(s<60)return s+"s ago";if(s<3600)return Math.floor(s/60)+"m ago";return Math.floor(s/3600)+"h ago";}
-
-// ── Boot ──────────────────────────────────────────────────────
-function boot(){
-  selectCase("standard");
-  document.getElementById("statOpened").textContent=state.opened;
-  document.getElementById("statBest").textContent=state.bestRarity||"—";
-  document.getElementById("statSold").textContent="🪙 "+state.totalSold.toFixed(2);
-  updateWalletUI();updateClaimUI();renderInv();renderUnameUI();
-  if(state.username)loadOffers();
-}
-boot();
 </script>
 </body>
 </html>
