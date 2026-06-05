@@ -661,13 +661,15 @@ function rarityStyle(r){
 // ── Show result ───────────────────────────────────────────────
 function showResult(skin,wear,floatVal,slot){
   const c=CASES[activeCase];
+  const price=parseFloat((skin.bp*c.mult*wear.mult).toFixed(2));
+  const name=pickName(skin.r);
+  // Always add to inventory first regardless of panel state
+  addToInv(skin,wear,floatVal,name,price);
   const panel=document.getElementById("resultPanel"+slot);if(!panel)return;
   panel.classList.remove("show");void panel.offsetWidth;
-  const price=parseFloat((skin.bp*c.mult*wear.mult).toFixed(2));
   const rs=rarityStyle(skin.r);
   document.getElementById("resSwatch"+slot).style.cssText=`background:${skin.bg};border:2px solid ${skin.col};`;
   document.getElementById("resSwatch"+slot).textContent=skin.icon;
-  const name=pickName(skin.r);
   document.getElementById("resBadge"+slot).textContent=c.name;
   document.getElementById("resBadge"+slot).className="r-badge rb-"+activeCase;
   document.getElementById("resName"+slot).textContent=name;
@@ -680,7 +682,6 @@ function showResult(skin,wear,floatVal,slot){
   else pe.innerHTML=`<span>🪙</span><span style="color:${wear.col}">${fmt(price)} if sold</span>`;
   document.getElementById("resNeedle"+slot).style.left=(floatVal*100)+"%";
   panel.classList.add("show");
-  addToInv(skin,wear,floatVal,name,price);
 }
 
 // ── Stats ─────────────────────────────────────────────────────
