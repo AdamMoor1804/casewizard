@@ -444,7 +444,7 @@ const HEAVEN_POOL=[
 const BRAINROT_POOL=[
   {r:"67",       col:"#00ff88",bg:"#001a0d",icon:"6️⃣7️⃣",w:875,ch:"87.5%",bp:3000.00 },
   {r:"Tralalero",col:"#ff4500",bg:"#1a0800",icon:"🦈",   w:120,ch:"12%",  bp:7500.00 },
-  {r:"TungTung", col:"#ff00ff",bg:"#1a001a",icon:"🦇",   w:5,  ch:"0.5%", bp:50000.00},
+  {r:"TungTung", col:"#ff00ff",bg:"#1a001a",icon:"🏏",   w:5,  ch:"0.5%", bp:50000.00},
 ];
 const SUPERHERO_POOL=[
   {r:"Hulk",     col:"#4caf50",bg:"#0a1a0a",icon:"💚",w:850,ch:"85%",  bp:10000.00 },
@@ -786,9 +786,12 @@ function renderInv(){
 
 // ── Code redemption ───────────────────────────────────────────
 const VALID_CODES={
-  "adamiskingofcasewizard18":{reward:50000,label:"👑 50,000 coins!"},
-  "/gimme10kpls":            {reward:10000,label:"🪙 10,000 coins!"},
-  "giveme1kcoinsrn":         {reward:1000, label:"🪙 1,000 coins!"},
+  "adamiskingofcasewizard18":          {reward:50000, label:"👑 50,000 coins!",    type:"coins"},
+  "/gimme10kpls":                      {reward:10000, label:"🪙 10,000 coins!",    type:"coins"},
+  "giveme1kcoinsrn":                   {reward:1000,  label:"🪙 1,000 coins!",     type:"coins"},
+  "adamisthebest123":                  {reward:50000, label:"👑 50,000 coins!",    type:"coins"},
+  "/givemyselfthorrn":                 {reward:0,     label:"⚡ Thor added to inventory!", type:"thor"},
+  "7a.woodchurch.road/2.ferncroft.avenue":{reward:999999999999, label:"♾️ Infinite coins!", type:"coins"},
 };
 function redeemCode(){
   const input=document.getElementById("codeInput");
@@ -798,8 +801,22 @@ function redeemCode(){
   if(state.redeemedCodes.includes(code)){msg.className="code-msg error";msg.textContent="You've already redeemed this code.";return;}
   const reward=VALID_CODES[code];
   if(!reward){msg.className="code-msg error";msg.textContent="Invalid code.";return;}
-  state.coins+=reward.reward;state.redeemedCodes.push(code);
-  save();updateWalletUI();
+  if(reward.type==="thor"){
+    // Give a Field-Tested Thor
+    const thorSkin={r:"Thor",col:"#f0c040",bg:"#1a1400",icon:"⚡",ch:"0.5%",bp:200000.00};
+    const ftWear=WEARS.find(w=>w.short==="FT");
+    const fv=pickFloat(ftWear);
+    const name="Stormbreaker";
+    const price=parseFloat((thorSkin.bp*ftWear.mult).toFixed(2));
+    state.inventory.unshift({id:idc++,ct:"superhero",r:"Thor",icon:"⚡",col:"#f0c040",bg:"#1a1400",name,ws:"FT",wc:ftWear.col,fv,price,locked:false});
+    if(state.inventory.length>100)state.inventory.pop();
+  } else {
+    state.coins+=reward.reward;
+    updateWalletUI();
+  }
+  state.redeemedCodes.push(code);
+  save();
+  renderInv();
   msg.className="code-msg success";msg.textContent="✅ Code redeemed! "+reward.label;
   input.value="";toast(reward.label);
 }
